@@ -22,7 +22,7 @@ public class Cooldown {
 	 * again.
 	 * 
 	 * @param milliseconds
-	 *            Time until cooldown period is finished.
+	 *                     Time until cooldown period is finished.
 	 */
 	protected Cooldown(final int milliseconds) {
 		this.milliseconds = milliseconds;
@@ -36,9 +36,9 @@ public class Cooldown {
 	 * again, with a variation of +/- variance.
 	 * 
 	 * @param milliseconds
-	 *            Time until cooldown period is finished.
+	 *                     Time until cooldown period is finished.
 	 * @param variance
-	 *            Variance in the cooldown period.
+	 *                     Variance in the cooldown period.
 	 */
 	protected Cooldown(final int milliseconds, final int variance) {
 		this.milliseconds = milliseconds;

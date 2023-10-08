@@ -74,23 +74,21 @@ public class GameScreen extends Screen {
 	/** Checks if a bonus life is received. */
 	private boolean bonusLife;
 
-
-
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
 	 * @param gameState
-	 *            Current game state.
+	 *                     Current game state.
 	 * @param gameSettings
-	 *            Current game settings.
+	 *                     Current game settings.
 	 * @param bonnusLife
-	 *            Checks if a bonus life is awarded this level.
+	 *                     Checks if a bonus life is awarded this level.
 	 * @param width
-	 *            Screen width.
+	 *                     Screen width.
 	 * @param height
-	 *            Screen height.
+	 *                     Screen height.
 	 * @param fps
-	 *            Frames per second, frame rate at which the game is run.
+	 *                     Frames per second, frame rate at which the game is run.
 	 */
 	public GameScreen(final GameState gameState,
 			final GameSettings gameSettings, final boolean bonusLife,
@@ -220,7 +218,6 @@ public class GameScreen extends Screen {
 	 */
 	private void draw() {
 		drawManager.initDrawing(this);
-
 		drawManager.drawEntity(this.ship, this.ship.getPositionX(),
 				this.ship.getPositionY());
 		if (this.enemyShipSpecial != null)
@@ -242,18 +239,18 @@ public class GameScreen extends Screen {
 
 		// Countdown to game start.
 		if (!this.inputDelay.checkFinished()) {
+
 			int countdown = (int) ((INPUT_DELAY
 					- (System.currentTimeMillis()
-							- this.gameStartTime)) / 1000);
+							- this.gameStartTime))
+					/ 1000);
 
 			drawManager.drawCountDown(this, this.level, countdown,
 					this.bonusLife);
 
-
-
-			/* this code is modified with Clean Code (dodo_kdy)  */
-			  //drawManager.drawHorizontalLine(this, this.height / 2 - this.height / 12);
-			  //drawManager.drawHorizontalLine(this, this.height / 2 + this.height / 12);
+			/* this code is modified with Clean Code (dodo_kdy) */
+			// drawManager.drawHorizontalLine(this, this.height / 2 - this.height / 12);
+			// drawManager.drawHorizontalLine(this, this.height / 2 + this.height / 12);
 
 		}
 
@@ -318,9 +315,9 @@ public class GameScreen extends Screen {
 	 * Checks if two entities are colliding.
 	 * 
 	 * @param a
-	 *            First entity, the bullet.
+	 *          First entity, the bullet.
 	 * @param b
-	 *            Second entity, the ship.
+	 *          Second entity, the ship.
 	 * @return Result of the collision test.
 	 */
 	private boolean checkCollision(final Entity a, final Entity b) {
