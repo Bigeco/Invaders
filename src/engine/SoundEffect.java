@@ -23,6 +23,7 @@ public class SoundEffect {
     
     File useCoinSound = new File("sound/soundEffect/usecoin.wav");
     
+    File enhancedSound = new File("sound/soundEffect/enhancedEnemyDestruction.wav");
     /**
      * Play ship's shooting sound
      */
@@ -135,6 +136,18 @@ public class SoundEffect {
             Thread.sleep(1);
         } catch (Exception e) {
             System.err.println("SOUND ERROR: useCoin sound error.");
+        }
+    }
+
+    public void playEnhancedSound() {
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(enhancedSound));
+            clip.start();
+
+            Thread.sleep(1);
+        } catch (Exception e) {
+            System.err.println("SOUND ERROR: Enhanced Sound error.");
         }
     }
 

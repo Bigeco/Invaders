@@ -162,7 +162,6 @@ public class GameScreen extends Screen {
 	private int BulletsRemaining=99;
 
 
-
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 *
@@ -259,7 +258,7 @@ public class GameScreen extends Screen {
 
 //		bgm.InGame_bgm_stop();
 		bgm.InGame_bgm_play();
-
+		
 
 		drawManager.initBackgroundTimer(this, SEPARATION_LINE_HEIGHT); // Initializes timer for background animation.
 	}
@@ -716,7 +715,14 @@ public class GameScreen extends Screen {
 						enemyShip.reduceEnemyLife(bullet.getDamage()); // 수정
 						this.logger.info("Attack the enemy with " + bullet.getDamage()
 							+ " of damage.");
-						soundEffect.playEnemyDestructionSound();
+						
+						if (!enhanceManager.getIsEnhanced()){
+							soundEffect.playEnemyDestructionSound();
+						}
+						else {
+							soundEffect.playEnhancedSound();
+						}
+						
 						this.combo++;
 						this.score += combo;
 						this.Miss =1;
