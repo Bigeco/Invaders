@@ -23,7 +23,8 @@ public class SoundEffect {
     
     File useCoinSound = new File("sound/soundEffect/usecoin.wav");
     
-    File enhancedSound = new File("sound/soundEffect/enhancedEnemyDestruction.wav");
+
+    File enhancedSound = new File("sound/soundEffect/enhancedDestruction.wav");
     /**
      * Play ship's shooting sound
      */
