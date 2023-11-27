@@ -114,6 +114,7 @@ public class SkinStoreScreen extends Screen {
                         }
                     } else if (!(skinBuyManager.isSkinOwned(Color.YELLOW))){
                         if (this.coin.getCoin() >= skinPrice) {
+                            soundEffect.playUseCoinSound();
                             skinBuyManager.purchaseSkin(skinColor1, skinPrice);
                             skinBuyManager.equipSkin(skinColor1);
                             System.out.println("plese do");
@@ -137,6 +138,7 @@ public class SkinStoreScreen extends Screen {
                     }
                     else{
                         if (this.coin.getCoin() >= skinPrice) {
+                            soundEffect.playUseCoinSound();
                             skinBuyManager.purchaseSkin(skinColor2, skinPrice);
                             skinBuyManager.equipSkin(skinColor2);
                             System.out.println("plese do");
@@ -157,6 +159,7 @@ public class SkinStoreScreen extends Screen {
                     }
                     else{
                         if (this.coin.getCoin() >= skinPrice) {
+                            soundEffect.playUseCoinSound();
                             skinBuyManager.purchaseSkin(skinColor3, skinPrice);
                             skinBuyManager.equipSkin(skinColor3);
                             System.out.println("plese do");
@@ -177,6 +180,7 @@ public class SkinStoreScreen extends Screen {
                     }
                     else{
                         if (this.coin.getCoin() >= skinPrice) {
+                            soundEffect.playUseCoinSound();
                             skinBuyManager.purchaseSkin(skinColor4, skinPrice);
                             skinBuyManager.equipSkin(skinColor4);
                             System.out.println("plese do");
