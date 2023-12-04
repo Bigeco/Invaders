@@ -595,11 +595,31 @@ public class GameScreen extends Screen {
 			}
 		}
 		drawManager.drawSoundStatus1(this, isSoundOn);
-
 		drawManager.drawTimer(this, timer.getElapsedTime());
+	
+		
+		for (EnemyShip enemyShip : this.enemyShipFormation){
+			for (Bullet bullet : this.bullets){
+				if (checkCollision(bullet, enemyShip) && !this.levelFinished){
+					if (bullet.getSpeed() < 0){
+						drawManager.printAttackDamage(bullet.getDamage(), enemyShip.enemyPosX(), enemyShip.enemyPosY());
+					}
+				}
+			}
+			for (BulletY bulletY : bulletsY){
+				if (checkCollision(bulletY, enemyShip) && !this.levelFinished){
+					if (bulletY.getSpeed() < 0){
+						drawManager.printAttackDamage(bulletY.getDamage(), enemyShip.enemyPosX(), enemyShip.enemyPosY());
+					}
+				}
+			}
+		}
+		
 		if(Miss==1) {
 			drawManager.ComboCount(this, this.combo);
 		}
+		
+		
 		//GameOver
 		drawManager.gameOver(this, this.levelFinished, this.lives,this.BulletsCount, this.timer, this.coin, this.clearCoin);
 		drawManager.changeGhostColor(this.levelFinished, this.lives);
@@ -619,6 +639,7 @@ public class GameScreen extends Screen {
 			drawManager.drawBackgroundStart(this, SEPARATION_LINE_HEIGHT);
 
 			/* this code is modified with Clean Code (dodo_kdy)  */
+			
 			//drawManager.drawHorizontalLine(this, this.height / 2 - this.height / 12);
 			//drawManager.drawHorizontalLine(this, this.height / 2 + this.height / 12);
 
@@ -631,9 +652,6 @@ public class GameScreen extends Screen {
 		}
 
 		drawManager.completeDrawing(this);
-
-
-
 		}
 
 
@@ -684,7 +702,7 @@ public class GameScreen extends Screen {
 		this.items.removeAll(recyclable);
 		ItemPool.recycle(recyclable);
 	}
-
+	
 	/**
 	 * Manages collisions between bullets and ships.
 	 */
@@ -692,80 +710,80 @@ public class GameScreen extends Screen {
 		Set<Bullet> recyclableBullet = new HashSet<Bullet>();
 		Set<Item> recyclableItem = new HashSet<Item>();
 		for (Bullet bullet : this.bullets)
-			if (bullet.getSpeed() > 0) {
-				if (checkCollision(bullet, this.ship) && !this.levelFinished) {
-					recyclableBullet.add(bullet);
-					if (this.ship.getShieldState()){
-						this.ship.setShieldState(false);
-					} else {
-						if (!this.ship.isDestroyed()) {
-							this.ship.destroy();
-							if (this.lives != 1) soundEffect.playShipCollisionSound();
-							this.lives--;
-							if (gameSettings.getDifficulty() == 3) this.lives = 0;
-							this.logger.info("Hit on player ship, " + this.lives
-									+ " lives remaining.");
-						}
+		if (bullet.getSpeed() > 0) {
+			if (checkCollision(bullet, this.ship) && !this.levelFinished) {
+				recyclableBullet.add(bullet);
+				if (this.ship.getShieldState()){
+					this.ship.destroy();
+					this.ship.setShieldState(false);
+				} else {
+					if (!this.ship.isDestroyed()) {
+						if (this.lives != 1) 
+						soundEffect.playShipCollisionSound();
+						this.lives--;
+						if (gameSettings.getDifficulty() == 3) this.lives = 0;
+						this.logger.info("Hit on player ship, " + this.lives
+						+ " lives remaining.");
 					}
-				}
-			} else {
-				for (EnemyShip enemyShip : this.enemyShipFormation) {
-					if (!enemyShip.isDestroyed()
-							&& checkCollision(bullet, enemyShip)) {
-						enemyShip.reduceEnemyLife(bullet.getDamage()); // 수정
-						this.logger.info("Attack the enemy with " + bullet.getDamage()
-							+ " of damage.");
-						
-						if (!enhanceManager.getIsEnhanced()){
-							soundEffect.playEnemyDestructionSound();
-						}
-						else {
-							soundEffect.playEnhancedSound();
-						}
-						
-						this.combo++;
-						this.score += combo;
-						this.Miss =1;
-						if(enemyShip.getEnemyLife() < 1) {
-							this.score += enemyShip.getPointValue();
-							this.enemyShipFormation.destroy(enhanceManager.getlvEnhanceArea(), enemyShip, this.items);
-							this.shipsDestroyed++;
-							this.shipsDestroyed += this.enemyShipFormation.getShipsDestroyed();
-							this.logger.info("Current Number of Ships Destroyed : " + this.shipsDestroyed);
-							// if(){ this.levelFinished = True; }
-						}
-						recyclableBullet.add(bullet);
-					}
-				}
-				if (bullet.getPositionY()<50){
-					combo =0;
-					Miss =1;
-				}
-				if (this.enemyShipSpecial != null
-						&& !this.enemyShipSpecial.isDestroyed()
-						&& checkCollision(bullet, this.enemyShipSpecial)) {
-					enemyShipSpecial.reduceEnemyLife(bullet.getDamage());
-					this.logger.info("Attack the enemy with " + bullet.getDamage()
-						+ " of damage.");
-					this.combo ++;
-					this.score += combo;
-					this.Miss =1;
-					if(enemyShipSpecial.getEnemyLife() < 1) {
-						this.score += this.enemyShipSpecial.getPointValue();
-						this.shipsDestroyed++;
-						this.enemyShipSpecial.destroy(this.items);
-						soundEffect.enemyshipspecialDestructionSound();
-						bgm.enemyShipSpecialbgm_stop();
-						if (this.lives < 2.9) this.lives = this.lives + 0.1;
-						this.enemyShipSpecialExplosionCooldown.reset();
-					}
-					recyclableBullet.add(bullet);
-				}
-				if (bullet.getPositionY()<50){
-					combo =0;
-					Miss =1;
 				}
 			}
+		} else {
+			for (EnemyShip enemyShip : this.enemyShipFormation) {
+				if (!enemyShip.isDestroyed()
+				&& checkCollision(bullet, enemyShip)) {
+					enemyShip.reduceEnemyLife(bullet.getDamage()); // 수정
+					this.logger.info("Attack the enemy with " + bullet.getDamage()
+					+ " of damage.");
+					if (!enhanceManager.getIsEnhanced()){
+						soundEffect.playEnemyDestructionSound();
+					}
+					else {
+						soundEffect.playEnhancedSound();
+					}
+					
+					this.combo++;
+					this.score += combo;
+					this.Miss =1;
+					if(enemyShip.getEnemyLife() < 1) {
+						this.score += enemyShip.getPointValue();
+						this.enemyShipFormation.destroy(enhanceManager.getlvEnhanceArea(), enemyShip, this.items);
+						this.shipsDestroyed++;
+						this.shipsDestroyed += this.enemyShipFormation.getShipsDestroyed();
+						this.logger.info("Current Number of Ships Destroyed : " + this.shipsDestroyed);
+						// if(){ this.levelFinished = True; }
+					}
+					recyclableBullet.add(bullet);
+				}
+			}
+			if (bullet.getPositionY()<50){
+				combo =0;
+				Miss =1;
+			}
+			if (this.enemyShipSpecial != null
+			&& !this.enemyShipSpecial.isDestroyed()
+			&& checkCollision(bullet, this.enemyShipSpecial)) {
+				enemyShipSpecial.reduceEnemyLife(bullet.getDamage());
+				this.logger.info("Attack the enemy with " + bullet.getDamage()
+				+ " of damage.");
+				this.combo ++;
+				this.score += combo;
+				this.Miss =1;
+				if(enemyShipSpecial.getEnemyLife() < 1) {
+					this.score += this.enemyShipSpecial.getPointValue();
+					this.shipsDestroyed++;
+					this.enemyShipSpecial.destroy(this.items);
+					soundEffect.enemyshipspecialDestructionSound();
+					bgm.enemyShipSpecialbgm_stop();
+					if (this.lives < 2.9) this.lives = this.lives + 0.1;
+					this.enemyShipSpecialExplosionCooldown.reset();
+				}
+				recyclableBullet.add(bullet);
+			}
+			if (bullet.getPositionY()<50){
+				combo =0;
+				Miss =1;
+			}
+		}
 		if (this.laser != null) {
 			if (checkCollision(this.laser, this.ship) && !this.levelFinished) {
 				if (!this.ship.isDestroyed()) {
@@ -774,7 +792,7 @@ public class GameScreen extends Screen {
 					this.lives--;
 					if (gameSettings.getDifficulty() == 3) this.lives = 0;
 					this.logger.info("Hit on player ship, " + this.lives
-							+ " lives remaining.");
+					+ " lives remaining.");
 				}
 			}
 		}
@@ -782,15 +800,15 @@ public class GameScreen extends Screen {
 			if(checkCollision(item, this.ship) && !this.levelFinished){
 				recyclableItem.add(item);
 				this.logger.info("Get Item ");
-
+				
 				//* settings of coins randomly got when killing monsters
 				ArrayList<Integer> coinProbability = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 1, 1, 1, 2, 3, 4, 5));
 				Random random = new Random();
 				int randomIndex = random.nextInt(coinProbability.size());
-
+				
 				if(item.getSpriteType() == SpriteType.Coin){
 					this.coin.addCoin(coinProbability.get(randomIndex));
-
+					
 				}
 				if(item.getSpriteType() == SpriteType.BlueEnhanceStone){
 					this.enhanceManager.PlusNumEnhanceStoneArea(1);
@@ -814,7 +832,7 @@ public class GameScreen extends Screen {
 		ItemPool.recycle(recyclableItem);
 		BulletPool.recycle(recyclableBullet);
 	}
-
+	
 	/**
 	 * Manages collisions between bulletsY and ships.
 	 */
@@ -822,40 +840,40 @@ public class GameScreen extends Screen {
 		Set<BulletY> recyclableBulletY = new HashSet<BulletY>();
 		Set<Item> recyclableItem = new HashSet<Item>();
 		for (BulletY bulletY : this.bulletsY)
-			if (bulletY.getSpeed() > 0) {
-				if (checkCollision(bulletY, this.ship) && !this.levelFinished) {
-					recyclableBulletY.add(bulletY);
-					if (!this.ship.isDestroyed()) {
-						this.ship.destroy();
-						this.lives--;
-						this.logger.info("Hit on player ship, " + this.lives
-								+ " lives remaining.");
+		if (bulletY.getSpeed() > 0) {
+			if (checkCollision(bulletY, this.ship) && !this.levelFinished) {
+				recyclableBulletY.add(bulletY);
+				if (!this.ship.isDestroyed()) {
+					this.ship.destroy();
+					this.lives--;
+					this.logger.info("Hit on player ship, " + this.lives
+					+ " lives remaining.");
 					}
 				}
 			} else {
 				for (EnemyShip enemyShip : this.enemyShipFormation)
-					if (!enemyShip.isDestroyed()
-							&& checkCollision(bulletY, enemyShip)) {
-						enemyShip.reduceEnemyLife(bulletY.getDamage()); // 수정
-						this.logger.info("Attack the enemy with " + bulletY.getDamage()
-							+ " of damage.");
-						soundEffect.playEnemyDestructionSound();
-						this.combo ++;
-						this.score += combo;
-						if(enemyShip.getEnemyLife() < 1) {
-							this.score += enemyShip.getPointValue();
-							this.shipsDestroyed++;
-							this.enemyShipFormation.destroy(enhanceManager.getlvEnhanceArea(), enemyShip, this.items);
-							// this.enemyShipFormation.areaDestory(enhanceManager.getlvEnhanceArea(), 3, this.items);
-						}
-						recyclableBulletY.add(bulletY);
+				if (!enemyShip.isDestroyed()
+				&& checkCollision(bulletY, enemyShip)) {
+					enemyShip.reduceEnemyLife(bulletY.getDamage()); // 수정
+					this.logger.info("Attack the enemy with " + bulletY.getDamage()
+					+ " of damage.");
+					soundEffect.playEnemyDestructionSound();
+					this.combo ++;
+					this.score += combo;
+					if(enemyShip.getEnemyLife() < 1) {
+						this.score += enemyShip.getPointValue();
+						this.shipsDestroyed++;
+						this.enemyShipFormation.destroy(enhanceManager.getlvEnhanceArea(), enemyShip, this.items);
+						// this.enemyShipFormation.areaDestory(enhanceManager.getlvEnhanceArea(), 3, this.items);
 					}
+					recyclableBulletY.add(bulletY);
+				}
 				if (this.enemyShipSpecial != null
-						&& !this.enemyShipSpecial.isDestroyed()
-						&& checkCollision(bulletY, this.enemyShipSpecial)) {
+				&& !this.enemyShipSpecial.isDestroyed()
+				&& checkCollision(bulletY, this.enemyShipSpecial)) {
 					enemyShipSpecial.reduceEnemyLife(bulletY.getDamage());
 					this.logger.info("Attack the enemy with " + bulletY.getDamage()
-						+ " of damage.");
+					+ " of damage.");
 					this.combo ++;
 					this.score += combo;
 					this.Miss =1;
@@ -875,38 +893,38 @@ public class GameScreen extends Screen {
 					Miss =1;
 				}
 			}
-		this.items.removeAll(recyclableItem);
-		this.bulletsY.removeAll(recyclableBulletY);
-		ItemPool.recycle(recyclableItem);
-		BulletPool.recycleBulletY(recyclableBulletY);
-	}
-
-	/**
-	 * Checks if two entities are colliding.
-	 *
-	 * @param a
-	 *            First entity, the bullet.
-	 * @param b
-	 *            Second entity, the ship.
-	 * @return Result of the collision test.
-	 */
-	private boolean checkCollision(final Entity a, final Entity b) {
-		// Calculate center point of the entities in both axis.
-		int centerAX = a.getPositionX() + a.getWidth() / 2;
-		int centerAY = a.getPositionY() + a.getHeight() / 2;
-		int centerBX = b.getPositionX() + b.getWidth() / 2;
-		int centerBY = b.getPositionY() + b.getHeight() / 2;
-		// Calculate maximum distance without collision.
-		int maxDistanceX = a.getWidth() / 2 + b.getWidth() / 2;
-		int maxDistanceY = a.getHeight() / 2 + b.getHeight() / 2;
+			this.items.removeAll(recyclableItem);
+			this.bulletsY.removeAll(recyclableBulletY);
+			ItemPool.recycle(recyclableItem);
+			BulletPool.recycleBulletY(recyclableBulletY);
+		}
+		
+		/**
+		 * Checks if two entities are colliding.
+		 *
+		 * @param a
+		 *            First entity, the bullet.
+		 * @param b
+		 *            Second entity, the ship.
+		 * @return Result of the collision test.
+		 */
+		private boolean checkCollision(final Entity a, final Entity b) {
+			// Calculate center point of the entities in both axis.
+			int centerAX = a.getPositionX() + a.getWidth() / 2;
+			int centerAY = a.getPositionY() + a.getHeight() / 2;
+			int centerBX = b.getPositionX() + b.getWidth() / 2;
+			int centerBY = b.getPositionY() + b.getHeight() / 2;
+			// Calculate maximum distance without collision.
+			int maxDistanceX = a.getWidth() / 2 + b.getWidth() / 2;
+			int maxDistanceY = a.getHeight() / 2 + b.getHeight() / 2;
 		// Calculates distance.
 		int distanceX = Math.abs(centerAX - centerBX);
 		int distanceY = Math.abs(centerAY - centerBY);
-
-
+		
+		
 		return distanceX < maxDistanceX && distanceY < maxDistanceY;
 	}
-
+	
 	/**
 	 * Returns a GameState object representing the status of the game.
 	 *
@@ -914,9 +932,9 @@ public class GameScreen extends Screen {
 	 */
 	public final GameState getGameState() {
 		return new GameState(this.level, this.score, this.coin, this.lives,
-							this.bulletsShot, this.shipsDestroyed, this.hardcore, 
-							this.shipColor, this.nowSkinString, this.ownedSkins, this.equippedSkins, 
-							this.BulletsRemaining);
+		this.bulletsShot, this.shipsDestroyed, this.hardcore, 
+		this.shipColor, this.nowSkinString, this.ownedSkins, this.equippedSkins, 
+		this.BulletsRemaining);
 	}
 	public Ship getShip(){
 		return ship;

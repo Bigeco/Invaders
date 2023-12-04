@@ -1085,6 +1085,13 @@ public final class DrawManager {
 		}
 	}
 
+	public void printAttackDamage(final int attackDamage, int posX, int posY) {
+		String strAttackDamage = "" + attackDamage;
+		backBufferGraphics.setFont(fontBig);
+		backBufferGraphics.setColor(Color.red);
+		backBufferGraphics.drawString(strAttackDamage, posX, posY);
+	}
+
 	public void drawRandomBox(final Screen screen, final int option) {
 		String introduceString1 = "SELECT ONE OF THE THREE BOXES";
 		String introduceString2 = "FOR A RANDOM REWARD";
