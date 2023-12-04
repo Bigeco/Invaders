@@ -184,7 +184,11 @@ public class EnemyShip extends Entity {
 		this.positionX += distanceX;
 		this.positionY += distanceY;
 	}
+
+
 	public int enemyPosX() { return this.positionX;}
+
+	
 	public int enemyPosY() { return this.positionY;}
 
 	/**
