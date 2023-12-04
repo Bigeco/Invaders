@@ -600,17 +600,13 @@ public class GameScreen extends Screen {
 		
 		for (EnemyShip enemyShip : this.enemyShipFormation){
 			for (Bullet bullet : this.bullets){
-				if (checkCollision(bullet, enemyShip) && !this.levelFinished){
-					if (bullet.getSpeed() < 0){
+				if (checkCollision(bullet, enemyShip) && !this.levelFinished && bullet.getSpeed() < 0){
 						drawManager.printAttackDamage(bullet.getDamage(), enemyShip.enemyPosX(), enemyShip.enemyPosY());
-					}
 				}
 			}
 			for (BulletY bulletY : bulletsY){
-				if (checkCollision(bulletY, enemyShip) && !this.levelFinished){
-					if (bulletY.getSpeed() < 0){
+				if (checkCollision(bulletY, enemyShip) && !this.levelFinished && bulletY.getSpeed() < 0){
 						drawManager.printAttackDamage(bulletY.getDamage(), enemyShip.enemyPosX(), enemyShip.enemyPosY());
-					}
 				}
 			}
 		}
