@@ -604,7 +604,7 @@ public class GameScreen extends Screen {
 		drawManager.gameOver(this, this.levelFinished, this.lives,this.BulletsCount, this.timer, this.coin, this.clearCoin);
 		drawManager.changeGhostColor(this.levelFinished, this.lives);
 		drawManager.drawGhost(this.levelFinished, this.lives);
-		this.ship.gameEndShipMotion(this.levelFinished, this.lives);
+		this.ship.endShipMotion(this.levelFinished, this.lives);
 
 		
 		// Countdown to game start.

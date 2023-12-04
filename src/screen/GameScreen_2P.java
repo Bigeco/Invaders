@@ -664,9 +664,9 @@ public class GameScreen_2P extends Screen {
         drawManager.gameOver_2p(this, this.levelFinished, this.lives_1p, this.lives_2p, this.BulletsCount_1p, this.BulletsCount_2p, this.timer, this.coin, this.clearCoin);
         drawManager.changeGhostColor_2p(this.levelFinished, this.lives_1p, this.lives_2p);
         drawManager.drawGhost_2p(this.levelFinished, this.lives_1p, this.lives_2p);
-        this.ship_1P.gameEndShipMotion(this.levelFinished, this.lives_1p);
+        this.ship_1P.endShipMotion(this.levelFinished, this.lives_1p);
 
-        this.ship_2P.gameEndShipMotion(this.levelFinished, this.lives_2p);
+        this.ship_2P.endShipMotion(this.levelFinished, this.lives_2p);
 
 
         // Countdown to game start.

@@ -124,11 +124,11 @@ public class Ship extends Entity {
 	 * Updates status of the ship.
 	 */
 	public final void update() {
-		if (this.spriteType == spriteType.ShipA || 
-			this.spriteType == spriteType.ShipADestroyed || 
-			this.spriteType == spriteType.ShipAShileded) {
+		if (this.spriteType == SpriteType.ShipA || 
+			this.spriteType == SpriteType.ShipADestroyed || 
+			this.spriteType == SpriteType.ShipAShileded) {
 			if (this.shipEffect.getShieldState()){
-				this.spriteType = spriteType.ShipAShileded;
+				this.spriteType = SpriteType.ShipAShileded;
 			} else {
 				if (!this.destructionCooldown.checkFinished()) {
 					this.spriteType = SpriteType.ShipADestroyed;
@@ -136,11 +136,11 @@ public class Ship extends Entity {
 					this.spriteType = SpriteType.ShipA;
 				}
 			}
-		} else if (this.spriteType == spriteType.ShipB || 
-				   this.spriteType == spriteType.ShipBDestroyed || 
-				   this.spriteType == spriteType.ShipBShileded) {
+		} else if (this.spriteType == SpriteType.ShipB || 
+				this.spriteType == SpriteType.ShipBDestroyed || 
+				this.spriteType == SpriteType.ShipBShileded) {
 			if (this.shipEffect.getShieldState()){
-				this.spriteType = spriteType.ShipBShileded;
+				this.spriteType = SpriteType.ShipBShileded;
 			} else {
 				if (!this.destructionCooldown.checkFinished()) {
 					this.spriteType = SpriteType.ShipBDestroyed;
@@ -148,11 +148,11 @@ public class Ship extends Entity {
 					this.spriteType = SpriteType.ShipB;
 				}
 			}
-		} else if(this.spriteType == spriteType.ShipC || 
-				  this.spriteType == spriteType.ShipCDestroyed || 
-				  this.spriteType == spriteType.ShipCShileded) {
+		} else if(this.spriteType == SpriteType.ShipC || 
+				this.spriteType == SpriteType.ShipCDestroyed || 
+				this.spriteType == SpriteType.ShipCShileded) {
 			if (this.shipEffect.getShieldState()){
-				this.spriteType = spriteType.ShipCShileded;
+				this.spriteType = SpriteType.ShipCShileded;
 			} else {
 				if (!this.destructionCooldown.checkFinished()) {
 					this.spriteType = SpriteType.ShipCDestroyed;
@@ -160,29 +160,29 @@ public class Ship extends Entity {
 					this.spriteType = SpriteType.ShipC;
 				}
 			}
-		} else if(this.spriteType == spriteType.ShipD || 
-				  this.spriteType == spriteType.ShipDDestroyed) {
+		} else if(this.spriteType == SpriteType.ShipD || 
+				this.spriteType == SpriteType.ShipDDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipDDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipD;
 			}
-		} else if(this.spriteType == spriteType.ShipE || 
-				  this.spriteType == spriteType.ShipEDestroyed) {
+		} else if(this.spriteType == SpriteType.ShipE || 
+				this.spriteType == SpriteType.ShipEDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipEDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipE;
 			}
-		} else if(this.spriteType == spriteType.ShipF || 
-				  this.spriteType == spriteType.ShipFDestroyed) {
+		} else if(this.spriteType == SpriteType.ShipF || 
+				this.spriteType == SpriteType.ShipFDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipFDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipF;
 			}
-		} else if(this.spriteType == spriteType.ShipG || 
-				  this.spriteType == spriteType.ShipGDestroyed) {
+		} else if(this.spriteType == SpriteType.ShipG || 
+				this.spriteType == SpriteType.ShipGDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipGDestroyed;
 			} else {
@@ -229,8 +229,7 @@ public class Ship extends Entity {
 
 
 	/* -- Item 6. some helpful code */
-	public final void gameEndShipMotion(boolean levelFinished, 
-										double lives){
+	public final void endShipMotion(boolean levelFinished, double lives){
 		if (levelFinished){
 			if (lives == 0) {
 				this.setColor(Color.gray);
