@@ -939,25 +939,24 @@ public final class DrawManager {
 	 *
 	 *
 	 */
-
 	private Color blinkingColor(String color) {
-		if (color == "HIGH_SCORES") {
+		if (color.equals("HIGH_SCORES")) {
 			int R = (int) (Math.pow(Math.random() * (15 - 0), 2));
 			int G = (int) (Math.random() * (255 - 0));
 			int B = (int) 3.3 * LocalTime.now().getSecond();
 			Color title = new Color(R, G, B);
 			return title;
 		}
-		if (color == "GREEN") {
+		if (color.equals("GREEN")) {
 			Color green = new Color(0, (int) (Math.random() * (255 - 155) + 155), 0);
 			return green;
 		}
-		if (color == "WHITE") {
+		if (color.equals("WHITE")) {
 			int RGB = (int) (Math.random() * (255 - 155) + 155);
 			Color white = new Color(RGB, RGB, RGB);
 			return white;
 		}
-		if (color == "GRAY") {
+		if (color.equals("GRAY")) {
 			int RGB = (int) (Math.random() * (160 - 100) + 100);
 			Color gray = new Color(RGB, RGB, RGB);
 			return gray;
@@ -976,7 +975,7 @@ public final class DrawManager {
 	private Color slowlyChangingColors(String color) {
 		String sec = Integer.toString(LocalTime.now().getSecond());
 		char c = sec.charAt(sec.length() - 1);
-		if (color == "GREEN") {
+		if (color.equals("GREEN")) {
 			if (c == '0') return new Color(0, 75, 0);
 			if (c == '1') return new Color(0, 100, 0);
 			if (c == '2') return new Color(0, 125, 0);
@@ -988,7 +987,7 @@ public final class DrawManager {
 			if (c == '8') return new Color(0, 55, 0);
 			if (c == '9') return new Color(0, 65, 0);
 		}
-		if (color == "GRAY") {
+		if (color.equals("GRAY")) {
 			if (c == '0') return new Color(75, 75, 75);
 			if (c == '1') return new Color(85, 85, 85);
 			if (c == '2') return new Color(105, 105, 105);
@@ -1000,7 +999,7 @@ public final class DrawManager {
 			if (c == '8') return new Color(55, 55, 55);
 			if (c == '9') return new Color(65, 65, 65);
 		}
-		if (color == "RAINBOW") {
+		if (color.equals("RAINBOW")) {
 			if (c == '0') return new Color(254, 254, 0);
 			if (c == '1') return new Color(135, 254, 0);
 			if (c == '2') return new Color(0, 254, 0);
@@ -1883,9 +1882,9 @@ public final class DrawManager {
 	public Color pumpColor(){
 		int r = new Random().nextInt(5);
 		if(r == 1) return new Color(147, 227, 83, 234);
-		else if (r==2) return new Color(26, 255, 0, 255);
-		else if (r==3) return new Color(45, 255, 167, 245);
-		else if (r==4) return new Color(0, 255, 0, 77);
+		else if (r == 2) return new Color(26, 255, 0, 255);
+		else if (r == 3) return new Color(45, 255, 167, 245);
+		else if (r == 4) return new Color(0, 255, 0, 77);
 		else return new Color(27, 215, 136, 245);
 
  	}

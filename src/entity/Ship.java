@@ -3,7 +3,6 @@ package entity;
 import java.awt.Color;
 import java.util.Set;
 
-import effect.Effect;
 import effect.ShipEffect;
 import engine.Cooldown;
 import engine.Core;
@@ -45,25 +44,25 @@ public class Ship extends Entity {
 
 		super(positionX, positionY, 13 * 2, 8 * 2, color);
 		this.shipEffect = new ShipEffect(this);
-		if(type == "a") {
+		if(type.equals("a")) {
 			this.spriteType = SpriteType.ShipA;
 		}
-		else if(type == "b"){
+		else if(type.equals("b")){
 			this.spriteType = SpriteType.ShipB;
 		}
-		else if(type == "c"){
+		else if(type.equals("c")){
 			this.spriteType = SpriteType.ShipC;
 		}
-		else if(type == "d"){
+		else if(type.equals("d")){
 			this.spriteType = SpriteType.ShipD;
 		}
-		else if(type == "e"){
+		else if(type.equals("e")){
 			this.spriteType = SpriteType.ShipE;
 		}
-		else if(type == "f"){
+		else if(type.equals("f")){
 			this.spriteType = SpriteType.ShipF;
 		}
-		else if(type == "g"){
+		else if(type.equals("g")){
 			this.spriteType = SpriteType.ShipG;
 		}
 
@@ -125,66 +124,60 @@ public class Ship extends Entity {
 	 * Updates status of the ship.
 	 */
 	public final void update() {
-		if(this.spriteType == spriteType.ShipA || this.spriteType == spriteType.ShipADestroyed || this.spriteType == spriteType.ShipAShileded) {
-			if(this.shipEffect.getShieldState() == true){
+		if (this.spriteType == spriteType.ShipA || this.spriteType == spriteType.ShipADestroyed || this.spriteType == spriteType.ShipAShileded) {
+			if (this.shipEffect.getShieldState()){
 				this.spriteType = spriteType.ShipAShileded;
-			}else{
+			} else {
 				if (!this.destructionCooldown.checkFinished()) {
 					this.spriteType = SpriteType.ShipADestroyed;
 				} else {
 					this.spriteType = SpriteType.ShipA;
 				}
 			}
-		}else if(this.spriteType == spriteType.ShipB || this.spriteType == spriteType.ShipBDestroyed || this.spriteType == spriteType.ShipBShileded) {
-			if(this.shipEffect.getShieldState()){
+		} else if(this.spriteType == spriteType.ShipB || this.spriteType == spriteType.ShipBDestroyed || this.spriteType == spriteType.ShipBShileded) {
+			if (this.shipEffect.getShieldState()){
 				this.spriteType = spriteType.ShipBShileded;
-			}else{
+			} else {
 				if (!this.destructionCooldown.checkFinished()) {
 					this.spriteType = SpriteType.ShipBDestroyed;
 				} else {
 					this.spriteType = SpriteType.ShipB;
 				}
 			}
-		}else if(this.spriteType == spriteType.ShipC || this.spriteType == spriteType.ShipCDestroyed || this.spriteType == spriteType.ShipCShileded) {
-			if(this.shipEffect.getShieldState()){
+		} else if(this.spriteType == spriteType.ShipC || this.spriteType == spriteType.ShipCDestroyed || this.spriteType == spriteType.ShipCShileded) {
+			if (this.shipEffect.getShieldState()){
 				this.spriteType = spriteType.ShipCShileded;
-			}else{
+			} else {
 				if (!this.destructionCooldown.checkFinished()) {
 					this.spriteType = SpriteType.ShipCDestroyed;
 				} else {
 					this.spriteType = SpriteType.ShipC;
 				}
 			}
-		}else if(this.spriteType == spriteType.ShipD || this.spriteType == spriteType.ShipDDestroyed) {
+		} else if(this.spriteType == spriteType.ShipD || this.spriteType == spriteType.ShipDDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
-					this.spriteType = SpriteType.ShipDDestroyed;
-				} else {
-					this.spriteType = SpriteType.ShipD;
-				}
+				this.spriteType = SpriteType.ShipDDestroyed;
+			} else {
+				this.spriteType = SpriteType.ShipD;
 			}
-		else if(this.spriteType == spriteType.ShipE || this.spriteType == spriteType.ShipEDestroyed) {
+		} else if(this.spriteType == spriteType.ShipE || this.spriteType == spriteType.ShipEDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipEDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipE;
 			}
-
-		}
-		else if(this.spriteType == spriteType.ShipF || this.spriteType == spriteType.ShipFDestroyed) {
+		} else if(this.spriteType == spriteType.ShipF || this.spriteType == spriteType.ShipFDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipFDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipF;
 			}
-
-		}
-		else if(this.spriteType == spriteType.ShipG || this.spriteType == spriteType.ShipGDestroyed) {
+		} else if(this.spriteType == spriteType.ShipG || this.spriteType == spriteType.ShipGDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipGDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipG;
 			}
-
 		}
 	}
 
@@ -225,52 +218,48 @@ public class Ship extends Entity {
 
 
 
-/* -- Item 6. some helpful code
-	public final void catchItem(Item item) {
-		if (item.spriteType == SpriteType.Item1) {
-			this.bulletEffectCooldown.reset();
-		} else if (item.spriteType == SpriteType.Item2) {
-			this.shipEffectCooldown.reset();
-=======
->>>>>>> develop
-		if (item.spriteType == SpriteType.Buff_Item || item.spriteType == SpriteType.Debuff_Item) {
-			this.shipEffect.CooldownReset(item.getSpriteType());
+/* -- Item 6. some helpful code */
+	public final void gameEndShipMotion(boolean levelFinished, double lives){
+		if (levelFinished){
+			if (lives == 0) {
+				this.setColor(Color.gray);
+				this.spriteType = SpriteType.gravestone;
+			}
 		}
 	}
-
-<<<<<<< HEAD
- */
-public final void gameEndShipMotion(boolean levelFinished, double lives){
-	if(levelFinished){
-		if(lives == 0 ) {
-			this.setColor(Color.gray);
-			this.spriteType = SpriteType.gravestone;
-		}
-	}
-}
 
 	/** Return the ship's attack speed
 	 * @return shootingCooldown
 	 */
-	public Cooldown getShootingInterval(){return this.shootingCooldown;}
-	/** Set the ship's attack speed
-	 */
-	public void setShootingInterval(Cooldown cool){this.shootingCooldown = cool;}
+	public Cooldown getShootingInterval(){ 
+		return this.shootingCooldown; 
+	}
+
+	/** Set the ship's attack speed */
+	public void setShootingInterval(Cooldown cool){ 
+		this.shootingCooldown = cool; 
+	}
+
 	/** Return the ship's shiled state.
 	 * @return ShiledState
 	 */
-	public boolean getShieldState() { return this.shipEffect.getShieldState(); }
-	/** set the ship's shiled state.
-	 */
-	public void setShieldState(boolean state) { this.shipEffect.setShieldState(state); }
+	public boolean getShieldState() { 
+		return this.shipEffect.getShieldState(); 
+	}
+
+	/** set the ship's shiled state. */
+	public void setShieldState(boolean state) { 
+		this.shipEffect.setShieldState(state); 
+	}
+
 	/** Return the ship has bomb?.
 	 * @return bomb
 	 */
 	public boolean getBomb(){
 		return shipEffect.bomb;
 	}
-	/** set the ship has bomb?.
-	 */
+
+	/** set the ship has bomb?. */
 	public void setBomb(boolean t){
 		this.shipEffect.bomb = t;
 	}

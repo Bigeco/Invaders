@@ -9,23 +9,23 @@ public class scoreColorTest {
     // ------------------------------ ORIGINAL METHODS ------------------------------ //
 
     private static Color blinkingColor(String color) {
-        if (color == "HIGH_SCORES") {
+        if (color.equals("HIGH_SCORES")) {
             int R = (int) (Math.pow(Math.random() * (15 - 0), 2));
             int G = (int) (Math.random() * (255 - 0));
             int B = (int) 3.3 * LocalTime.now().getSecond();
             Color title = new Color(R, G, B);
             return title;
         }
-        if (color == "GREEN") {
+        if (color.equals("GREEN")) {
             Color green = new Color(0, (int) (Math.random() * (255 - 155) + 155), 0);
             return green;
         }
-        if (color == "WHITE") {
+        if (color.equals("WHITE")) {
             int RGB = (int) (Math.random() * (255 - 155) + 155);
             Color white = new Color(RGB, RGB, RGB);
             return white;
         }
-        if (color == "GRAY") {
+        if (color.equals("GRAY")) {
             int RGB = (int) (Math.random() * (160 - 100) + 100);
             Color gray = new Color(RGB, RGB, RGB);
             return gray;
