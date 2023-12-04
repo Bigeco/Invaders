@@ -29,11 +29,11 @@ public class GameScreen_2P extends Screen {
     /** Time until bonus ship explosion disappears. */
     private static final int BONUS_SHIP_EXPLOSION = 500;
     /** Maximum variance in the time between laser's appearances. */
-    private static int LASER_INTERVAL = 5000;
+    private int LASER_INTERVAL = 5000;
     /** Maximum variance in the time between Laser's appearances. */
-    private static int LASER_VARIANCE = 1000;
+    private int LASER_VARIANCE = 1000;
     /** Maximum variance in the time between Laser's appearances. */
-    private static int LASER_LOAD = 2000;
+    private int LASER_LOAD = 2000;
     /** Time until laser disappears. */
     private static final int LASER_ACTIVATE = 1000;
     /** Time from finishing the level to screen change. */

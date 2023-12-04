@@ -5,11 +5,11 @@ import java.io.File;
 
 public class BGM {
     /** Add variable of bgmClip - OutGame*/
-    private static Clip OutGame_bgmCLip; 
+    private Clip OutGame_bgmCLip; 
     /** Add variable of bgmClip - inGame*/
-    private static Clip InGame_bgmCLip;
+    private Clip InGame_bgmCLip;
     /** Add variable of bgmClip - enemy Ship*/
-    private static Clip enemyShipSpecialbgmCLip;
+    private Clip enemyShipSpecialbgmCLip;
     /** Add variable of original volume*/
     private float originalVolume;
 

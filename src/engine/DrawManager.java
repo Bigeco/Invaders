@@ -44,9 +44,6 @@ import screen.Screen;
  *
  */
 public final class DrawManager {
-
-	/** Singleton instance of the class. */
-	private static DrawManager instance;
 	/** Current frame. */
 	private static Frame frame;
 	/** FileManager instance. */
@@ -73,7 +70,6 @@ public final class DrawManager {
 	/** Big sized font properties. */
 	private static FontMetrics fontBigMetrics;
 
-	private  static Font fontVeryBig;
 	public Cooldown endTimer = new Cooldown(3000);
 	public long ghostTImer;
 	public int ghostPostionX;
@@ -90,15 +86,12 @@ public final class DrawManager {
 	private Cooldown bgTimer_init = new Cooldown(3000);  // For white fade in at game start
 	private Cooldown bgTimer_lines = new Cooldown(100);  // For bg line animation
 	private int lineConstant = 0;  // For bg line animation
-	private Coin coin;
 	/** Sprite types mapped to their images. */
 	private static Map<SpriteType, boolean[][]> spriteMap;
 	private boolean initialSound = true;
 	public boolean initialSound2 = true;
 	private boolean isAfterLoading = false;
 
-
-	private CountUpTimer timer;
 	public int timercount = 0;
 	public String rewardTypeString;
 	public GameScreen gamescreen;
@@ -345,7 +338,6 @@ public final class DrawManager {
 			fontRegular = fileManager.loadFont(14f);
 			fontBig = fileManager.loadFont(24f);
 			fontBig_2p = fileManager.loadFont(20f);
-			fontVeryBig = fileManager.loadFont(40f);
 			logger.info("Finished loading the fonts.");
 
 		} catch (IOException e) {
@@ -367,9 +359,7 @@ public final class DrawManager {
          * @return Shared instance of DrawManager.
          */
 	protected static DrawManager getInstance() {
-		if (instance == null)
-			instance = new DrawManager();
-		return instance;
+		return new DrawManager();
 	}
 
 	/**
