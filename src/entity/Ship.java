@@ -124,7 +124,9 @@ public class Ship extends Entity {
 	 * Updates status of the ship.
 	 */
 	public final void update() {
-		if (this.spriteType == spriteType.ShipA || this.spriteType == spriteType.ShipADestroyed || this.spriteType == spriteType.ShipAShileded) {
+		if (this.spriteType == spriteType.ShipA || 
+			this.spriteType == spriteType.ShipADestroyed || 
+			this.spriteType == spriteType.ShipAShileded) {
 			if (this.shipEffect.getShieldState()){
 				this.spriteType = spriteType.ShipAShileded;
 			} else {
@@ -134,7 +136,9 @@ public class Ship extends Entity {
 					this.spriteType = SpriteType.ShipA;
 				}
 			}
-		} else if(this.spriteType == spriteType.ShipB || this.spriteType == spriteType.ShipBDestroyed || this.spriteType == spriteType.ShipBShileded) {
+		} else if (this.spriteType == spriteType.ShipB || 
+				   this.spriteType == spriteType.ShipBDestroyed || 
+				   this.spriteType == spriteType.ShipBShileded) {
 			if (this.shipEffect.getShieldState()){
 				this.spriteType = spriteType.ShipBShileded;
 			} else {
@@ -144,7 +148,9 @@ public class Ship extends Entity {
 					this.spriteType = SpriteType.ShipB;
 				}
 			}
-		} else if(this.spriteType == spriteType.ShipC || this.spriteType == spriteType.ShipCDestroyed || this.spriteType == spriteType.ShipCShileded) {
+		} else if(this.spriteType == spriteType.ShipC || 
+				  this.spriteType == spriteType.ShipCDestroyed || 
+				  this.spriteType == spriteType.ShipCShileded) {
 			if (this.shipEffect.getShieldState()){
 				this.spriteType = spriteType.ShipCShileded;
 			} else {
@@ -154,25 +160,29 @@ public class Ship extends Entity {
 					this.spriteType = SpriteType.ShipC;
 				}
 			}
-		} else if(this.spriteType == spriteType.ShipD || this.spriteType == spriteType.ShipDDestroyed) {
+		} else if(this.spriteType == spriteType.ShipD || 
+				  this.spriteType == spriteType.ShipDDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipDDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipD;
 			}
-		} else if(this.spriteType == spriteType.ShipE || this.spriteType == spriteType.ShipEDestroyed) {
+		} else if(this.spriteType == spriteType.ShipE || 
+				  this.spriteType == spriteType.ShipEDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipEDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipE;
 			}
-		} else if(this.spriteType == spriteType.ShipF || this.spriteType == spriteType.ShipFDestroyed) {
+		} else if(this.spriteType == spriteType.ShipF || 
+				  this.spriteType == spriteType.ShipFDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipFDestroyed;
 			} else {
 				this.spriteType = SpriteType.ShipF;
 			}
-		} else if(this.spriteType == spriteType.ShipG || this.spriteType == spriteType.ShipGDestroyed) {
+		} else if(this.spriteType == spriteType.ShipG || 
+				  this.spriteType == spriteType.ShipGDestroyed) {
 			if (!this.destructionCooldown.checkFinished()) {
 				this.spriteType = SpriteType.ShipGDestroyed;
 			} else {
@@ -218,8 +228,9 @@ public class Ship extends Entity {
 
 
 
-/* -- Item 6. some helpful code */
-	public final void gameEndShipMotion(boolean levelFinished, double lives){
+	/* -- Item 6. some helpful code */
+	public final void gameEndShipMotion(boolean levelFinished, 
+										double lives){
 		if (levelFinished){
 			if (lives == 0) {
 				this.setColor(Color.gray);
