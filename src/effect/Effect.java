@@ -7,15 +7,15 @@ import engine.DrawManager.SpriteType;
 public class Effect {
 
     /** Cooltime in tripleshot */
-    protected Cooldown tripleshotEffectCooldown;
+    protected final Cooldown tripleshotEffectCooldown;
     /** Cooltime in buffSplashEffect */
-    static protected Cooldown buffSplashEffectCooldown;
+    protected final Cooldown buffSplashEffectCooldown;
     /** Cooltime in attakSpeedEffect*/
-    protected Cooldown attackSpeedEffectCooldown;
+    protected final Cooldown attackSpeedEffectCooldown;
     /** Cooltime in DebuffEffectCooldown */
-    protected Cooldown DebuffEffectCooldown;
+    protected final Cooldown DebuffEffectCooldown;
     /** Cooltime in debuffSturnEffect*/
-    protected Cooldown debuffSturnEffect;
+    protected final Cooldown debuffSturnEffect;
     /** boolean in shieldState**/
     protected boolean shieldState = false;
     /** boolean in bomb
