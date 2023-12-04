@@ -4,19 +4,18 @@ import javax.sound.sampled.*;
 import java.io.File;
 
 public class BGM {
-//    private static String BGM_FILE_PATH;
-
-    static Clip OutGame_bgmCLip; // bgmClip 변수 추가
+    /** Add variable of bgmClip - OutGame*/
+    static Clip OutGame_bgmCLip; 
+    /** Add variable of bgmClip - inGame*/
     static Clip InGame_bgmCLip;
-
+    /** Add variable of bgmClip - enemy Ship*/
     static Clip enemyShipSpecialbgmCLip;
-
+    /** Add variable of original volume*/
     private float originalVolume;
 
     File enemyShipSpecialappearbgm = new File("sound/BackGroundMusic/enemyshipspecial.wav");
 
     public BGM() {
-
         try {
             String OutGame_bgm_FilePATH = "sound/BackGroundMusic/gamescreen_bgm.wav";
             File OutGame_bgm = new File(OutGame_bgm_FilePATH).getAbsoluteFile();
@@ -26,12 +25,10 @@ public class BGM {
 
             OutGame_bgmCLip = (Clip) AudioSystem.getLine(OutGame_Info);
             OutGame_bgmCLip.open(OutGame_Stream);
-//           bgm_volumedowm(); // 삭제 검토중
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        try{
+        try {
             String InGame_bgm_FilePATH = "sound/BackGroundMusic/outside_screen_bgm.wav";
             File InGame_bgm = new File(InGame_bgm_FilePATH).getAbsoluteFile();
             AudioInputStream InGame_Stream = AudioSystem.getAudioInputStream(InGame_bgm);
@@ -43,23 +40,13 @@ public class BGM {
         } catch(Exception e) {
             e.printStackTrace();
         }
-//        try {
-//            bgm = new File(BGM_FILE_PATH); // 클래스 변수 할당은 정적 초기화 블록에서 수행
-//            stream = AudioSystem.getAudioInputStream(bgm);
-//            format = stream.getFormat();
-//            info = new DataLine.Info(Clip.class, format);
-//            bgmClip = (Clip) AudioSystem.getLine(info);
-//            bgmClip.open(stream);
-//
-//        } catch (Exception e) {
-//            System.out.println("err : " + e);
-//        }
     }
+    
     /**
      * Play enemyShipSpecial appear BGM
      */
     public void enemyShipSpecialbgm_play(){
-        try{
+        try {
             AudioInputStream enemyShipSpecialStream = AudioSystem.getAudioInputStream(enemyShipSpecialappearbgm);
             AudioFormat enemyShipSpecialFormat = enemyShipSpecialStream.getFormat();
             DataLine.Info enemyShipSpecialInfo = new DataLine.Info(Clip.class, enemyShipSpecialFormat);
@@ -82,7 +69,7 @@ public class BGM {
                 enemyShipSpecialbgmCLip.stop();
                 bgm_volumeup();
             }
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
@@ -136,7 +123,7 @@ public class BGM {
             if (OutGame_bgmCLip != null && OutGame_bgmCLip.isRunning()) {
                 OutGame_bgmCLip.stop();
             }
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }
@@ -147,7 +134,7 @@ public class BGM {
             if (InGame_bgmCLip != null && InGame_bgmCLip.isRunning()) {
                 InGame_bgmCLip.stop();
             }
-        }catch(Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }

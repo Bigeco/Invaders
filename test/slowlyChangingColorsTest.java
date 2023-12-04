@@ -11,7 +11,7 @@ public class slowlyChangingColorsTest {
     private Color slowlyChangingColors(String color) {
 		String sec = Integer.toString(LocalTime.now().getSecond());
 		char c = sec.charAt(sec.length() - 1);
-		if (color == "GREEN") {
+		if (color.equals("GREEN")) {
 			if (c == '0') return new Color(0, 75, 0);
 			if (c == '1') return new Color(0, 100, 0);
 			if (c == '2') return new Color(0, 125, 0);
@@ -23,7 +23,7 @@ public class slowlyChangingColorsTest {
 			if (c == '8') return new Color(0, 55, 0);
 			if (c == '9') return new Color(0, 65, 0);
 		}
-		if (color == "GRAY") {
+		if (color.equals("GRAY")) {
 			if (c == '0') return new Color(75, 75, 75);
 			if (c == '1') return new Color(85, 85, 85);
 			if (c == '2') return new Color(105, 105, 105);
@@ -35,7 +35,7 @@ public class slowlyChangingColorsTest {
 			if (c == '8') return new Color(55, 55, 55);
 			if (c == '9') return new Color(65, 65, 65);
 		}
-		if (color == "RAINBOW") {
+		if (color.equals("RAINBOW")) {
 			if (c == '0') return new Color(254, 254, 0);
 			if (c == '1') return new Color(135, 254, 0);
 			if (c == '2') return new Color(0, 254, 0);
