@@ -96,7 +96,7 @@ public class GameScreen extends Screen {
 	private Cooldown laserLoadCooldown;
 	/** Maintaining time of laser*/
 	private Cooldown laserLaunchCooldown;
-	/** Laser on/off (difficulty normal, upper than 4level or difficulty hard, hardcore */
+	/** Laser on/off (difficulty normal, upper than 4level or difficulty hard, hardCore */
 	private boolean laserActivate;
 	/** Set of "BulletY" fired by player ships. */
 	private Set<BulletY> bulletsY;
@@ -123,8 +123,8 @@ public class GameScreen extends Screen {
 	public boolean levelFinished;
 	/** Checks if a bonus life is received. */
 	private boolean bonusLife;
-	/** Checks if the game is hardcore. */
-	private boolean hardcore;
+	/** Checks if the game is hardCore. */
+	private boolean hardCore;
 	/** Checks if the game is paused. */
 	private boolean pause;
 	/** Set of all items.*/
@@ -133,7 +133,7 @@ public class GameScreen extends Screen {
 	private boolean isItemAllEat;
 	/** Check what color will be displayed*/
 	private int colorVariable;
-	private int BulletsCount = 99;
+	private int bulletsCount = 99;
 	/** Current Value of Enhancement Attack. */
 	private int attackDamage;
 	/** Current Value of Enhancement Area. */
@@ -150,7 +150,7 @@ public class GameScreen extends Screen {
 	private Cooldown bombCool;
 	/**  */
 	private CountUpTimer timer;
-	private int Miss = 0;
+	private int miss = 0;
 	private ItemManager itemManager;
 	private String clearCoin;
 	private GameScreen gamescreen;
@@ -195,12 +195,12 @@ public class GameScreen extends Screen {
 		this.lives = gameState.getLivesRemaining();
 		this.bulletsShot = gameState.getBulletsShot();
 		this.shipsDestroyed = gameState.getShipsDestroyed();
-		this.hardcore = gameState.getHardCore();
+		this.hardCore = gameState.getHardCore();
 		this.pause = false;
 		this.attackDamage = gameSettings.getBaseAttackDamage();
 		this.areaDamage = gameSettings.getBaseAreaDamage();
 		this.BulletsRemaining = getGameState().getBulletsRemaining();
-		//this.BulletsCount = getBulletsCount();
+		//this.bulletsCount = getBulletsCount();
 		this.clearCoin = getClearCoin();
 		this.shipColor = gameState.getShipColor();
 		this.nowSkinString = gameState.getNowSkinString();
@@ -249,15 +249,15 @@ public class GameScreen extends Screen {
 		this.bulletsY = new HashSet<BulletY>();
 		this.items = new HashSet<Item>();
 		this.isItemAllEat = false;
-		// Special input delay / countdown.
+		// Special input delay / countDown.
 		this.gameStartTime = System.currentTimeMillis();
 		this.inputDelay = Core.getCooldown(INPUT_DELAY);
 		this.inputDelay.reset();
 		soundEffect = new SoundEffect();
 		bgm = new BGM();
 
-//		bgm.InGame_bgm_stop();
-		bgm.InGame_bgm_play();
+//		bgm.inGameBGM_stop();inGameBGM_stop();
+		bgm.inGameBGM_play();
 		
 
 		drawManager.initBackgroundTimer(this, SEPARATION_LINE_HEIGHT); // Initializes timer for background animation.
@@ -289,7 +289,7 @@ public class GameScreen extends Screen {
 				this.returnCode = 1;
 				this.lives = 0;
 				this.isRunning = false;
-				bgm.InGame_bgm_stop();
+				bgm.inGameBGM_stop();
 			}
 		}
 		else {
@@ -327,7 +327,7 @@ public class GameScreen extends Screen {
 							if (this.ship.shootBulletY(this.bulletsY, this.attackDamage)) {
 								soundEffect.playShipShootingSound();
 								this.bulletsShot++;
-								this.BulletsCount--;
+								this.bulletsCount--;
 								this.BulletsRemaining--;
 							}
 						}
@@ -335,7 +335,7 @@ public class GameScreen extends Screen {
 							if (this.ship.shoot(this.bullets, this.attackDamage)) {
 								soundEffect.playShipShootingSound();
 								this.bulletsShot++;
-								this.BulletsCount--;
+								this.bulletsCount--;
 								this.BulletsRemaining--;
 							}
 						}
@@ -387,7 +387,7 @@ public class GameScreen extends Screen {
 				}
 				if (this.enemyShipSpecial == null
 						&& this.enemyShipSpecialCooldown.checkFinished()) {
-					bgm.enemyShipSpecialbgm_play();
+					bgm.enemyShipSpecialBGM_play();
 					colorVariable = (int)(Math.random()*4);
 					switch (colorVariable) {
 						case 0:
@@ -410,7 +410,7 @@ public class GameScreen extends Screen {
 				}
 				if (this.enemyShipSpecial != null
 						&& this.enemyShipSpecial.getPositionX() > this.width) {
-					bgm.enemyShipSpecialbgm_stop();
+					bgm.enemyShipSpecialBGM_stop();
 					this.enemyShipSpecial = null;
 					this.logger.info("The special ship has escaped");
 				}
@@ -429,16 +429,16 @@ public class GameScreen extends Screen {
 		}
 		if (this.enemyShipFormation.isEmpty() && !this.levelFinished) {
 			endStageAllEat();
-			bgm.enemyShipSpecialbgm_stop();
-			bgm.InGame_bgm_stop();
+			bgm.enemyShipSpecialBGM_stop();
+			bgm.inGameBGM_stop();
 			this.levelFinished = true;
 			this.screenFinishedCooldown.reset();
 			timer.stop();
 		}
 		if (this.lives <= 0 && !this.levelFinished) {
-			bgm.InGame_bgm_stop();
+			bgm.inGameBGM_stop();
 			this.ship.update();
-			bgm.enemyShipSpecialbgm_stop();
+			bgm.enemyShipSpecialBGM_stop();
 			this.levelFinished = true;
 			drawManager.ghostPostionX = this.ship.getPositionX();
 			drawManager.ghostPostionY = this.ship.getPositionY() - 25;
@@ -466,11 +466,11 @@ public class GameScreen extends Screen {
 				this.coin.addCoin(5);
 			}
 		}
-		if ((this.BulletsCount < 0) && !this.levelFinished){
-			this.BulletsCount = 0;
-			bgm.InGame_bgm_stop();
+		if ((this.bulletsCount < 0) && !this.levelFinished){
+			this.bulletsCount = 0;
+			bgm.inGameBGM_stop();
 			this.ship.update();
-			bgm.enemyShipSpecialbgm_stop();
+			bgm.enemyShipSpecialBGM_stop();
 			this.levelFinished = true;
 			drawManager.ghostPostionX = this.ship.getPositionX();
 			drawManager.ghostPostionY = this.ship.getPositionY() - 25;
@@ -511,7 +511,7 @@ public class GameScreen extends Screen {
 		if (this.enemyShipSpecial != null) drawManager.drawBackgroundSpecialEnemy(this, SEPARATION_LINE_HEIGHT);
 		drawManager.drawBackgroundLines(this, SEPARATION_LINE_HEIGHT);
 		drawManager.drawBackgroundPlayer(this, SEPARATION_LINE_HEIGHT, this.ship.getPositionX(), this.ship.getPositionY(), this.ship.getWidth(), this.ship.getHeight());
-		drawManager.BulletsCount(this, this.BulletsCount);
+		drawManager.bulletsCount(this, this.bulletsCount);
 		drawManager.drawEntity(this.ship, this.ship.getPositionX(),
 				this.ship.getPositionY());
 		drawManager.drawEntity(this.bulletLine, this.ship.getPositionX() + 12,
@@ -543,9 +543,9 @@ public class GameScreen extends Screen {
 
 		// Interface.
 		drawManager.drawScore(this, this.score);
-		drawManager.drawLivesbar(this, this.lives);
+		drawManager.drawLivesBar(this, this.lives);
 		drawManager.drawCoinCount(this, this.coin, 0);
-		drawManager.drawitemcircle(this,itemManager.getShieldCount(),itemManager.getBombCount());
+		drawManager.drawItemCircle(this,itemManager.getShieldCount(),itemManager.getBombCount());
 		isboss = gameSettings.checkIsBoss();
 
 		// Check if the 1 key is pressed
@@ -553,7 +553,7 @@ public class GameScreen extends Screen {
 			logger.info("Key number 1 press");
 
 			if (itemManager.getShieldCount() > 0) {
-				itemManager.PlusShieldCount(-1);
+				itemManager.plusShieldCount(-1);
 				ship.setShieldState(true);
 				ship.update();
 			}else if (itemManager.getShieldCount() == 0){
@@ -563,7 +563,7 @@ public class GameScreen extends Screen {
 			logger.info("Key number 2 press");
 
 			if (itemManager.getBombCount() > 0) {
-				itemManager.PlusBombCount(-1);
+				itemManager.plusBombCount(-1);
 				this.enemyShipFormation.bombDestroy(items);
 			} else if (itemManager.getBombCount() == 0){
 				drawManager.printItemMsg(2);
@@ -576,21 +576,21 @@ public class GameScreen extends Screen {
 
 		if (isboss) {
 			for (EnemyShip enemyShip : this.enemyShipFormation)
-				drawManager.drawBossLivesbar(this, enemyShip.getEnemyLife());
+				drawManager.drawBossLivesBar(this, enemyShip.getEnemyLife());
 		}
 		drawManager.drawHorizontalLine(this, SEPARATION_LINE_HEIGHT - 1);
 		drawManager.scoreEmoji(this, this.score);
-		drawManager.BulletsCount(this, this.BulletsCount);
+		drawManager.bulletsCount(this, this.bulletsCount);
 		drawManager.drawLevel(this, this.level);
 		// drawManager.drawSoundButton1(this);
 		if (inputManager.isKeyDown(KeyEvent.VK_C)) {
 			isSoundOn = !isSoundOn;
 			if (isSoundOn) {
-				bgm.InGame_bgm_play();
+				bgm.inGameBGM_play();
 			} else {
-				bgm.InGame_bgm_stop();
-				bgm.enemyShipSpecialbgm_stop();
-				soundEffect.SoundEffect_stop();
+				bgm.inGameBGM_stop();
+				bgm.enemyShipSpecialBGM_stop();
+				soundEffect.soundEffect_stop();
 
 			}
 		}
@@ -611,13 +611,13 @@ public class GameScreen extends Screen {
 			}
 		}
 		
-		if(Miss==1) {
-			drawManager.ComboCount(this, this.combo);
+		if(miss==1) {
+			drawManager.comboCount(this, this.combo);
 		}
 		
 		
 		//GameOver
-		drawManager.gameOver(this, this.levelFinished, this.lives,this.BulletsCount, this.timer, this.coin, this.clearCoin);
+		drawManager.gameOver(this, this.levelFinished, this.lives,this.bulletsCount, this.timer, this.coin, this.clearCoin);
 		drawManager.changeGhostColor(this.levelFinished, this.lives);
 		drawManager.drawGhost(this.levelFinished, this.lives);
 		this.ship.endShipMotion(this.levelFinished, this.lives);
@@ -625,11 +625,11 @@ public class GameScreen extends Screen {
 		
 		// Countdown to game start.
 		if (!this.inputDelay.checkFinished()) {
-			int countdown = (int) ((INPUT_DELAY
+			int countDown = (int) ((INPUT_DELAY
 					- (System.currentTimeMillis()
 					- this.gameStartTime)) / 1000);
 
-			drawManager.drawCountDown(this, this.level, countdown, this.bonusLife);
+			drawManager.drawCountDown(this, this.level, countDown, this.bonusLife);
 
 			// Fade from white at game start.
 			drawManager.drawBackgroundStart(this, SEPARATION_LINE_HEIGHT);
@@ -739,7 +739,7 @@ public class GameScreen extends Screen {
 					
 					this.combo++;
 					this.score += combo;
-					this.Miss =1;
+					this.miss =1;
 					if(enemyShip.getEnemyLife() < 1) {
 						this.score += enemyShip.getPointValue();
 						this.enemyShipFormation.destroy(enhanceManager.getlvEnhanceArea(), enemyShip, this.items);
@@ -753,7 +753,7 @@ public class GameScreen extends Screen {
 			}
 			if (bullet.getPositionY()<50){
 				combo =0;
-				Miss =1;
+				miss =1;
 			}
 			if (this.enemyShipSpecial != null
 			&& !this.enemyShipSpecial.isDestroyed()
@@ -763,13 +763,13 @@ public class GameScreen extends Screen {
 				+ " of damage.");
 				this.combo ++;
 				this.score += combo;
-				this.Miss =1;
+				this.miss =1;
 				if(enemyShipSpecial.getEnemyLife() < 1) {
 					this.score += this.enemyShipSpecial.getPointValue();
 					this.shipsDestroyed++;
 					this.enemyShipSpecial.destroy(this.items);
-					soundEffect.enemyshipspecialDestructionSound();
-					bgm.enemyShipSpecialbgm_stop();
+					soundEffect.enemyShipSpecialDestructionSound();
+					bgm.enemyShipSpecialBGM_stop();
 					if (this.lives < 2.9) this.lives = this.lives + 0.1;
 					this.enemyShipSpecialExplosionCooldown.reset();
 				}
@@ -777,7 +777,7 @@ public class GameScreen extends Screen {
 			}
 			if (bullet.getPositionY()<50){
 				combo =0;
-				Miss =1;
+				miss =1;
 			}
 		}
 		if (this.laser != null) {
@@ -807,10 +807,10 @@ public class GameScreen extends Screen {
 					
 				}
 				if(item.getSpriteType() == SpriteType.BlueEnhanceStone){
-					this.enhanceManager.PlusNumEnhanceStoneArea(1);
+					this.enhanceManager.plusNumEnhanceStoneArea(1);
 				}
 				if(item.getSpriteType() == SpriteType.PerpleEnhanceStone){
-					this.enhanceManager.PlusNumEnhanceStoneAttack(1);
+					this.enhanceManager.plusNumEnhanceStoneAttack(1);
 				} //여기 life item drop 부분
 				if(item.getSpriteType() == SpriteType.LifeItem || this.lives < 3){
 					getGameState().plusLives();
@@ -872,13 +872,13 @@ public class GameScreen extends Screen {
 					+ " of damage.");
 					this.combo ++;
 					this.score += combo;
-					this.Miss =1;
+					this.miss =1;
 					if(enemyShipSpecial.getEnemyLife() < 1) {
 						this.score += this.enemyShipSpecial.getPointValue();
 						this.shipsDestroyed++;
 						this.enemyShipSpecial.destroy(this.items);
-						soundEffect.enemyshipspecialDestructionSound();
-						bgm.enemyShipSpecialbgm_stop();
+						soundEffect.enemyShipSpecialDestructionSound();
+						bgm.enemyShipSpecialBGM_stop();
 						if (this.lives < 2.9) this.lives = this.lives + 0.1;
 						this.enemyShipSpecialExplosionCooldown.reset();
 					}
@@ -886,7 +886,7 @@ public class GameScreen extends Screen {
 				}
 				if (bulletY.getPositionY()<50){
 					combo =0;
-					Miss =1;
+					miss =1;
 				}
 			}
 			this.items.removeAll(recyclableItem);
@@ -928,7 +928,7 @@ public class GameScreen extends Screen {
 	 */
 	public final GameState getGameState() {
 		return new GameState(this.level, this.score, this.coin, this.lives,
-		this.bulletsShot, this.shipsDestroyed, this.hardcore, 
+		this.bulletsShot, this.shipsDestroyed, this.hardCore, 
 		this.shipColor, this.nowSkinString, this.ownedSkins, this.equippedSkins, 
 		this.BulletsRemaining);
 	}
