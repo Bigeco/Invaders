@@ -97,24 +97,26 @@ public class GameSettings {
 	 * @return the baseSpeed
 	 */
 	public final int getBaseSpeed() {
-		if (this.difficulty == 0)
-			return (int)((double)this.baseSpeed * 0.5);
-		else if (this.difficulty == 1)
+		if (this.difficulty == 0) {
+			return (int) ((double) this.baseSpeed * 0.5);
+		} else if (this.difficulty == 1) {
 			return this.baseSpeed;
-		else
-			return (int)((double)this.baseSpeed * 2);
+		} else {
+			return (int) ((double) this.baseSpeed * 2);
+		}
 	}
 
 	/**
 	 * @return the shootingFrecuency
 	 */
 	public final int getShootingFrecuency(){
-		if (this.difficulty == 0)
-			return (int)((double)this.shootingFrecuency * 1.5);
-		else if (this.difficulty == 1)
+		if (this.difficulty == 0) {
+			return (int) ((double) this.shootingFrecuency * 1.5);
+		} else if (this.difficulty == 1) {
 			return this.shootingFrecuency;
-		else
-			return (int)((double)this.shootingFrecuency * 0.5);
+		} else {
+			return (int) ((double) this.shootingFrecuency * 0.5);
+		}
 	}
 
 	/**
@@ -138,28 +140,28 @@ public class GameSettings {
 
 	/**
 	 * @return the Enhanced Attack Damage
-	 */	
+	 */
 	public final int getBaseAttackDamage(){
 		return this.baseAttackDamage;
 	}
 
 	/**
 	 * @return the Enhanced Area Damage
-	 */	
+	 */
 	public final int getBaseAreaDamage(){
 		return this.baseAreaDamage;
 	}
 
 	/**
 	 * Set Attack Damage
-	 */	
+	 */
 	public final void setAttackDamage(int attackDamage) {
 		this.baseAttackDamage = attackDamage;
 	}
 
 	/**
 	 * Set Area Damage
-	 */	
+	 */
 	public final void setAreaDamage(int areaDamage) {
 		this.baseAreaDamage = areaDamage;
 	}
