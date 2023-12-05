@@ -2196,6 +2196,7 @@ public final class DrawManager {
 		int y1 = screen.getHeight()/6;
 		int y2 = screen.getHeight()*4/7 - 30;
 
+		String coinMsg1 = gameState.getCoinMsg();
 
 		int rectWidth = screen.getWidth();
 		int rectHeight = screen.getHeight() / 6;
@@ -2216,6 +2217,8 @@ public final class DrawManager {
 		backBufferGraphics.drawString(PrizeString, screen.getWidth()*5/8 + 33, screen.getHeight()/2 - 35);
 		backBufferGraphics.drawString(PrizeString, screen.getWidth()/7 + 33 , screen.getHeight() - 115);
 		backBufferGraphics.drawString(PrizeString, screen.getWidth()*5/8 + 33 , screen.getHeight() - 115);
+
+		printCoinMsg(coinMsg1);
 
 		if (option == 8)
 			backBufferGraphics.setColor(blinkingColor("GREEN"));
