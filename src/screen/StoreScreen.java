@@ -71,6 +71,7 @@ public class StoreScreen extends Screen {
         super.update();
 
         draw();
+        
         if (this.selectionCooldown.checkFinished()
                 && this.inputDelay.checkFinished()) {
             if (inputManager.isKeyDown(KeyEvent.VK_UP)
@@ -102,49 +103,49 @@ public class StoreScreen extends Screen {
                 if (returnCode == 35 && gameState != null){
                     if (this.coin.getCoin() >= 150)
                     {
+                        gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
                         this.itemManager.PlusShieldCount(1);
                         this.coin.minusCoin(150);
                         System.out.println("plese do");
-                    }
-                    else{
-                        
+                    } else {
+                        gameState.setCoinMsg("Coins are not enough");
                     }
                 }
                 if (returnCode == 36 && gameState != null){
                     if (this.coin.getCoin() >= 150)
                     {
+                        gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
                         this.itemManager.PlusBombCount(1);
                         this.coin.minusCoin(150);
                         System.out.println("plese do");
-                    }
-                    else{
-
+                    } else {
+                        gameState.setCoinMsg("Coins are not enough");
                     }
                 }
                 if (returnCode == 37 && gameState != null){
                     if (this.coin.getCoin() >= 50)
                     {
+                        gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
                         this.enhanceManager.PlusNumEnhanceStoneArea(1);
                         this.coin.minusCoin(50);
                         System.out.println("plese do");
-                    }
-                    else{
-                        
+                    } else {
+                        gameState.setCoinMsg("Coins are not enough");
                     }
                 }
                 if (returnCode == 38 && gameState != null){
                     if (this.coin.getCoin() >= 50)
                     {   
+                        gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
                         this.enhanceManager.PlusNumEnhanceStoneAttack(1);
                         this.coin.minusCoin(50);
                         System.out.println("plese do");
-                    }
-                    else{
-                        
+                    }else {
+                        gameState.setCoinMsg("Coins are not enough");
                     }
                 }
                 this.isRunning = false;
@@ -218,7 +219,7 @@ public class StoreScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
         drawManager.drawCoinCount(this, this.coin, 2);
-        drawManager.drawItemStore(this, this.returnCode, PST, BST, this.itemManager);
+        drawManager.drawItemStore(this, this.returnCode, PST, BST, this.itemManager, this.gameState);
         drawManager.completeDrawing(this);
     }
     
