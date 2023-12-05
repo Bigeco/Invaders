@@ -2347,10 +2347,10 @@ public final class DrawManager {
 	 *               Screen to draw on.
 	 * @param option
 	 *               Option selected.
-	 * @param valEnhanceArea
-	 *                Current Value of Enhanced Area Range.
-	 * @param valEnhanceDamage
-	 *               Current Value of Enhanced Damage.
+	 * @param numEnhanceArea
+	 *                Current Value of Enhanced Area Range. //수정 필요
+	 * @param numEnhanceDamage
+	 *               Current Value of Enhanced Damage. //수정 필요
 	 * @param lvEnhanceArea
 	 *               Current Level of Enhanced Area Range.
 	 * @param lvEnhanceDamage
@@ -2361,8 +2361,10 @@ public final class DrawManager {
 	 *               Value to be added of Attack Damage.
 	 * @param requiredNumEnhanceAttackStone
 	 *               Required Number of Enhance Attack Stone.
+	 * @param requiredNumEnhanceAreaStone
+	 *               Required Number of Enhance Attack Stone. //수정 필요
 	 */
-	public void drawEnhanceMenu(final Screen screen, final int option, 
+	public void drawEnhanceMenu(final Screen screen, final int option,
 								final int numEnhanceArea, final int numEnhanceDamage,
 								final int lvEnhanceArea, final int lvEnhanceDamage,
 								final int attackDamage, final int addedValAttackDamage,

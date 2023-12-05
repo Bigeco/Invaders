@@ -30,7 +30,7 @@ public final class InputManager implements KeyListener {
 	 * 
 	 * @return Shared instance of InputManager.
 	 */
-	protected static InputManager getInstance() {
+	public static InputManager getInstance() {
 		return new InputManager();
 	}
 
@@ -63,7 +63,7 @@ public final class InputManager implements KeyListener {
 	public void keyPressed(final KeyEvent key) {
 		if (key.getKeyCode() >= 0 && key.getKeyCode() < NUM_KEYS)
 			keys[key.getKeyCode()] = true;
-			keyPressedOnce[key.getKeyCode()] = true;
+		keyPressedOnce[key.getKeyCode()] = true;
 	}
 
 	/**
