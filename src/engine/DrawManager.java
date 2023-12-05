@@ -1257,7 +1257,7 @@ public final class DrawManager {
 	 * @param option
 	 *               Option selected.
 	 */
-	public void drawSubMenu_2P(final Screen screen, final int option) {
+	public void drawSubMenu2P(final Screen screen, final int option) {
 		String selectString = "Select difficulty with W + S, confirm with SPACE.";
 		String itemStoreString = "I T E M S T O R E";
 		String ehanceString = "E N H A N C E M E N T";
