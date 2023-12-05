@@ -197,8 +197,8 @@ public final class Core {
                         break;
                     } else {
                         gameSettings = new ArrayList<GameSettings>();
-                        if (difficulty == 3)
-                            gameState.setHardCore();
+                        if (difficulty == 3) {
+                            gameState.setHardCore(); }
                         LOGGER.info("Difficulty : " + difficulty);
                         SETTINGS_LEVEL_1.setDifficulty(difficulty);
                         SETTINGS_LEVEL_2.setDifficulty(difficulty);
@@ -460,9 +460,9 @@ public final class Core {
                                             returnCode = frame.setScreen(currentScreen);
                                             LOGGER.info("Closing subMenu screen.");
                                         
-                                        } while (currentScreen.returnCode != 2);
+                                        } while (currentScreen.returnCode != 2); {
                                         boxOpen = false;
-                                        isInitMenuScreen = true;
+                                        isInitMenuScreen = true; }
                                 } while (gameState.getLivesRemaining() > 0
                                             && gameState.getLevel() <= NUM_LEVELS && BulletsRemaining > 0);
 
@@ -511,10 +511,11 @@ public final class Core {
                         LOGGER.info("Closing Two Play high score screen.");
                         break;
                     }
-                    else
+                    else {
                         returnCode = frame.setScreen(currentScreen);
-                    LOGGER.info("Closing high score menu screen.");
-                    break;
+                        LOGGER.info("Closing high score menu screen.");
+                        break;
+                    }
 
                     /**
                     currentScreen = new HighScoreScreen(width, height, FPS);
@@ -535,8 +536,8 @@ public final class Core {
                         break;
                     } else {
                         gameSettings = new ArrayList<GameSettings>();
-                        if (difficulty == 3)
-                            gameState_2P.setHardCore();
+                        if (difficulty == 3) {
+                            gameState_2P.setHardCore(); }
                         LOGGER.info("Difficulty : " + difficulty);
                         SETTINGS_LEVEL_1.setDifficulty(difficulty);
                         SETTINGS_LEVEL_2.setDifficulty(difficulty);

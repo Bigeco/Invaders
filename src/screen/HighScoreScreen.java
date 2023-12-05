@@ -69,20 +69,23 @@ public class HighScoreScreen extends Screen {
 		if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
 				&& this.SelectCooldown.checkFinished()) {
 			this.difficulty += 1;
-			if (this.difficulty > 3)
+			if (this.difficulty > 3) {
 				this.difficulty = 0;
+			}
 			this.SelectCooldown.reset();
 		}
 		else if (inputManager.isKeyDown(KeyEvent.VK_LEFT)
 				&& this.SelectCooldown.checkFinished()) {
 			this.difficulty -= 1;
-			if (this.difficulty < 0)
+			if (this.difficulty < 0) {
 				this.difficulty = 3;
+			}
 			this.SelectCooldown.reset();
 		}
 		else if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
-				&& this.inputDelay.checkFinished())
+				&& this.inputDelay.checkFinished()) {
 			this.isRunning = false;
+		}
 	}
 
 	/**
@@ -92,14 +95,15 @@ public class HighScoreScreen extends Screen {
 		drawManager.initDrawing(this);
 		drawManager.drawHighScoreMenu(this);
 		drawManager.drawDiffScore(this, this.difficulty);
-		if (this.difficulty == 0)
+		if (this.difficulty == 0) {
 			drawManager.drawHighScores(this, this.highScores_EASY);
-		else if (this.difficulty == 1)
+		} else if (this.difficulty == 1) {
 			drawManager.drawHighScores(this, this.highScores_NORMAL);
-		else if (this.difficulty == 2)
+		} else if (this.difficulty == 2) {
 			drawManager.drawHighScores(this, this.highScores_HARD);
-		else
+		} else {
 			drawManager.drawHighScores(this, this.highScores_HARDCORE);
+		}
 
 		drawManager.completeDrawing(this);
 	}

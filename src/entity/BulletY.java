@@ -46,10 +46,11 @@ public class BulletY extends Entity {
      * Sets correct sprite for the bullet, based on speed.
      */
     public final void setSprite() {
-        if (speed < 0)
+        if (speed < 0) {
             this.spriteType = SpriteType.BulletY;
-        else
+        } else {
             this.spriteType = SpriteType.EnemyBullet;
+        }
     }
 
     /**
