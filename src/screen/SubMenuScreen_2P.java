@@ -108,7 +108,7 @@ public class SubMenuScreen_2P extends Screen {
         drawManager.initDrawing(this);
 
         // drawManager.drawTitle(this);
-        drawManager.drawSubMenu_2P(this, this.returnCode);
+        drawManager.drawSubMenu2P(this, this.returnCode);
 
         drawManager.completeDrawing(this);
     }

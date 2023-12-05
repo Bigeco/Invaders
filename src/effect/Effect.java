@@ -7,13 +7,13 @@ import engine.DrawManager.SpriteType;
 public class Effect {
 
     /** Cooltime in tripleshot */
-    protected final Cooldown tripleshotEffectCooldown;
+    protected final Cooldown tripleShotEffectCooldown;
     /** Cooltime in buffSplashEffect */
     protected final Cooldown buffSplashEffectCooldown;
     /** Cooltime in attakSpeedEffect*/
     protected final Cooldown attackSpeedEffectCooldown;
-    /** Cooltime in DebuffEffectCooldown */
-    protected final Cooldown DebuffEffectCooldown;
+    /** Cooltime in debuffEffectCooldown */
+    protected final Cooldown debuffEffectCooldown;
     /** Cooltime in debuffSturnEffect*/
     protected final Cooldown debuffSturnEffect;
     /** boolean in shieldState**/
@@ -27,10 +27,10 @@ public class Effect {
      * Initialize effect cool time
      */
     public Effect() {
-        tripleshotEffectCooldown = Core.getCooldown(5000);
+        tripleShotEffectCooldown = Core.getCooldown(5000);
         buffSplashEffectCooldown = Core.getCooldown(5000);
         attackSpeedEffectCooldown = Core.getCooldown(5000);
-        DebuffEffectCooldown = Core.getCooldown(5000);
+        debuffEffectCooldown = Core.getCooldown(5000);
         debuffSturnEffect = Core.getCooldown(2000);
         bomb = false;
     }
@@ -41,12 +41,12 @@ public class Effect {
      *          When an item collision event occurs,
      *          a sprite type of the item is received.
      */
-    public void CooldownReset(SpriteType s) {
+    public void cooldownReset(SpriteType s) {
         double prob = Math.random();
         switch (s) {
             case Buff_Item:
                 if(prob < 0.2){
-                    tripleshotEffectCooldown.reset();
+                    tripleShotEffectCooldown.reset();
                 }else if(prob < 0.4){
                     attackSpeedEffectCooldown.reset();
                 } else if (prob < 0.6){
@@ -59,7 +59,7 @@ public class Effect {
                 break;
             case Debuff_Item:
                 if(prob < 0.5){
-                    DebuffEffectCooldown.reset();
+                    debuffEffectCooldown.reset();
                 }else{
                     debuffSturnEffect.reset();
                 }

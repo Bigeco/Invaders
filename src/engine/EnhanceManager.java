@@ -53,10 +53,10 @@ public class EnhanceManager {
      * Enhance attack damage using Enhance stone.
 	 */
     public void enhanceAttackDamage() {
-        int numrequiredEnhanceStone = this.getRequiredNumEnhanceStoneAttack();
-        if (numEnhanceStoneAttack >= numrequiredEnhanceStone) {
+        int numRequiredEnhanceStone = this.getRequiredNumEnhanceStoneAttack();
+        if (numEnhanceStoneAttack >= numRequiredEnhanceStone) {
             this.attackDamage += this.getValEnhanceAttack();
-            this.numEnhanceStoneAttack -= numrequiredEnhanceStone;
+            this.numEnhanceStoneAttack -= numRequiredEnhanceStone;
             this.lvEnhanceAttack += 1;
             isEnhanced = true;
         }
@@ -150,14 +150,14 @@ public class EnhanceManager {
     /**
      * Set number of Purple-Enhance-Attack-Stone
      */    
-    public void PlusNumEnhanceStoneAttack(final int num) {
+    public void plusNumEnhanceStoneAttack(final int num) {
         this.numEnhanceStoneAttack += num;
     }
     
     /**
      * Set number of Blue-Enhance-Area-Stone
      */
-    public void PlusNumEnhanceStoneArea(final int num) {
+    public void plusNumEnhanceStoneArea(final int num) {
         this.numEnhanceStoneArea += num;
     }
 

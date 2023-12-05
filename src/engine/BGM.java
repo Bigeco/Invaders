@@ -5,38 +5,38 @@ import java.io.File;
 
 public class BGM {
     /** Add variable of bgmClip - OutGame*/
-    private Clip OutGame_bgmCLip; 
+    private Clip outGame_bgmCLip; 
     /** Add variable of bgmClip - inGame*/
-    private Clip InGame_bgmCLip;
+    private Clip inGame_bgmCLip;
     /** Add variable of bgmClip - enemy Ship*/
     private Clip enemyShipSpecialbgmCLip;
     /** Add variable of original volume*/
     private float originalVolume;
 
-    File enemyShipSpecialappearbgm = new File("sound/BackGroundMusic/enemyshipspecial.wav");
+    File enemyShipSpecialAppearBGM = new File("sound/BackGroundMusic/enemyshipspecial.wav");
 
     public BGM() {
         try {
-            String OutGame_bgm_FilePATH = "sound/BackGroundMusic/gamescreen_bgm.wav";
-            File OutGame_bgm = new File(OutGame_bgm_FilePATH).getAbsoluteFile();
-            AudioInputStream OutGame_Stream = AudioSystem.getAudioInputStream(OutGame_bgm);
-            AudioFormat OutGame_Format = OutGame_Stream.getFormat();
-            DataLine.Info OutGame_Info = new DataLine.Info(Clip.class, OutGame_Format);
+            String outGame_bgm_FilePATH = "sound/BackGroundMusic/gamescreen_bgm.wav";
+            File outGame_bgm = new File(outGame_bgm_FilePATH).getAbsoluteFile();
+            AudioInputStream outGame_Stream = AudioSystem.getAudioInputStream(outGame_bgm);
+            AudioFormat outGame_Format = outGame_Stream.getFormat();
+            DataLine.Info outGame_Info = new DataLine.Info(Clip.class, outGame_Format);
 
-            OutGame_bgmCLip = (Clip) AudioSystem.getLine(OutGame_Info);
-            OutGame_bgmCLip.open(OutGame_Stream);
+            outGame_bgmCLip = (Clip) AudioSystem.getLine(outGame_Info);
+            outGame_bgmCLip.open(outGame_Stream);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            String InGame_bgm_FilePATH = "sound/BackGroundMusic/outside_screen_bgm.wav";
-            File InGame_bgm = new File(InGame_bgm_FilePATH).getAbsoluteFile();
-            AudioInputStream InGame_Stream = AudioSystem.getAudioInputStream(InGame_bgm);
-            AudioFormat InGame_Format = InGame_Stream.getFormat();
-            DataLine.Info InGame_Info = new DataLine.Info(Clip.class, InGame_Format);
+            String inGame_bgm_FilePATH = "sound/BackGroundMusic/outside_screen_bgm.wav";
+            File inGame_bgm = new File(inGame_bgm_FilePATH).getAbsoluteFile();
+            AudioInputStream inGame_Stream = AudioSystem.getAudioInputStream(inGame_bgm);
+            AudioFormat inGame_Format = inGame_Stream.getFormat();
+            DataLine.Info inGame_Info = new DataLine.Info(Clip.class, inGame_Format);
 
-            InGame_bgmCLip = (Clip) AudioSystem.getLine(InGame_Info);
-            InGame_bgmCLip.open(InGame_Stream);
+            inGame_bgmCLip = (Clip) AudioSystem.getLine(inGame_Info);
+            inGame_bgmCLip.open(inGame_Stream);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -45,15 +45,15 @@ public class BGM {
     /**
      * Play enemyShipSpecial appear BGM
      */
-    public void enemyShipSpecialbgm_play(){
+    public void enemyShipSpecialBGM_play(){
         try {
-            AudioInputStream enemyShipSpecialStream = AudioSystem.getAudioInputStream(enemyShipSpecialappearbgm);
+            AudioInputStream enemyShipSpecialStream = AudioSystem.getAudioInputStream(enemyShipSpecialAppearBGM);
             AudioFormat enemyShipSpecialFormat = enemyShipSpecialStream.getFormat();
             DataLine.Info enemyShipSpecialInfo = new DataLine.Info(Clip.class, enemyShipSpecialFormat);
 
             enemyShipSpecialbgmCLip = (Clip) AudioSystem.getLine(enemyShipSpecialInfo);
             enemyShipSpecialbgmCLip.open(enemyShipSpecialStream);
-            bgm_volumedowm();
+            bgm_volumeDown();
             enemyShipSpecialbgmCLip.start();
             enemyShipSpecialbgmCLip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch(Exception e) {
@@ -63,11 +63,11 @@ public class BGM {
     /**
      * Stop enemyShipSpecial appear BGM
      */
-    public void enemyShipSpecialbgm_stop(){
+    public void enemyShipSpecialBGM_stop(){
         try {
             if (enemyShipSpecialbgmCLip != null && enemyShipSpecialbgmCLip.isRunning()) {
                 enemyShipSpecialbgmCLip.stop();
-                bgm_volumeup();
+                bgm_volumeUp();
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -76,9 +76,9 @@ public class BGM {
     /**
      * BGM volume down
      */
-    public void bgm_volumedowm(){
+    public void bgm_volumeDown(){
         try {
-            FloatControl control = (FloatControl) InGame_bgmCLip.getControl(FloatControl.Type.MASTER_GAIN);
+            FloatControl control = (FloatControl) inGame_bgmCLip.getControl(FloatControl.Type.MASTER_GAIN);
             originalVolume = control.getValue();
             control.setValue(-10.0f);
         } catch(Exception e) {
@@ -88,24 +88,24 @@ public class BGM {
     /**
      * BGM volume up
      */
-    public void bgm_volumeup(){
+    public void bgm_volumeUp(){
         try {
-            FloatControl control = (FloatControl) InGame_bgmCLip.getControl(FloatControl.Type.MASTER_GAIN);
+            FloatControl control = (FloatControl) inGame_bgmCLip.getControl(FloatControl.Type.MASTER_GAIN);
             control.setValue(originalVolume);
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
-    public void InGame_bgm_play(){
-//            bgm_volumedowm();
-        InGame_bgmCLip.start();
-        InGame_bgmCLip.loop(Clip.LOOP_CONTINUOUSLY);
+    public void inGameBGM_play(){
+//            bgm_volumeDown();
+        inGame_bgmCLip.start();
+        inGame_bgmCLip.loop(Clip.LOOP_CONTINUOUSLY);
     }
-    public void OutGame_bgm_play() {
+    public void outGameBGM_play() {
 
-        if (OutGame_bgmCLip != null && !OutGame_bgmCLip.isRunning()) {
-            OutGame_bgmCLip.start();
-            OutGame_bgmCLip.loop(Clip.LOOP_CONTINUOUSLY);
+        if (outGame_bgmCLip != null && !outGame_bgmCLip.isRunning()) {
+            outGame_bgmCLip.start();
+            outGame_bgmCLip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 
@@ -117,22 +117,22 @@ public class BGM {
 //        }
 //    }
 
-    public void OutGame_bgm_stop() {
+    public void outGameBGM_stop() {
         // BGM 재생을 중지합니다.
         try {
-            if (OutGame_bgmCLip != null && OutGame_bgmCLip.isRunning()) {
-                OutGame_bgmCLip.stop();
+            if (outGame_bgmCLip != null && outGame_bgmCLip.isRunning()) {
+                outGame_bgmCLip.stop();
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void InGame_bgm_stop() {
+    public void inGameBGM_stop() {
         // BGM 재생을 중지합니다.
         try {
-            if (InGame_bgmCLip != null && InGame_bgmCLip.isRunning()) {
-                InGame_bgmCLip.stop();
+            if (inGame_bgmCLip != null && inGame_bgmCLip.isRunning()) {
+                inGame_bgmCLip.stop();
             }
         } catch(Exception e) {
             e.printStackTrace();

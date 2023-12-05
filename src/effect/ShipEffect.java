@@ -26,7 +26,7 @@ public class ShipEffect extends Effect {
      * Item Effect: Effect on reversal.
      */
     public int moveEffect() {
-        if (this.DebuffEffectCooldown.checkFinished()) {
+        if (this.debuffEffectCooldown.checkFinished()) {
             return (shipSturnEffect());
         }
         return (-1 * shipSturnEffect());
@@ -40,7 +40,7 @@ public class ShipEffect extends Effect {
      * @param ENHANCED_DAMAGE the enhanced damage of a ship's bullet
      */
     public void shoot(final Set<Bullet> bullets, final int BULLET_SPEED, final int ENHANCED_DAMAGE) {
-        if (this.tripleshotEffectCooldown.checkFinished()) {
+        if (this.tripleShotEffectCooldown.checkFinished()) {
             bullets.add(BulletPool.getBullet(ship.getPositionX() + ship.getWidth() / 2,
                     ship.getPositionY(), BULLET_SPEED, ENHANCED_DAMAGE));
         } else {
@@ -61,7 +61,7 @@ public class ShipEffect extends Effect {
      * @param ENHANCED_DAMAGE the enhanced damage of a ship's bullet
      */
     public void shootBulletY(final Set<BulletY> bulletsY, final int BULLETY_SPEED, final int ENHANCED_DAMAGE) {
-        if (this.tripleshotEffectCooldown.checkFinished()) {
+        if (this.tripleShotEffectCooldown.checkFinished()) {
             bulletsY.add(BulletPool.getBulletY(ship.getPositionX() + ship.getWidth() / 2,
                     ship.getPositionY(), BULLETY_SPEED, ENHANCED_DAMAGE));
         } else {
