@@ -126,8 +126,9 @@ public class EnhanceScreen extends Screen {
             if (inputManager.isKeyDown(KeyEvent.VK_SPACE)){
                 soundEffect.playSpaceButtonSound();
                 if (this.returnCode == 8) {
-                    if (this.enhanceManager.getlvEnhanceArea() <= 2)
+                    if (this.enhanceManager.getlvEnhanceArea() <= 2) {
                         this.enhanceManager.enhanceAreaDamage();
+                    }
                     for (GameSettings gameSetting : this.gameSettings) {
                         gameSetting.setAreaDamage(this.enhanceManager.getlvEnhanceArea());
                     }
@@ -148,50 +149,54 @@ public class EnhanceScreen extends Screen {
      * Shifts the focus to the next menu item. (Horizontal Ver.)
      */
     private void nextHorizontalMenuItem() { 
-        if (this.returnCode == 8)
+        if (this.returnCode == 8) {
             this.returnCode = 9;
-        else
+        } else {
             this.returnCode = 8;
+        }
     }
 
     /**
      * Shifts the focus to the next menu item. (Vertical Ver.)
      */
     private void nextVerticalMenuItem() {
-        if (this.returnCode == 8 || this.returnCode == 9)
+        if (this.returnCode == 8 || this.returnCode == 9) {
             this.returnCode = 5;
-        else if (this.returnCode == 5)
+        } else if (this.returnCode == 5) {
             this.returnCode = 6;
-        else if (this.returnCode == 6)
+        } else if (this.returnCode == 6) {
             this.returnCode = 2;
-        else
+        } else {
             this.returnCode = 5;
+        }
     }
 
     /**
      * Shifts the focus to the previous menu item. (Horizontal Ver.)
      */
     private void previousHorizontalMenuItem() {
-        if (this.returnCode == 8)
+        if (this.returnCode == 8) {
             this.returnCode = 9;
-        else
+        } else {
             this.returnCode = 8;
+        }
     }
 
     /**
      * Shifts the focus to the previous menu item. (Vertical Ver.)
      */
     private void previousVerticalMenuItem() {
-        if (this.returnCode == 8)
+        if (this.returnCode == 8) {
             this.returnCode = 8;
-        else if (this.returnCode == 9)
+        } else if (this.returnCode == 9) {
             this.returnCode = 9;
-        else if (this.returnCode == 2)
+        } else if (this.returnCode == 2) {
             this.returnCode = 6;
-        else if (this.returnCode == 6)
+        } else if (this.returnCode == 6) {
             this.returnCode = 5;
-        else
+        } else {
             this.returnCode = 8;
+        }
     }
 
     /**
