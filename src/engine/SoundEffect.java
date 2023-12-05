@@ -152,10 +152,10 @@ public class SoundEffect {
         }
     }
 
-    public void soundEffect_play(){
+    public void SoundEffect_play(){
 
     }
-    public void soundEffect_stop(){
+    public void SoundEffect_stop(){
 
     }
 
@@ -206,9 +206,9 @@ public class SoundEffect {
     /**
      * Play Enemyshipspecial's destruction sound
      */
-    public void enemyShipSpecialDestructionSound(){
+    public void enemyshipspecialDestructionSound(){
         try {
-            String soundFilePath = "sound/soundEffect/enemyShipSpecialdestructionsound.wav";
+            String soundFilePath = "sound/soundEffect/enemyshipspecialdestructionsound.wav";
             File soundFile = new File(soundFilePath).getAbsoluteFile();
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile.getAbsoluteFile());
             Clip clip = AudioSystem.getClip();

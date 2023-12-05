@@ -216,22 +216,22 @@ public class EnhanceScreen extends Screen {
         drawManager.drawEnhanceSprite(this, centeredCircleX, centeredCircleY, centeredCircleWidth, centeredCircleHeight, 
                                             leftCircleX, rightCircleX, sideCircleY, sideCircleWidth, sideCircleHeight);
 
-        String areaString = "Area";
-		String damageString = "Damage";
-		String enhanceString = "Enhance";
-		String stoneString = "Stone";
+        String AreaString = "Area";
+		String DamageString = "Damage";
+		String EnhanceString = "Enhance";
+		String StoneString = "Stone";
         int fontSizeOption = 0;
 
-        drawManager.drawEnhanceStoneString(this, areaString, 
+        drawManager.drawEnhanceStoneString(this, AreaString, 
                                             leftCircleX + sideCircleWidth / 2, sideCircleY + sideCircleHeight + 20, 
                                             Color.GRAY, fontSizeOption);
-        drawManager.drawEnhanceStoneString(this, enhanceString + " " + stoneString, 
+        drawManager.drawEnhanceStoneString(this, EnhanceString + " " + StoneString, 
                                             leftCircleX + sideCircleWidth / 2, sideCircleY + sideCircleHeight + 40, 
                                             Color.GRAY, fontSizeOption);
-        drawManager.drawEnhanceStoneString(this, damageString, 
+        drawManager.drawEnhanceStoneString(this, DamageString, 
                                             rightCircleX + sideCircleWidth / 2, sideCircleY + sideCircleHeight + 20, 
                                             Color.GRAY, fontSizeOption);
-        drawManager.drawEnhanceStoneString(this, enhanceString + " " + stoneString, 
+        drawManager.drawEnhanceStoneString(this, EnhanceString + " " + StoneString, 
                                             rightCircleX + sideCircleWidth / 2, sideCircleY + sideCircleHeight + 40, 
                                             Color.GRAY, fontSizeOption);
 

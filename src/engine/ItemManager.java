@@ -37,12 +37,12 @@ public class ItemManager {
     {
         return this.bombCount;
     }
-    public int plusShieldCount(final int count)
+    public int PlusShieldCount(final int count)
     {
         this.shieldCount += count;
         return this.shieldCount;
     }
-        public int plusBombCount(final int count)
+        public int PlusBombCount(final int count)
     {
         this.bombCount += count;
         return this.bombCount;

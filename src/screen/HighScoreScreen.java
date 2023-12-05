@@ -22,7 +22,7 @@ public class HighScoreScreen extends Screen {
 	private List<Score> highScores_HARD;
 	private List<Score> highScores_HARDCORE;
 	private int difficulty;
-	private Cooldown selectCooldown;
+	private Cooldown SelectCooldown;
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -35,8 +35,8 @@ public class HighScoreScreen extends Screen {
 	 */
 	public HighScoreScreen(final int width, final int height, final int fps) {
 		super(width, height, 60);
-		this.selectCooldown = Core.getCooldown(200);
-		this.selectCooldown.reset();
+		this.SelectCooldown = Core.getCooldown(200);
+		this.SelectCooldown.reset();
 		this.returnCode = 1;
 		this.difficulty = 0;
 		try {
@@ -67,28 +67,20 @@ public class HighScoreScreen extends Screen {
 		super.update();
 		draw();
 		if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
-				&& this.selectCooldown.checkFinished()) {
+				&& this.SelectCooldown.checkFinished()) {
 			this.difficulty += 1;
 			if (this.difficulty > 3) {
 				this.difficulty = 0;
-<<<<<<< Updated upstream
 			}
 			this.SelectCooldown.reset();
-=======
-			this.selectCooldown.reset();
->>>>>>> Stashed changes
 		}
 		else if (inputManager.isKeyDown(KeyEvent.VK_LEFT)
-				&& this.selectCooldown.checkFinished()) {
+				&& this.SelectCooldown.checkFinished()) {
 			this.difficulty -= 1;
 			if (this.difficulty < 0) {
 				this.difficulty = 3;
-<<<<<<< Updated upstream
 			}
 			this.SelectCooldown.reset();
-=======
-			this.selectCooldown.reset();
->>>>>>> Stashed changes
 		}
 		else if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
 				&& this.inputDelay.checkFinished()) {
