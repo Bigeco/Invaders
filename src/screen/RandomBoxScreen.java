@@ -20,8 +20,8 @@ public class RandomBoxScreen extends Screen {
     private int randomRes;
     private String rewardTypeString;
     private EnhanceManager enhanceManager;
-    private int BST;
-    private int PST;
+    private int bst;
+    private int pst;
     
     /**
      * Constructor, establishes the properties of the screen.
@@ -45,8 +45,8 @@ public class RandomBoxScreen extends Screen {
         this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
         this.selectionCooldown.reset();
         this.randomRes = 0;
-        this.BST = enhanceManager.getNumEnhanceStoneArea();
-        this.PST = enhanceManager.getNumEnhanceStoneAttack();
+        this.bst = enhanceManager.getNumEnhanceStoneArea();
+        this.pst = enhanceManager.getNumEnhanceStoneAttack();
         this.enhanceManager = enhanceManager;
     }
  
@@ -101,13 +101,13 @@ public class RandomBoxScreen extends Screen {
                     else{
                         if (probability == 8){
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneArea(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneArea(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "BLUE ENHANCE STONE";
                         }
                         else{
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneAttack(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneAttack(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "PURPLE ENHANCE STONE";
                             }
@@ -129,13 +129,13 @@ public class RandomBoxScreen extends Screen {
                         int randomEnhanceType = (int) (Math.random() * 2); // 0: bst, 1: pst
                         if (randomEnhanceType == 0){
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneArea(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneArea(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "BLUE ENHANCE STONE";
                         }
                         else{
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneAttack(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneAttack(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "PURPLE ENHANCE STONE";
                         }
@@ -155,13 +155,13 @@ public class RandomBoxScreen extends Screen {
                         int randomEnhanceType = (int) (Math.random() * 2); // 0: bst, 1: pst
                         if (randomEnhanceType == 0){
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneArea(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneArea(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "BLUE ENHANCE STONE";
                         }
                         else{
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneAttack(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneAttack(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "PURPLE ENHANCE STONE";
                         }

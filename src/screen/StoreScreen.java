@@ -21,9 +21,9 @@ public class StoreScreen extends Screen {
 
     private Coin coin;
 
-    private int PST;
+    private int pst;
 
-    private int BST;
+    private int bst;
     private EnhanceManager enhanceManager;
     private GameState gameState;
 
@@ -42,8 +42,8 @@ public class StoreScreen extends Screen {
         super(width, height, fps);
         // Defaults to play.
         this.returnCode = 35;
-        this.BST = enhanceManager.getNumEnhanceStoneArea();
-        this.PST = enhanceManager.getNumEnhanceStoneAttack();
+        this.bst = enhanceManager.getNumEnhanceStoneArea();
+        this.pst = enhanceManager.getNumEnhanceStoneAttack();
         this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
         this.selectionCooldown.reset();
         this.coin = gameState.getCoin();
@@ -77,13 +77,13 @@ public class StoreScreen extends Screen {
             if (inputManager.isKeyDown(KeyEvent.VK_UP)
                     || inputManager.isKeyDown(KeyEvent.VK_W)) {
                 soundEffect.playButtonClickSound();
-                UpMenuItem();
+                upMenuItem();
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
                     || inputManager.isKeyDown(KeyEvent.VK_S)) {
                 soundEffect.playButtonClickSound();
-                DownMenuItem();
+                downMenuItem();
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
@@ -105,7 +105,7 @@ public class StoreScreen extends Screen {
                     {
                         gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
-                        this.itemManager.PlusShieldCount(1);
+                        this.itemManager.plusShieldCount(1);
                         this.coin.minusCoin(150);
                         System.out.println("plese do");
                     } else {
@@ -117,7 +117,7 @@ public class StoreScreen extends Screen {
                     {
                         gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
-                        this.itemManager.PlusBombCount(1);
+                        this.itemManager.plusBombCount(1);
                         this.coin.minusCoin(150);
                         System.out.println("plese do");
                     } else {
@@ -129,7 +129,7 @@ public class StoreScreen extends Screen {
                     {
                         gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
-                        this.enhanceManager.PlusNumEnhanceStoneArea(1);
+                        this.enhanceManager.plusNumEnhanceStoneArea(1);
                         this.coin.minusCoin(50);
                         System.out.println("plese do");
                     } else {
@@ -141,7 +141,7 @@ public class StoreScreen extends Screen {
                     {   
                         gameState.setCoinMsg("");
                         soundEffect.playUseCoinSound();
-                        this.enhanceManager.PlusNumEnhanceStoneAttack(1);
+                        this.enhanceManager.plusNumEnhanceStoneAttack(1);
                         this.coin.minusCoin(50);
                         System.out.println("plese do");
                     }else {
@@ -152,7 +152,7 @@ public class StoreScreen extends Screen {
             }
         }
     }
-    private void UpMenuItem() {
+    private void upMenuItem() {
         if (this.returnCode == 35)
             this.returnCode = 14;
         else if (this.returnCode == 14)
@@ -166,7 +166,7 @@ public class StoreScreen extends Screen {
         else if (this.returnCode == 38)
             this.returnCode = 36;
     }
-    private void DownMenuItem() {
+    private void downMenuItem() {
         if (this.returnCode == 35)
             this.returnCode = 37;
         else if (this.returnCode == 37)
@@ -219,8 +219,12 @@ public class StoreScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
         drawManager.drawCoinCount(this, this.coin, 2);
+<<<<<<< Updated upstream
         drawManager.drawItemStore(this, this.returnCode, PST, BST, 
         this.itemManager, this.gameState);
+=======
+        drawManager.drawItemStore(this, this.returnCode, pst, bst, this.itemManager);
+>>>>>>> Stashed changes
         drawManager.completeDrawing(this);
     }
     
