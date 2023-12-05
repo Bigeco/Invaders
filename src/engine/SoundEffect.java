@@ -10,14 +10,14 @@ import java.util.Timer;
 
 public class SoundEffect {
 
-    File shipshootingsound = new File("sound/soundEffect/Shipshooting.wav");
-    File shipdestructionsound = new File("sound/soundEffect/Shipdestruction.wav");
-    File shipcollisionsound = new File("sound/soundEffect/Shipcollision.wav");
-    File enemydestructionsound = new File("sound/soundEffect/Enemydestruction.wav");
-    File enemyshootingsound = new File("sound/soundEffect/Enemyshooting.wav");
-    File buttonclicksound = new File("sound/soundEffect/ButtonClick.wav");
-    File spacebuttonsound = new File("sound/soundEffect/SpaceButton.wav");
-    File stagechangesound = new File("sound/soundEffect/StageChange.wav");
+    File shipShootingSound = new File("sound/soundEffect/Shipshooting.wav");
+    File shipDestructionSound = new File("sound/soundEffect/Shipdestruction.wav");
+    File shipCollisionSound = new File("sound/soundEffect/Shipcollision.wav");
+    File enemyDestructionSound = new File("sound/soundEffect/Enemydestruction.wav");
+    File enemyShootingSound = new File("sound/soundEffect/Enemyshooting.wav");
+    File buttonClickSound = new File("sound/soundEffect/ButtonClick.wav");
+    File spaceButtOnSound = new File("sound/soundEffect/SpaceButton.wav");
+    File stageChangeSound = new File("sound/soundEffect/StageChange.wav");
     File initialStartSound = new File("sound/soundEffect/initialStart.wav");
     File startSound = new File("sound/soundEffect/start.wav");
     
@@ -31,7 +31,7 @@ public class SoundEffect {
     public void playStageChangeSound() {
         try{
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(stagechangesound));
+            clip.open(AudioSystem.getAudioInputStream(stageChangeSound));
             clip.start();
 
             Thread.sleep(1);
@@ -42,7 +42,7 @@ public class SoundEffect {
     public void playShipShootingSound() {
         try{
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(shipshootingsound));
+            clip.open(AudioSystem.getAudioInputStream(shipShootingSound));
             clip.start();
 
             Thread.sleep(1);
@@ -56,7 +56,7 @@ public class SoundEffect {
     public void playShipDestructionSound() {
         try{
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(shipdestructionsound));
+            clip.open(AudioSystem.getAudioInputStream(shipDestructionSound));
             clip.start();
 
             Thread.sleep(1);
@@ -70,7 +70,7 @@ public class SoundEffect {
     public void playShipCollisionSound() {
         try{
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(shipcollisionsound));
+            clip.open(AudioSystem.getAudioInputStream(shipCollisionSound));
             clip.start();
 
             Thread.sleep(1);
@@ -83,7 +83,7 @@ public class SoundEffect {
     public void playEnemyDestructionSound() {
         try{
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(enemydestructionsound));
+            clip.open(AudioSystem.getAudioInputStream(enemyDestructionSound));
             clip.start();
 
             Thread.sleep(1);
@@ -97,7 +97,7 @@ public class SoundEffect {
     public void playEnemyShootingSound() {
         try{
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(enemyshootingsound));
+            clip.open(AudioSystem.getAudioInputStream(enemyShootingSound));
             clip.start();
 
             Thread.sleep(1);
@@ -108,7 +108,7 @@ public class SoundEffect {
     public void playButtonClickSound() {
         try{
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(buttonclicksound));
+            clip.open(AudioSystem.getAudioInputStream(buttonClickSound));
             clip.start();
 
             Thread.sleep(1);
@@ -119,7 +119,7 @@ public class SoundEffect {
     public void playSpaceButtonSound() {
         try {
             Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(spacebuttonsound));
+            clip.open(AudioSystem.getAudioInputStream(spaceButtOnSound));
             clip.start();
 
             Thread.sleep(1);
@@ -152,10 +152,10 @@ public class SoundEffect {
         }
     }
 
-    public void SoundEffect_play(){
+    public void soundEffect_play(){
 
     }
-    public void SoundEffect_stop(){
+    public void soundEffect_stop(){
 
     }
 
@@ -206,7 +206,7 @@ public class SoundEffect {
     /**
      * Play Enemyshipspecial's destruction sound
      */
-    public void enemyshipspecialDestructionSound(){
+    public void enemyShipSpecialDestructionSound(){
         try {
             String soundFilePath = "sound/soundEffect/enemyshipspecialdestructionsound.wav";
             File soundFile = new File(soundFilePath).getAbsoluteFile();

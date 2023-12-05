@@ -97,13 +97,13 @@ public class RandomBoxScreen_2P extends Screen {
                     else{
                         if (probability == 8){
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneArea(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneArea(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "BLUE ENHANCE STONE";
                         }
                         else{
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneAttack(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneAttack(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "PURPLE ENHANCE STONE";
                         }
@@ -125,13 +125,13 @@ public class RandomBoxScreen_2P extends Screen {
                         int randomEnhanceType = (int) (Math.random() * 2); // 0: bst, 1: pst
                         if (randomEnhanceType == 0){
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneArea(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneArea(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "BLUE ENHANCE STONE";
                         }
                         else{
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneAttack(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneAttack(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "PURPLE ENHANCE STONE";
                         }
@@ -151,13 +151,13 @@ public class RandomBoxScreen_2P extends Screen {
                         int randomEnhanceType = (int) (Math.random() * 2); // 0: bst, 1: pst
                         if (randomEnhanceType == 0){
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneArea(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneArea(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "BLUE ENHANCE STONE";
                         }
                         else{
                             int randomEnhance = (int) (Math.random() * 4);
-                            this.enhanceManager.PlusNumEnhanceStoneAttack(randomEnhance);
+                            this.enhanceManager.plusNumEnhanceStoneAttack(randomEnhance);
                             this.randomRes = randomEnhance;
                             this.rewardTypeString = "PURPLE ENHANCE STONE";
                         }

@@ -81,13 +81,13 @@ public class SkinStoreScreen extends Screen {
             if (inputManager.isKeyDown(KeyEvent.VK_UP)
                     || inputManager.isKeyDown(KeyEvent.VK_W)) {
                 soundEffect.playButtonClickSound();
-                UpMenuSkin();
+                upMenuSkin();
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
                     || inputManager.isKeyDown(KeyEvent.VK_S)) {
                 soundEffect.playButtonClickSound();
-                DownMenuSkin();
+                downMenuSkin();
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
@@ -202,7 +202,7 @@ public class SkinStoreScreen extends Screen {
      /**
       * Shifts the focus to the next menu item.
       */
-      private void UpMenuSkin() {
+      private void upMenuSkin() {
         if (this.returnCode == 86)
             this.returnCode = 8;
         else if (this.returnCode == 8)
@@ -217,7 +217,7 @@ public class SkinStoreScreen extends Screen {
             this.returnCode = 88;
     }
  
-    private void DownMenuSkin() {
+    private void downMenuSkin() {
         if (this.returnCode == 86)
             this.returnCode = 87;
         else if (this.returnCode == 87)
