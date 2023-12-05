@@ -219,7 +219,8 @@ public class StoreScreen extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
         drawManager.drawCoinCount(this, this.coin, 2);
-        drawManager.drawItemStore(this, this.returnCode, PST, BST, this.itemManager, this.gameState);
+        drawManager.drawItemStore(this, this.returnCode, PST, BST, 
+        this.itemManager, this.gameState);
         drawManager.completeDrawing(this);
     }
     
