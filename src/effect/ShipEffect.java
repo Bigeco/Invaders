@@ -27,8 +27,8 @@ public class ShipEffect extends Effect{
      * Item Effect: Effect on reversal.
      */
     public int moveEffect(){
-        if (this.DebuffEffectCooldown.checkFinished())
-            return (shipSturnEffect());
+        if (this.DebuffEffectCooldown.checkFinished()){
+            return (shipSturnEffect()); }
         return (-1 * shipSturnEffect());
     }
 
@@ -100,9 +100,10 @@ public class ShipEffect extends Effect{
      *  사용처 : Ship 클래스
      */
     public int shipSturnEffect() {
-        if (this.debuffSturnEffect.checkFinished())
+        if (this.debuffSturnEffect.checkFinished()) {
             return (1);
-        else
+        } else {
             return (0);
     }
+}
 }
