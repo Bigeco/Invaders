@@ -185,6 +185,12 @@ public class EnemyShip extends Entity {
 		this.positionY += distanceY;
 	}
 
+
+	public int enemyPosX() { return this.positionX;}
+
+	
+	public int enemyPosY() { return this.positionY;}
+
 	/**
 	 * Updates attributes, mainly used for animation purposes.
 	 */

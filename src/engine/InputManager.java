@@ -61,9 +61,10 @@ public final class InputManager implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(final KeyEvent key) {
-		if (key.getKeyCode() >= 0 && key.getKeyCode() < NUM_KEYS)
+		if (key.getKeyCode() >= 0 && key.getKeyCode() < NUM_KEYS) {
 			keys[key.getKeyCode()] = true;
-		keyPressedOnce[key.getKeyCode()] = true;
+			keyPressedOnce[key.getKeyCode()] = true;
+		}
 	}
 
 	/**
@@ -74,8 +75,9 @@ public final class InputManager implements KeyListener {
 	 */
 	@Override
 	public void keyReleased(final KeyEvent key) {
-		if (key.getKeyCode() >= 0 && key.getKeyCode() < NUM_KEYS)
+		if (key.getKeyCode() >= 0 && key.getKeyCode() < NUM_KEYS) {
 			keys[key.getKeyCode()] = false;
+		}
 	}
 
 	/**
@@ -86,6 +88,5 @@ public final class InputManager implements KeyListener {
 	 */
 	@Override
 	public void keyTyped(final KeyEvent key) {
-
 	}
 }

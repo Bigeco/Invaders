@@ -74,10 +74,11 @@ public class Bullet extends Entity {
 	 * Sets correct sprite for the bullet, based on speed.
 	 */
 	public final void setSprite() {
-		if (speed < 0)
+		if (speed < 0) {
 			this.spriteType = SpriteType.Bullet;
-		else
+		} else {
 			this.spriteType = SpriteType.EnemyBullet;
+		}
 	}
 
 	/**
@@ -99,14 +100,12 @@ public class Bullet extends Entity {
 	 * Updates the bullet's position.
 	 */
 	public final void update() {
-		if(this.spriteType == SpriteType.Bullet || this.spriteType == SpriteType.EnemyBullet) {
+		if (this.spriteType == SpriteType.Bullet || this.spriteType == SpriteType.EnemyBullet) {
 			this.positionY += this.speed;
-		}
-		else if(this.spriteType == SpriteType.EnemyBulletLeft) {
+		} else if(this.spriteType == SpriteType.EnemyBulletLeft) {
 			this.positionX -= (int)(this.speed*0.51449575542753);
 			this.positionY += this.speed;
-		}
-		else {
+		} else {
 			this.positionX += (int)(this.speed*0.51449575542753);
 			this.positionY += this.speed;
 		}

@@ -83,20 +83,22 @@ public class EnhanceScreenRecovery extends Screen {
      * Shifts the focus to the next menu item.
      */
     private void nextMenuItem() {
-        if (this.returnCode == 7)
+        if (this.returnCode == 7) {
             this.returnCode = 2;
-        else
+        } else {
             this.returnCode = 7;
+        }
     }
 
     /**
      * Shifts the focus to the previous menu item.
      */
     private void previousMenuItem() {
-        if (this.returnCode == 2)
-        this.returnCode = 7;
-    else
-        this.returnCode = 2;
+        if (this.returnCode == 2) {
+            this.returnCode = 7;
+        } else {
+            this.returnCode = 2;
+        }
     }
 
     /**
