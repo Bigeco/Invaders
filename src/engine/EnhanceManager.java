@@ -150,14 +150,14 @@ public class EnhanceManager {
     /**
      * Set number of Purple-Enhance-Attack-Stone
      */    
-    public void plusNumEnhanceStoneAttack(final int num) {
+    public void PlusNumEnhanceStoneAttack(final int num) {
         this.numEnhanceStoneAttack += num;
     }
     
     /**
      * Set number of Blue-Enhance-Area-Stone
      */
-    public void plusNumEnhanceStoneArea(final int num) {
+    public void PlusNumEnhanceStoneArea(final int num) {
         this.numEnhanceStoneArea += num;
     }
 

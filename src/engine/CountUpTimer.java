@@ -4,14 +4,14 @@ public class CountUpTimer {
     private long startTime;
     private long elapsedTime;
     private boolean running;
-    private long gamePlayTime;
+    private long GameplayTime;
     private boolean pause;
 
     public CountUpTimer() {
         startTime = System.currentTimeMillis() + 6000;
         elapsedTime = 0;
         running = true;
-        gamePlayTime = 0;
+        GameplayTime = 0;
         pause = false;
     }
 
@@ -42,10 +42,10 @@ public class CountUpTimer {
     }
 
     public long getClearTime() {
-        return Math.max(0, gamePlayTime);
+        return Math.max(0, GameplayTime);
     }
 
     public void recordClearTime() {
-        gamePlayTime = elapsedTime;
+        GameplayTime = elapsedTime;
     }
 }

@@ -223,7 +223,7 @@ public class Ship extends Entity {
 	 */
 	public final void checkGetItem(final Item item) {
 		item.setDestroy(true);
-		this.shipEffect.cooldownReset(item.getSpriteType());
+		this.shipEffect.CooldownReset(item.getSpriteType());
 	}
 
 

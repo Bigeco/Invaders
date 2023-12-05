@@ -48,11 +48,11 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	private static final int MINIMUM_SPEED = 10;
 
 	/** Not extend enemy moving*/
-	private static final int notExtend_Location = -2;
+	private static final int NotExtend_location = -2;
 	/** extend enemy moving*/
-	private static final int isSExtend_Location = 1;
+	private static final int IsSExtend_location = 1;
 	/** moving speed*/
-	private static final int extend_x= 1;
+	private static final int Extend_x= 1;
 
 	/** DrawManager instance. */
 	private DrawManager drawManager;
@@ -108,14 +108,14 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	/** Number of not destroyed ships. */
 	private int shipCount;
 	/** Check if it is a boss */
-	private boolean isBoss;
+	private boolean isboss;
 	/** Difficulty of game. */
 	private double difficulty;
 	/** Current difficulty level number. */
 	private int level;
 	/** Check if it is a boss */
 	/** checking how many formation extended */
-	private int extendCheck;
+	private int extend_check;
 	/** how many moved enemy ship */
 	private int movementExtend;
 	private boolean isExtend = true;
@@ -141,9 +141,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	 *            Current game settings.
 	 */
 	public EnemyShipFormation(final GameSettings gameSettings, int level) {
-		this.isBoss = gameSettings.checkIsBoss();
+		this.isboss = gameSettings.checkIsBoss();
 		//enemy is not a boss
-		if(!this.isBoss) {
+		if(!this.isboss) {
 			this.drawManager = Core.getDrawManager();
 			this.logger = Core.getLogger();
 			this.enemyShips = new ArrayList<List<EnemyShip>>();
@@ -161,7 +161,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.positionY = INIT_POS_Y;
 			this.difficulty = gameSettings.getDifficulty();
 			this.level = level;
-			this.extendCheck =1;
+			this.extend_check =1;
 			this.shooters = new ArrayList<EnemyShip>();
 			this.prevAttackedPositionX = 0;
 			this.prevAttackedPositionY = 0;
@@ -389,7 +389,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	 * Updates the position of the ships.
 	 */
 	public final void update() {
-		if(!this.isBoss) {
+		if(!this.isboss) {
 			if (this.shootingCooldown == null) {
 				this.shootingCooldown = Core.getVariableCooldown(shootingInterval,
 						shootingVariance);
@@ -409,10 +409,10 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			movementInterval++;
 			if (movementInterval >= this.movementSpeed) {
 				movementInterval = 0;
-				if(extendCheck== notExtend_Location){
+				if(extend_check== NotExtend_location){
 					isExtend = true;
 				}
-				if(extendCheck== isSExtend_Location){
+				if(extend_check== IsSExtend_location){
 					isExtend = false;
 				}
 
@@ -421,7 +421,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				boolean isAtRightSide = positionX
 						+ this.width >= screen.getWidth() - SIDE_MARGIN;
 				boolean isAtLeftSide = positionX <= SIDE_MARGIN;
-				boolean isAtHorizontalAltitude = ((positionY+extendCheck-1) % DESCENT_DISTANCE ==0);
+				boolean isAtHorizontalAltitude = ((positionY+extend_check-1) % DESCENT_DISTANCE ==0);
 
 				if (currentDirection == Direction.DOWN) {
 					if (isAtHorizontalAltitude)
@@ -455,16 +455,16 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				}
 				if (currentDirection == Direction.RIGHT) {
 					if (isExtend)
-						movementExtend = extend_x;
+						movementExtend = Extend_x;
 					else
-						movementExtend = -extend_x;
+						movementExtend = -Extend_x;
 					movementX = X_SPEED;
 				}
 				else if (currentDirection == Direction.LEFT) {
 					if (isExtend)
-						movementExtend = extend_x;
+						movementExtend = Extend_x;
 					else
-						movementExtend = -extend_x;
+						movementExtend = -Extend_x;
 					movementX = -X_SPEED;
 				}
 				else {
@@ -473,7 +473,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				}
 				positionX += movementX;
 				positionX += movementExtend;
-				extendCheck += movementExtend;
+				extend_check += movementExtend;
 				positionY += movementY;
 				positionY += movementExtend;
 				// Cleans explosions.
