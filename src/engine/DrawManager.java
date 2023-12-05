@@ -786,7 +786,7 @@ public final class DrawManager {
 		g2d.drawString("Lives", textX, textY);
 	}
 
-	public void drawLivesBar_2p(final Screen screen, final double lives, final int x, final String live) {
+	public void drawLivesBar2p(final Screen screen, final double lives, final int x, final String live) {
 		// Calculate the fill ratio based on the number of lives (assuming a maximum of 3 lives).
 		double fillRatio = lives / 3.0;
 

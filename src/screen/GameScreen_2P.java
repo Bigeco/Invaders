@@ -551,8 +551,8 @@ public class GameScreen_2P extends Screen {
         drawManager.drawBackgroundLines(this, SEPARATION_LINE_HEIGHT);
         drawManager.drawBackgroundPlayer(this, SEPARATION_LINE_HEIGHT, this.ship_1P.getPositionX(), this.ship_1P.getPositionY(), this.ship_1P.getWidth(), this.ship_1P.getHeight());
         drawManager.drawBackgroundPlayer(this, SEPARATION_LINE_HEIGHT, this.ship_2P.getPositionX(), this.ship_2P.getPositionY(), this.ship_2P.getWidth(), this.ship_2P.getHeight());
-        drawManager.bulletsCount_1p(this,this.bulletsCount_1p);
-        drawManager.bulletsCount_2p(this, this.bulletsCount_2p);
+        drawManager.bulletsCount1p(this,this.bulletsCount_1p);
+        drawManager.bulletsCount2p(this, this.bulletsCount_2p);
         drawManager.drawEntity(this.ship_1P, this.ship_1P.getPositionX(),
                 this.ship_1P.getPositionY());
         drawManager.drawEntity(this.bulletLine_1P, this.ship_1P.getPositionX() + 12,
@@ -609,8 +609,8 @@ public class GameScreen_2P extends Screen {
         drawManager.drawScore_2p(this, this.score_1P,"p1", 105);
         drawManager.drawScore_2p(this, this.score_1P + this.score_2P,"total", 183);
         drawManager.drawScore_2p(this, this.score_2P,"p2",260);
-        drawManager.drawLivesBar_2p(this, this.lives_1p, 8, "1P lives");
-        drawManager.drawLivesBar_2p(this, this.lives_2p, 330, "2P lives");
+        drawManager.drawLivesBar2p(this, this.lives_1p, 8, "1P lives");
+        drawManager.drawLivesBar2p(this, this.lives_2p, 330, "2P lives");
         drawManager.drawCoinCount(this, this.coin, 0);
         drawManager.drawItemCircle(this,itemManager.getShieldCount(),itemManager.getBombCount());
         isBoss = gameSettings.checkIsBoss();
