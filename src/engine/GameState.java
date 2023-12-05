@@ -55,6 +55,8 @@ public class GameState {
 
 	private int BulletsRemaining;
 
+	private String coinMsg = "";
+
 	/**
 	 * Constructor.
 	 *
@@ -92,6 +94,8 @@ public class GameState {
 		} else {
 			this.equippedSkins = new HashMap<>(equippedSkins);
 		}
+		
+		this.coinMsg = coinMsg;
 
 	}
 	public final String getNowSkinString(){
@@ -119,6 +123,14 @@ public class GameState {
 	}
 	public final void setEquipped(Color color, boolean bool){
 		this.equippedSkins.put(color, bool);
+	}
+
+	public final String getCoinMsg(){
+		return this.coinMsg;
+	}
+
+	public void setCoinMsg(String newCoinMsg){
+		this.coinMsg=newCoinMsg;
 	}
 
 	/**

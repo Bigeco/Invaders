@@ -36,6 +36,8 @@ import screen.GameScreen;
 import screen.GameScreen_2P;
 import screen.Screen;
 
+import javax.swing.JOptionPane;
+
 
 /**
  * Manages screen drawing.
@@ -1085,13 +1087,17 @@ public final class DrawManager {
 		}
 	}
 
+	public void printCoinMsg(String coinMsg){
+		backBufferGraphics.setColor(blinkingColor("WHITE"));
+		backBufferGraphics.drawString(coinMsg, 130, 80);
+	}
+
 	public void printAttackDamage(final int attackDamage, int posX, int posY) {
 		String strAttackDamage = "" + attackDamage;
 		backBufferGraphics.setFont(fontBig);
 		backBufferGraphics.setColor(Color.red);
 		backBufferGraphics.drawString(strAttackDamage, posX, posY);
 	}
-
 	public void drawRandomBox(final Screen screen, final int option) {
 		String introduceString1 = "SELECT ONE OF THE THREE BOXES";
 		String introduceString2 = "FOR A RANDOM REWARD";
@@ -2018,7 +2024,7 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.GREEN);
 	}
 
-	public void drawItemStore(final Screen screen, final int option, final int PST, final int BST, final ItemManager itemManager) {
+	public void drawItemStore(final Screen screen, final int option, final int PST, final int BST, final ItemManager itemManager, GameState gameState) {
 		String itemStoretxt = " * I T E M S T O R E * ";
 		String continueString = " > C O N T I N U E";
 		String EnhanceString = " > E N H A N C E";
@@ -2032,6 +2038,8 @@ public final class DrawManager {
 		String BombString = "" + itemManager.getBombCount();
 		String BSTString = "" + BST;
 		String PSTStiring = "" + PST;
+		
+		String coinMsg1 = gameState.getCoinMsg();
 
 		int rectWidth = screen.getWidth();
 		int rectHeight = screen.getHeight() / 6;
@@ -2058,6 +2066,8 @@ public final class DrawManager {
 		backBufferGraphics.drawString(PrizeString1, screen.getWidth()*5/8 + 33, screen.getHeight()/2 - 35);
 		backBufferGraphics.drawString(PrizeString2, screen.getWidth()/7 + 40 , screen.getHeight() - 115);
 		backBufferGraphics.drawString(PrizeString3, screen.getWidth()*5/8 + 40 , screen.getHeight() - 115);
+
+		printCoinMsg(coinMsg1);
 		
 		if (option == 14)
 			backBufferGraphics.setColor(blinkingColor("GREEN"));
