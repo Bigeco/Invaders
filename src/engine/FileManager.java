@@ -30,11 +30,8 @@ import engine.DrawManager.SpriteType;
  * 
  */
 public final class FileManager {
-
-	/** Singleton instance of the class. */
-	private static FileManager instance;
 	/** Application logger. */
-	private static Logger logger;
+	private Logger logger;
 	/** Max number of high scores. */
 	private static final int MAX_SCORES = 7;
 
@@ -50,10 +47,8 @@ public final class FileManager {
 	 * 
 	 * @return Shared instance of FileManager.
 	 */
-	protected static FileManager getInstance() {
-		if (instance == null)
-			instance = new FileManager();
-		return instance;
+	protected static final FileManager getInstance() {
+		return new FileManager();
 	}
 
 	/**

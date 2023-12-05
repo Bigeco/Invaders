@@ -16,8 +16,6 @@ public final class InputManager implements KeyListener {
 	/** Array with the jeys marked as pressed or not. */
 	private static boolean[] keys;
 	private static boolean[] keyPressedOnce;
-	/** Singleton instance of the class. */
-	private static InputManager instance;
 
 	/**
 	 * Private constructor.
@@ -32,11 +30,8 @@ public final class InputManager implements KeyListener {
 	 * 
 	 * @return Shared instance of InputManager.
 	 */
-	protected static InputManager getInstance() {
-		if (instance == null) {
-			instance = new InputManager();
-		}
-		return instance;
+	public static InputManager getInstance() {
+		return new InputManager();
 	}
 
 	/**
