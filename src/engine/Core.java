@@ -37,10 +37,8 @@ public final class Core {
      * Max lives.
      */
     private static final int MAX_LIVES = 3;
-    /**
-     * Levels between extra life.
-     */
-    private static final int EXTRA_LIFE_FRECUENCY = 3;
+    
+    
     /**
      * Total number of levels.
      */
