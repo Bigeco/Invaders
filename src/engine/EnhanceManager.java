@@ -14,8 +14,6 @@ import entity.EnhanceStone;
  * Manages Values Related to Enhance.
  */
 public class EnhanceManager {
-    /** Singleton enhanceStone instance of the class. */
-    private EnhanceStone enhanceStone;
     /** Current Number of Enhancement Area Stone. */
     private int numEnhanceStoneArea;
     /** Current Number of Enhancement Attack Stone. */
@@ -27,12 +25,6 @@ public class EnhanceManager {
     /** Current Damage of Attack */
     private int attackDamage;
     private boolean isEnhanced = false;
-    /** The number List of Ehanced Stones required according to level. (about attackdamage) */
-    ArrayList<Integer> numRequiredEnhanceAttackStoneList = new ArrayList<>(Arrays.asList(1, 2, 4, 7, 10, 15, 0));
-    /** The number List of Ehanced Stones required according to level. (about area damage) */
-    ArrayList<Integer> numRequiredEnhanceAreaStoneList = new ArrayList<>(Arrays.asList(2, 5, 8, 0));
-    /** The value List of Attack Damage to be enhanced according to level. */
-    ArrayList<Integer> valEnhanceAttackList = new ArrayList<>(Arrays.asList(1, 1, 3, 5, 8, 12, 0));
 
     /**
 	 * Constructor.
@@ -40,14 +32,14 @@ public class EnhanceManager {
     public EnhanceManager(final int numEnhanceStoneArea, final int numEnhanceStoneAttack, 
                           final int lvEnhanceArea, final int lvEnhanceAttack,
                           final int attackDamage) {    
-        this.enhanceStone = new EnhanceStone(0, 0, lvEnhanceArea, lvEnhanceAttack, attackDamage);
+        EnhanceStone enhanceStone = new EnhanceStone(0, 0, lvEnhanceArea, lvEnhanceAttack, attackDamage);
 
         this.numEnhanceStoneArea = numEnhanceStoneArea;
         this.numEnhanceStoneAttack = numEnhanceStoneAttack;
         this.lvEnhanceAttack = enhanceStone.getlvEnhanceAttack();
         this.lvEnhanceArea = enhanceStone.getlvEnhanceArea();
         this.attackDamage = enhanceStone.getAttackDamage();
-        }    
+    }    
 
     /**
      * Enhance attack damage using Enhance stone.
@@ -126,6 +118,7 @@ public class EnhanceManager {
      * @return valEnhanceAttack
      */
     public int getValEnhanceAttack() {
+        ArrayList<Integer> valEnhanceAttackList = new ArrayList<>(Arrays.asList(1, 1, 3, 5, 8, 12, 0));
         return valEnhanceAttackList.get(this.lvEnhanceAttack);
     }    
     
@@ -135,6 +128,7 @@ public class EnhanceManager {
      * @return numRequiredEnhanceAttackStone
      */
     public int getRequiredNumEnhanceStoneAttack() {
+        ArrayList<Integer> numRequiredEnhanceAttackStoneList = new ArrayList<>(Arrays.asList(1, 2, 4, 7, 10, 15, 0));
         return numRequiredEnhanceAttackStoneList.get(this.lvEnhanceAttack);
     }  
     
@@ -144,6 +138,7 @@ public class EnhanceManager {
      * @return numRequiredEnhanceAreaStone
      */
     public int getRequiredNumEnhanceStoneArea() {
+        ArrayList<Integer> numRequiredEnhanceAreaStoneList = new ArrayList<>(Arrays.asList(2, 5, 8, 0));
         return numRequiredEnhanceAreaStoneList.get(this.lvEnhanceArea);
     }    
     
