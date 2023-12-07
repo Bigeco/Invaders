@@ -14,7 +14,7 @@ public class RandomRewardScreen_2P extends Screen {
     private Cooldown selectionCooldown;
     private Coin coin;
     private int randomRes;
-    private String rewardTypeString;
+    
     private String getRewardTypeString;
     /**
      * Constructor, establishes the properties of the screen.

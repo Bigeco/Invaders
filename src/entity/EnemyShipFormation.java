@@ -81,8 +81,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	private int baseSpeed;
 	/** Initial ship speed. */
 	private int baseAttackDamage;
-	/** Initial ship speed. */
-	private int baseAreaDamage;
+	
 	/** Speed of the ships. */
 	private int movementSpeed;
 	/** Current direction the formation is moving on. */
@@ -119,8 +118,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	/** how many moved enemy ship */
 	private int movementExtend;
 	private boolean isExtend = true;
-	private int prevAttackedPositionX;
-	private int prevAttackedPositionY;
+	
 	private int shipsDestroyed;
 
 
@@ -163,8 +161,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.level = level;
 			this.extend_check =1;
 			this.shooters = new ArrayList<EnemyShip>();
-			this.prevAttackedPositionX = 0;
-			this.prevAttackedPositionY = 0;
+			
 
 			SpriteType spriteType;
 

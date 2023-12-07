@@ -60,8 +60,7 @@ public final class DrawManager {
 	private static BufferedImage backBuffer;
 	/** Normal sized font. */
 	private static Font fontSmall;
-	/** Normal sized font properties. */
-	private static FontMetrics fontSmallMetrics;
+	
 	/** Normal sized font. */
 	private static Font fontRegular;
 	/** Normal sized font properties. */
@@ -392,7 +391,7 @@ public final class DrawManager {
 		backBufferGraphics
 				.fillRect(0, 0, screen.getWidth(), screen.getHeight());
 
-		fontSmallMetrics = backBufferGraphics.getFontMetrics(fontSmall);
+		
 		fontRegularMetrics = backBufferGraphics.getFontMetrics(fontRegular);
 		fontBigMetrics = backBufferGraphics.getFontMetrics(fontBig);
 
