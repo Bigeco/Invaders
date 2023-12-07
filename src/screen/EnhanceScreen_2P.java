@@ -18,27 +18,12 @@ import entity.Coin;
 public class EnhanceScreen_2P extends Screen {
     /** Milliseconds between changes in user selection. */
     private static final int SELECTION_TIME = 200;
-    /** Height of the interface separation line. */
-    private static final int SEPARATION_LINE_HEIGHT = 40;
     /** Current score. */
     private int score;
     /** Current coin. */
     private Coin coin;
-    /** Player lives left. */
-    private double lives;
     /** Time between changes in user selection. */
     private Cooldown selectionCooldown;
-    /** Settings of Centered Circle Frame */
-    private int centeredCircleWidth = 170;
-    private int centeredCircleHeight = 170;
-    private int centeredCircleX = (this.width - 170) / 2;
-    private int centeredCircleY = SEPARATION_LINE_HEIGHT * 2;
-    /** Settings of Both Side Circle Frame */
-    private int sideCircleWidth = 70;
-    private int sideCircleHeight = 70;
-    private int leftCircleX = (this.width - 220) / 2;
-    private int rightCircleX = this.width - (this.width - 220) / 2 - 70;
-    private int sideCircleY = SEPARATION_LINE_HEIGHT * 5;
     /** EnhanceManager taken from the Core.java */
     private EnhanceManager enhanceManager;
     /** Game settings taken from the Core.java */
@@ -74,7 +59,6 @@ public class EnhanceScreen_2P extends Screen {
         this.selectionCooldown.reset();
         this.score = gameState.getScore_1P() + gameState.getScore_2P();
         this.coin = gameState.getCoin();
-        this.lives = gameState.getLivesRemaining_1P();
 
         soundEffect = new SoundEffect();
     }
@@ -198,6 +182,20 @@ public class EnhanceScreen_2P extends Screen {
      * Draws the elements associated with the screen.
      */
     private void draw() {
+        /* Height of the interface separation line */
+        int SEPARATION_LINE_HEIGHT = 40;
+        /** Settings of Centered Circle Frame */
+        int centeredCircleWidth = 170;
+        int centeredCircleHeight = 170;
+        int centeredCircleX = (this.width - 170) / 2;
+        int centeredCircleY = SEPARATION_LINE_HEIGHT * 2;
+        /** Settings of Both Side Circle Frame */
+        int sideCircleWidth = 70;
+        int sideCircleHeight = 70;
+        int leftCircleX = (this.width - 220) / 2;
+        int rightCircleX = this.width - (this.width - 220) / 2 - 70;
+        int sideCircleY = SEPARATION_LINE_HEIGHT * 5;
+
         drawManager.initDrawing(this);
         drawManager.drawScore(this, this.score);
         drawManager.drawCoinCount(this, this.coin, 1);
