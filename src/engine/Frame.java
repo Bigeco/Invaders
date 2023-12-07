@@ -1,9 +1,7 @@
 package engine;
 
 import java.awt.Insets;
-
 import javax.swing.JFrame;
-
 import screen.Screen;
 
 /**
@@ -19,8 +17,6 @@ public class Frame extends JFrame {
 	private int width;
 	/** Frame height. */
 	private int height;
-	/** Screen currently shown. */
-	private Screen currentScreen;
 
 	/**
 	 * Initializes the new frame.
@@ -54,7 +50,7 @@ public class Frame extends JFrame {
 	 * @return Return code of the finished screen.
 	 */
 	public final int setScreen(final Screen screen) {
-		currentScreen = screen;
+		Screen currentScreen = screen;
 		currentScreen.initialize();
 		return currentScreen.run();
 	}
