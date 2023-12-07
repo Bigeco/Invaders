@@ -79,26 +79,25 @@ public class ShipEffect extends Effect {
      */
     public void attackSpeedUp() {
         if (this.attackSpeedEffectCooldown.checkFinished()) {
-            if (ship.getShootingInterval().getMilliseconds() == 100) {
+            if (ship.getShootingInterval().getMilliseconds() == 100)
                 ship.setShootingInterval(Core.getCooldown(750));
-            } else {
-                if (ship.getShootingInterval().getMilliseconds() == 750) {
-                    ship.setShootingInterval(Core.getCooldown(100));
-                }
-            }
+        } else {
+            if (ship.getShootingInterval().getMilliseconds() == 750)
+                ship.setShootingInterval(Core.getCooldown(100));
         }
     }
-        /**
-         *  스턴 디버프에 걸리면 0반환
-         *  평소에는 1을 반환
-         *
-         *  사용처 : Ship 클래스
-         */
-        public int shipSturnEffect () {
-            if (this.debuffSturnEffect.checkFinished()) {
-                return (1);
-            } else {
-                return (0);
-            }
+
+    /**
+     * 스턴 디버프에 걸리면 0반환
+     * 평소에는 1을 반환
+     * <p>
+     * 사용처 : Ship 클래스
+     */
+    public int shipSturnEffect() {
+        if (this.debuffSturnEffect.checkFinished()) {
+            return (1);
+        } else {
+            return (0);
         }
+    }
 }
