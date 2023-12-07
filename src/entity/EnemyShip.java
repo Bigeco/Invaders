@@ -27,7 +27,6 @@ public class EnemyShip extends Entity {
 	/** Check the enemyship is boss */
 	private boolean isBoss;
 
-
 	
 	/**
 	 * Constructor, establishes the ship's properties.
@@ -44,6 +43,10 @@ public class EnemyShip extends Entity {
 	public EnemyShip(final int positionX, final int positionY,
 			final SpriteType spriteType, Color enemyColor) {
 		super(positionX, positionY, 12 * 2, 8 * 2, enemyColor);
+
+		int N_TYPE_POINTS = 10; // Point value of a type normal enemy.
+		int M1_TYPE_POINTS = 30; // Point value of a type mod1 enemy.
+		int M2_TYPE_POINTS = 50; // Point value of a type mod2 enemy.
 
 		this.spriteType = spriteType;
 		this.animationCooldown = Core.getCooldown(500);
@@ -63,7 +66,6 @@ public class EnemyShip extends Entity {
 			case ESm2A_2D2:
 			case ESm2B_1D2:
 			case ESm2B_2D2:
-				int N_TYPE_POINTS = 10; // Point value of a type normal enemy.
 				this.pointValue = N_TYPE_POINTS;
 				this.EnemyLife = 1;
 				break;
@@ -73,7 +75,6 @@ public class EnemyShip extends Entity {
 			case ESm2A_2D1:
 			case ESm2B_1D1:
 			case ESm2B_2D1:
-				int M1_TYPE_POINTS = 30; // Point value of a type mod1 enemy.
 				this.pointValue = M1_TYPE_POINTS;
 				this.EnemyLife = 2;
 				break;
@@ -81,7 +82,6 @@ public class EnemyShip extends Entity {
 			case ESm2A_2:
 			case ESm2B_1:
 			case ESm2B_2:
-				int M2_TYPE_POINTS = 50; // Point value of a type mod2 enemy.
 				this.pointValue = M2_TYPE_POINTS;
 				this.EnemyLife = 3;
 				break;
@@ -101,7 +101,7 @@ public class EnemyShip extends Entity {
 	public EnemyShip(Color specialEnemyColor) {
 		super(-32, 60, 16 * 2, 7 * 2, specialEnemyColor);
 		int spVariable = (int)(Math.random()*4); // check which special enemy to generate.
-
+		int BONUS_TYPE_POINTS = 100; // Point value of a bonus enemy.
 
 		switch (spVariable) {
 			case 0:
@@ -117,8 +117,6 @@ public class EnemyShip extends Entity {
 				this.spriteType = SpriteType.EnemyShipSpecial4;
 				break;
 		}
-
-		int BONUS_TYPE_POINTS = 100; // Point value of a bonus enemy.
 
 		this.isDestroyed = false;
 		this.pointValue = BONUS_TYPE_POINTS;
