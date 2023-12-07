@@ -98,9 +98,6 @@ public final class DrawManager {
 	public String rewardTypeString;
 	public GameScreen gamescreen;
 
-	//BufferedImage img1, img2, img3, img4;
-
-
 	public int vector_x= 200, vector_y= 200, directionX = new Random().nextBoolean() ? 1 : -1,
 			directionY = new Random().nextBoolean() ? 1 : -1;
 	public Cooldown pump = new Cooldown(1000);

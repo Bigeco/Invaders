@@ -20,24 +20,12 @@ public class GameScreen_2P extends Screen {
 
     /** Milliseconds until the screen accepts user input. */
     private static final int INPUT_DELAY = 6000;
-    /** Bonus score for each life remaining at the end of the level. */
-    private static final int LIFE_SCORE = 100;
-    /** Minimum time between bonus ship's appearances. */
-    private static final int BONUS_SHIP_INTERVAL = 20000;
-    /** Maximum variance in the time between bonus ship's appearances. */
-    private static final int BONUS_SHIP_VARIANCE = 10000;
-    /** Time until bonus ship explosion disappears. */
-    private static final int BONUS_SHIP_EXPLOSION = 500;
     /** Maximum variance in the time between laser's appearances. */
     private int LASER_INTERVAL = 5000;
     /** Maximum variance in the time between Laser's appearances. */
     private int LASER_VARIANCE = 1000;
     /** Maximum variance in the time between Laser's appearances. */
     private int LASER_LOAD = 2000;
-    /** Time until laser disappears. */
-    private static final int LASER_ACTIVATE = 1000;
-    /** Time from finishing the level to screen change. */
-    private static final int SCREEN_CHANGE_INTERVAL = 3000;
     /** Height of the interface separation line. */
     private static final int SEPARATION_LINE_HEIGHT = 40;
 
@@ -187,7 +175,19 @@ public class GameScreen_2P extends Screen {
      */
     public final void initialize() {
         super.initialize();
+        
+        /** Minimum time between bonus ship's appearances. */
+        int BONUS_SHIP_INTERVAL = 20000;
+        /** Maximum variance in the time between bonus ship's appearances. */
+        int BONUS_SHIP_VARIANCE = 10000;
+        /** Time until bonus ship explosion disappears. */
+        int BONUS_SHIP_EXPLOSION = 500;
+        /** Time until laser disappears. */
+        int LASER_ACTIVATE = 1000;
+        /** Time from finishing the level to screen change. */
+        int SCREEN_CHANGE_INTERVAL = 3000;
 
+        
         enemyShipFormation = new EnemyShipFormation(this.gameSettings, 1);
         enemyShipFormation.attach(this);
         this.ship_1P = new Ship(this.width / 4, this.height - 30, "a", Color.WHITE);
@@ -242,6 +242,9 @@ public class GameScreen_2P extends Screen {
      */
     public final int run() {
         super.run();
+
+        /** Bonus score for each life remaining at the end of the level. */
+        int LIFE_SCORE = 100;
 
         this.score_1P += LIFE_SCORE * (this.lives_1p - 1);
         this.score_2P += LIFE_SCORE * (this.lives_2p - 1);
