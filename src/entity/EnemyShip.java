@@ -2,7 +2,6 @@ package entity;
 
 import java.awt.Color;
 import java.util.Random;
-import java.util.Map;
 import java.util.Set;
 
 import engine.Cooldown;
@@ -17,21 +16,6 @@ import engine.DrawManager.SpriteType;
  * 
  */
 public class EnemyShip extends Entity {
-	/** 적들 처치시 점수 설정 */
-	/** Point value of a type normal enemy. */
-	private static final int N_TYPE_POINTS = 10;
-	/** Point value of a type mod1 enemy. */
-	private static final int M1_TYPE_POINTS = 30;
-	/** Point value of a type mod2 enemy. */
-	private static final int M2_TYPE_POINTS = 50;
-
-	/** Point value of a bonus enemy. */
-	private static final int BONUS_TYPE_POINTS = 100;
-	/** Point value of a boss enemy. */
-	private static final int BOSS_TYPE_POINTS = 1000;
-	/** Item drop percent*/
-	private final double DROP_ITEM_PROB = 0.05;
-
 	/** 스프라이트 변경 쿨다운. */
 	private Cooldown animationCooldown;
 	/** Checks if the ship has been hit by a bullet. */
@@ -40,17 +24,11 @@ public class EnemyShip extends Entity {
 	private int pointValue;
 	/** Lives of ship, ship will be destroyed when life becomes 0. */
 	private int EnemyLife;
-	/** check which special enemy to generate. */
-	private int spVariable;
-
-
-
 	/** Check the enemyship is boss */
 	private boolean isBoss;
 
 
-
-
+	
 	/**
 	 * Constructor, establishes the ship's properties.
 	 * 
@@ -85,6 +63,7 @@ public class EnemyShip extends Entity {
 			case ESm2A_2D2:
 			case ESm2B_1D2:
 			case ESm2B_2D2:
+				int N_TYPE_POINTS = 10; // Point value of a type normal enemy.
 				this.pointValue = N_TYPE_POINTS;
 				this.EnemyLife = 1;
 				break;
@@ -94,6 +73,7 @@ public class EnemyShip extends Entity {
 			case ESm2A_2D1:
 			case ESm2B_1D1:
 			case ESm2B_2D1:
+				int M1_TYPE_POINTS = 30; // Point value of a type mod1 enemy.
 				this.pointValue = M1_TYPE_POINTS;
 				this.EnemyLife = 2;
 				break;
@@ -101,6 +81,7 @@ public class EnemyShip extends Entity {
 			case ESm2A_2:
 			case ESm2B_1:
 			case ESm2B_2:
+				int M2_TYPE_POINTS = 50; // Point value of a type mod2 enemy.
 				this.pointValue = M2_TYPE_POINTS;
 				this.EnemyLife = 3;
 				break;
@@ -119,7 +100,7 @@ public class EnemyShip extends Entity {
 	 */
 	public EnemyShip(Color specialEnemyColor) {
 		super(-32, 60, 16 * 2, 7 * 2, specialEnemyColor);
-		spVariable = (int)(Math.random()*4);
+		int spVariable = (int)(Math.random()*4); // check which special enemy to generate.
 
 
 		switch (spVariable) {
@@ -137,6 +118,7 @@ public class EnemyShip extends Entity {
 				break;
 		}
 
+		int BONUS_TYPE_POINTS = 100; // Point value of a bonus enemy.
 
 		this.isDestroyed = false;
 		this.pointValue = BONUS_TYPE_POINTS;
@@ -154,13 +136,15 @@ public class EnemyShip extends Entity {
 	 */
 	public EnemyShip(final int positionX, final int positionY, final int enemylife, Color bossColor) {
 		super(positionX, positionY, 22 * 2, 13 * 2, Color.RED);
+
+		int BOSS_TYPE_POINTS = 1000;
+
 		this.spriteType = SpriteType.BossA1;
 		this.animationCooldown = Core.getCooldown(500);
 		this.isDestroyed = false;
-		this.pointValue = BOSS_TYPE_POINTS;
+		this.pointValue = BOSS_TYPE_POINTS; // Point value of a boss enemy.
 		this.EnemyLife = enemylife;
 		this.isBoss = true;
-
 	}
 
 	/**
@@ -305,6 +289,8 @@ public class EnemyShip extends Entity {
 	 * Destroys the ship, causing an explosion.
 	 */
 	public final void destroy(Set<Item> items) {
+		double DROP_ITEM_PROB = 0.05; // Item drop percent
+
 		this.isDestroyed = true;
 		this.spriteType = randomDestroy();
 		if ((Math.random() < DROP_ITEM_PROB + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial1 ? 1 : 0)))
