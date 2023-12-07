@@ -44,7 +44,7 @@ public class GameState {
 	/**
 	 * HardCore(Only One life)
 	 */
-	private boolean hardcore;
+	private boolean hardCore;
 
 	private Color shipColor;
 
@@ -53,7 +53,7 @@ public class GameState {
 	private Map<Color, Boolean> ownedSkins;
 	private Map<Color, Boolean> equippedSkins;
 
-	private int BulletsRemaining;
+	private int bulletsRemaining;
 
 	private String coinMsg = "";
 
@@ -66,22 +66,22 @@ public class GameState {
 	 * @param livesRemaining Lives currently remaining.
 	 * @param bulletsShot    Bullets shot until now.
 	 * @param shipsDestroyed Ships destroyed until now.
-	 * @param hardcore       Hardcore mode, Only one coin.
+	 * @param hardCore       Hardcore mode, Only one coin.
 	 */
 	public GameState(final int level, final int score, final Coin coin,
 					final double livesRemaining, final int bulletsShot,
-					final int shipsDestroyed, final boolean hardcore, 
+					final int shipsDestroyed, final boolean hardCore, 
 					final Color shipColor,final String nowSkinString, 
 					final Map<Color, Boolean> ownedSkins, final Map<Color, Boolean> equippedSkins, 
-					final int BulletsRemaining) {
+					final int bulletsRemaining) {
 		this.level = level;
 		this.score = score;
 		this.coin = coin;
 		this.livesRemaining = livesRemaining;
 		this.bulletsShot = bulletsShot;
 		this.shipsDestroyed = shipsDestroyed;
-		this.hardcore = hardcore;
-		this.BulletsRemaining = BulletsRemaining;
+		this.hardCore = hardCore;
+		this.bulletsRemaining = bulletsRemaining;
 		this.shipColor = shipColor;
 		this.nowSkinString = nowSkinString;
 		if (ownedSkins == null) {
@@ -187,10 +187,10 @@ public class GameState {
 	}
 
 	/**
-	 * @return the hardcore
+	 * @return the hardCore
 	 */
 	public final boolean getHardCore() {
-		return this.hardcore;
+		return this.hardCore;
 	}
 
 
@@ -199,7 +199,7 @@ public class GameState {
 	 */
 	public final void setHardCore() {
 		this.livesRemaining = 1;
-		this.hardcore = true;
+		this.hardCore = true;
 	}
 
 	/**
@@ -219,6 +219,6 @@ public class GameState {
 	}
 
 	public final int getBulletsRemaining() {
-		return BulletsRemaining;
+		return bulletsRemaining;
 	}
 }

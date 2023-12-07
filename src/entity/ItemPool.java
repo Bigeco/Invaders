@@ -30,7 +30,7 @@ public class ItemPool {
             item.setPositionX(positionX - item.getWidth() / 2);
             item.setPositionY(positionY);
             item.setSprite();
-            item.CoolReset();
+            item.coolReset();
             item.setDestroy(false);
         } else {
             item = new Item(positionX, positionY);

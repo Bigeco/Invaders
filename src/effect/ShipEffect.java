@@ -26,7 +26,7 @@ public class ShipEffect extends Effect {
      * Item Effect: Effect on reversal.
      */
     public int moveEffect() {
-        if (this.DebuffEffectCooldown.checkFinished()) {
+        if (this.debuffEffectCooldown.checkFinished()) {
             return (shipSturnEffect());
         }
         return (-1 * shipSturnEffect());
@@ -40,7 +40,7 @@ public class ShipEffect extends Effect {
      * @param ENHANCED_DAMAGE the enhanced damage of a ship's bullet
      */
     public void shoot(final Set<Bullet> bullets, final int BULLET_SPEED, final int ENHANCED_DAMAGE) {
-        if (this.tripleshotEffectCooldown.checkFinished()) {
+        if (this.tripleShotEffectCooldown.checkFinished()) {
             bullets.add(BulletPool.getBullet(ship.getPositionX() + ship.getWidth() / 2,
                     ship.getPositionY(), BULLET_SPEED, ENHANCED_DAMAGE));
         } else {
@@ -61,7 +61,7 @@ public class ShipEffect extends Effect {
      * @param ENHANCED_DAMAGE the enhanced damage of a ship's bullet
      */
     public void shootBulletY(final Set<BulletY> bulletsY, final int BULLETY_SPEED, final int ENHANCED_DAMAGE) {
-        if (this.tripleshotEffectCooldown.checkFinished()) {
+        if (this.tripleShotEffectCooldown.checkFinished()) {
             bulletsY.add(BulletPool.getBulletY(ship.getPositionX() + ship.getWidth() / 2,
                     ship.getPositionY(), BULLETY_SPEED, ENHANCED_DAMAGE));
         } else {
@@ -79,26 +79,25 @@ public class ShipEffect extends Effect {
      */
     public void attackSpeedUp() {
         if (this.attackSpeedEffectCooldown.checkFinished()) {
-            if (ship.getShootingInterval().getMilliseconds() == 100) {
+            if (ship.getShootingInterval().getMilliseconds() == 100)
                 ship.setShootingInterval(Core.getCooldown(750));
-            } else {
-                if (ship.getShootingInterval().getMilliseconds() == 750) {
-                    ship.setShootingInterval(Core.getCooldown(100));
-                }
-            }
+        } else {
+            if (ship.getShootingInterval().getMilliseconds() == 750)
+                ship.setShootingInterval(Core.getCooldown(100));
         }
     }
-        /**
-         *  스턴 디버프에 걸리면 0반환
-         *  평소에는 1을 반환
-         *
-         *  사용처 : Ship 클래스
-         */
-        public int shipSturnEffect () {
-            if (this.debuffSturnEffect.checkFinished()) {
-                return (1);
-            } else {
-                return (0);
-            }
+
+    /**
+     * 스턴 디버프에 걸리면 0반환
+     * 평소에는 1을 반환
+     * <p>
+     * 사용처 : Ship 클래스
+     */
+    public int shipSturnEffect() {
+        if (this.debuffSturnEffect.checkFinished()) {
+            return (1);
+        } else {
+            return (0);
         }
+    }
 }

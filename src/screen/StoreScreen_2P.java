@@ -76,13 +76,13 @@ public class StoreScreen_2P extends Screen {
             if (inputManager.isKeyDown(KeyEvent.VK_UP)
                     || inputManager.isKeyDown(KeyEvent.VK_W)) {
                 soundEffect.playButtonClickSound();
-                UpMenuItem();
+                upMenuItem();
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
                     || inputManager.isKeyDown(KeyEvent.VK_S)) {
                 soundEffect.playButtonClickSound();
-                DownMenuItem();
+                downMenuItem();
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
@@ -102,7 +102,7 @@ public class StoreScreen_2P extends Screen {
                 if (returnCode == 35 && gameState != null){
                     if (this.coin.getCoin() >= 150)
                     {
-                        this.itemManager.PlusShieldCount(1);
+                        this.itemManager.plusShieldCount(1);
                         this.coin.minusCoin(150);
                         System.out.println("plese do");
                     }
@@ -113,7 +113,7 @@ public class StoreScreen_2P extends Screen {
                 if (returnCode == 36 && gameState != null){
                     if (this.coin.getCoin() >= 150)
                     {
-                        this.itemManager.PlusBombCount(1);
+                        this.itemManager.plusBombCount(1);
                         this.coin.minusCoin(150);
                         System.out.println("plese do");
                     }
@@ -124,7 +124,7 @@ public class StoreScreen_2P extends Screen {
                 if (returnCode == 37 && gameState != null){
                     if (this.coin.getCoin() >= 50)
                     {
-                        this.enhanceManager.PlusNumEnhanceStoneArea(1);
+                        this.enhanceManager.plusNumEnhanceStoneArea(1);
                         this.coin.minusCoin(50);
                         System.out.println("plese do");
                     }
@@ -135,7 +135,7 @@ public class StoreScreen_2P extends Screen {
                 if (returnCode == 38 && gameState != null){
                     if (this.coin.getCoin() >= 50)
                     {
-                        this.enhanceManager.PlusNumEnhanceStoneAttack(1);
+                        this.enhanceManager.plusNumEnhanceStoneAttack(1);
                         this.coin.minusCoin(50);
                         System.out.println("plese do");
                     }
@@ -147,7 +147,7 @@ public class StoreScreen_2P extends Screen {
             }
         }
     }
-    private void UpMenuItem() {
+    private void upMenuItem() {
         if (this.returnCode == 35)
             this.returnCode = 14;
         else if (this.returnCode == 14)
@@ -159,7 +159,7 @@ public class StoreScreen_2P extends Screen {
         else if (this.returnCode == 38)
             this.returnCode = 36;
     }
-    private void DownMenuItem() {
+    private void downMenuItem() {
         if (this.returnCode == 35)
             this.returnCode = 37;
         else if (this.returnCode == 37)

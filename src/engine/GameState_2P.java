@@ -26,10 +26,10 @@ public class GameState_2P{
     /** Ships destroyed until now. */
     private int shipsDestroyed;
     /** HardCore(Only One life) */
-    private boolean hardcore;
+    private boolean hardCore;
 
-    private int BulletsRemaining_1p;
-    private int BulletsRemaining_2p;
+    private int bulletsRemaining_1p;
+    private int bulletsRemaining_2p;
 
 
 
@@ -47,12 +47,12 @@ public class GameState_2P{
      *            Bullets shot until now.
      * @param shipsDestroyed
      *            Ships destroyed until now.
-     * @param hardcore
+     * @param hardCore
      *            Hardcore mode, Only one coin.
      */
     public GameState_2P(final int level, final int score_1P, final int score_2P, final Coin coin,
                      final double livesRemaining_1P, final double livesRemaining_2P, final int bulletsShot_1P, final int bulletShot_2P,
-                     final int shipsDestroyed, final boolean hardcore, final int BulletsRemaining_1p,final int BulletsRemaining_2p) {
+                     final int shipsDestroyed, final boolean hardCore, final int bulletsRemaining_1p,final int bulletsRemaining_2p) {
         this.level = level;
         this.score_1P = score_1P;
         this.score_2P = score_2P;
@@ -62,9 +62,9 @@ public class GameState_2P{
         this.bulletsShot_1P = bulletsShot_1P;
         this.bulletsShot_2P = bulletsShot_2P;
         this.shipsDestroyed = shipsDestroyed;
-        this.hardcore = hardcore;
-        this.BulletsRemaining_1p = BulletsRemaining_1p;
-        this.BulletsRemaining_2p = BulletsRemaining_2p;
+        this.hardCore = hardCore;
+        this.bulletsRemaining_1p = bulletsRemaining_1p;
+        this.bulletsRemaining_2p = bulletsRemaining_2p;
 
     }
 
@@ -117,8 +117,8 @@ public class GameState_2P{
         return bulletsShot_2P;
     }
 
-    public final int getBulletsRemaining_1p() { return BulletsRemaining_1p;}
-    public final int getBulletsRemaining_2p() { return BulletsRemaining_2p;}
+    public final int getBulletsRemaining_1p() { return bulletsRemaining_1p;}
+    public final int getBulletsRemaining_2p() { return bulletsRemaining_2p;}
 
     /**
      * @return the shipsDestroyed
@@ -128,10 +128,10 @@ public class GameState_2P{
     }
 
     /**
-     * @return the hardcore
+     * @return the hardCore
      */
     public final boolean getHardCore() {
-        return this.hardcore;
+        return this.hardCore;
     }
 
 
@@ -141,7 +141,7 @@ public class GameState_2P{
     public final void setHardCore() {
         this.livesRemaining_1P = 1;
         this.livesRemaining_2P = 1;
-        this.hardcore = true;
+        this.hardCore = true;
     }
 
     /**
@@ -155,7 +155,7 @@ public class GameState_2P{
      * Set LivesRecovery
      */
     public final void setLivesRecovery() {
-        if(hardcore){
+        if(hardCore){
             this.score_1P = getScore_1P() + 100;
             this.score_2P = getScore_2P() + 100;
             this.level = getLevel() - 1;

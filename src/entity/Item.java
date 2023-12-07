@@ -24,7 +24,7 @@ public class Item extends Entity {
      */
     public int item_dy;
 
-    private boolean isdetroyed;
+    private boolean isDetroyed;
 
     /**
      * Constructor, establishes the Item's properties.
@@ -39,7 +39,7 @@ public class Item extends Entity {
         item_dx = Math.random() > 0.5 ? 1 : -1;
         item_dy = Math.random() > 0.5 ? 1 : -1;
         this.setSprite();
-        isdetroyed = false;
+        isDetroyed = false;
     }
 
     /**
@@ -101,23 +101,23 @@ public class Item extends Entity {
      *
      * @return temp.checkFinished();
      */
-    public final boolean islivingTimeEnd() {
+    public final boolean isLivingTimeEnd() {
         return livingTime.checkFinished();
     }
 
     public final boolean isDestroyed() {
-        return this.isdetroyed;
+        return this.isDetroyed;
     }
 
     public final void setDestroy(boolean t) {
-        this.isdetroyed = t;
+        this.isDetroyed = t;
     }
 
 
     /**
      * when reuse item, reset livingTime.
      */
-    public final void CoolReset() {
+    public final void coolReset() {
         this.livingTime.reset();
     }
 
@@ -127,7 +127,7 @@ public class Item extends Entity {
 
 
     public final void resetItem(Ship ship) {
-        this.CoolReset();
+        this.coolReset();
         this.item_dx = ship.getPositionX() - this.positionX > 0 ? 1 : -1;
         this.item_dy = ship.getPositionY() - this.positionY > 0 ? 1 : -1;
         positionX += this.item_dx * ((int) Math.sqrt(Math.abs(ship.getPositionX() - this.positionX)) + 1);

@@ -44,7 +44,7 @@ public class Laser extends Entity {
     public final void launch() {
     }
 
-    public final void Activate(final boolean act) {this.activated = act;}
+    public final void activate(final boolean act) {this.activated = act;}
     public final boolean isActivated() {
         return this.activated;
     }

@@ -80,8 +80,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	private int baseSpeed;
 	/** Initial ship speed. */
 	private int baseAttackDamage;
-	/** Initial ship speed. */
-	private int baseAreaDamage;
+	
 	/** Speed of the ships. */
 	private int movementSpeed;
 	/** Current direction the formation is moving on. */
@@ -107,7 +106,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	/** Number of not destroyed ships. */
 	private int shipCount;
 	/** Check if it is a boss */
-	private boolean isboss;
+	private boolean isBoss;
 	/** Difficulty of game. */
 	private double difficulty;
 	/** Current difficulty level number. */
@@ -118,8 +117,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	/** how many moved enemy ship */
 	private int movementExtend;
 	private boolean isExtend = true;
-	private int prevAttackedPositionX;
-	private int prevAttackedPositionY;
+	
 	private int shipsDestroyed;
 
 
@@ -140,9 +138,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	 *            Current game settings.
 	 */
 	public EnemyShipFormation(final GameSettings gameSettings, int level) {
-		this.isboss = gameSettings.checkIsBoss();
+		this.isBoss = gameSettings.checkIsBoss();
 		//enemy is not a boss
-		if(!this.isboss) {
+		if(!this.isBoss) {
 			this.drawManager = Core.getDrawManager();
 			this.logger = Core.getLogger();
 			this.enemyShips = new ArrayList<List<EnemyShip>>();
@@ -162,8 +160,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.level = level;
 			this.extend_check =1;
 			this.shooters = new ArrayList<EnemyShip>();
-			this.prevAttackedPositionX = 0;
-			this.prevAttackedPositionY = 0;
+			
 
 			SpriteType spriteType;
 
@@ -388,7 +385,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	 * Updates the position of the ships.
 	 */
 	public final void update() {
-		if(!this.isboss) {
+		if(!this.isBoss) {
 			if (this.shootingCooldown == null) {
 				this.shootingCooldown = Core.getVariableCooldown(shootingInterval,
 						shootingVariance);

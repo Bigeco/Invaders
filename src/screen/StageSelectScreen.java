@@ -68,25 +68,25 @@ public class StageSelectScreen extends Screen {
             if (inputManager.isKeyDown(KeyEvent.VK_UP)
                     || inputManager.isKeyDown(KeyEvent.VK_W)) {
                 soundEffect.playButtonClickSound();
-                UpMenuItem(Stage);
+                upMenuItem(Stage);
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
                     || inputManager.isKeyDown(KeyEvent.VK_S)) {
                 soundEffect.playButtonClickSound();
-                DownMenuItem(Stage);
+                downMenuItem(Stage);
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
                     || inputManager.isKeyDown(KeyEvent.VK_D)) {
                 soundEffect.playButtonClickSound();
-                RightMenuItem(Stage);
+                rightMenuItem(Stage);
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_LEFT)
                     || inputManager.isKeyDown(KeyEvent.VK_A)) {
                 soundEffect.playButtonClickSound();
-                LeftMenuItem(Stage);
+                leftMenuItem(Stage);
                 this.selectionCooldown.reset();
             }
             if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
@@ -103,25 +103,25 @@ public class StageSelectScreen extends Screen {
     /**
      * Shifts the focus to the right, left, down, and up menu item. Each line has 5 items.
      */
-    private void RightMenuItem(int i) {
+    private void rightMenuItem(int i) {
         if (this.Stage == TotalStage-1)
             this.Stage = 0;
         else
             this.Stage = i+1;
     }
-    private void LeftMenuItem(int i) {
+    private void leftMenuItem(int i) {
         if (this.Stage == 0)
             this.Stage = TotalStage-1;
         else
             this.Stage = i-1;
     }
-    private void DownMenuItem(int i) {
+    private void downMenuItem(int i) {
         this.Stage = i + 5;
         if (this.Stage >= TotalStage)
             this.Stage = this.Stage % 5;
     }
 
-    private void UpMenuItem(int i) {
+    private void upMenuItem(int i) {
         this.Stage = i - 5;
         if (this.Stage < 0) {
             if (TotalStage % 5 > i % 5)

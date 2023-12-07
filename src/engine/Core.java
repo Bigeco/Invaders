@@ -20,7 +20,7 @@ import screen.*;
  * @author <a href="mailto:RobertoIA1987@gmail.com">Roberto Izquierdo Amo</a>
  */
 public final class Core {
-    private static BGM outgame_bgm;
+    private static BGM outGame_BGM;
     /**
      * Width of current screen.
      */
@@ -37,10 +37,8 @@ public final class Core {
      * Max lives.
      */
     private static final int MAX_LIVES = 3;
-    /**
-     * Levels between extra life.
-     */
-    private static final int EXTRA_LIFE_FRECUENCY = 3;
+    
+    
     /**
      * Total number of levels.
      */
@@ -116,10 +114,10 @@ public final class Core {
     private static Boolean boxOpen = false;
     private static Boolean isInitMenuScreen = true;
 
-    private static int BulletsRemaining;
+    private static int bulletsRemaining;
 
-    private static int BulletsRemaining_1p;
-    private static int BulletsRemaining_2p;
+    private static int bulletsRemaining_1p;
+    private static int bulletsRemaining_2p;
 
 
 
@@ -131,7 +129,7 @@ public final class Core {
     public static void main(final String[] args) {
         try {
 
-            outgame_bgm = new BGM();
+            outGame_BGM = new BGM();
 
             LOGGER.setUseParentHandlers(false);
 
@@ -179,7 +177,7 @@ public final class Core {
                     // Main menu.
                     currentScreen = new TitleScreen(width, height, FPS);
 
-                    outgame_bgm.OutGame_bgm_play(); //대기화면 비지엠 (수정중)
+                    outGame_BGM.outGameBGM_play(); //대기화면 비지엠 (수정중)
 
                     LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
                             + " title screen at " + FPS + " fps.");
@@ -230,7 +228,7 @@ public final class Core {
                     LOGGER.info("Closing Level screen.");
                     gameState.setLevel(stage);
 
-                    outgame_bgm.OutGame_bgm_stop(); //게임 대기 -> 시작으로 넘어가면서 outgame bgm 종료
+                    outGame_BGM.outGameBGM_stop(); //게임 대기 -> 시작으로 넘어가면서 outgame bgm 종료
 
                     // Game & score.
                     do {
@@ -244,7 +242,7 @@ public final class Core {
                         LOGGER.info("Closing game screen.");
 
                         gameState = ((GameScreen) currentScreen).getGameState();
-                        BulletsRemaining = gameState.getBulletsRemaining();
+                        bulletsRemaining = gameState.getBulletsRemaining();
 
                         gameState = new GameState(gameState.getLevel() + 1,
                                 gameState.getScore(),
@@ -262,7 +260,7 @@ public final class Core {
 						// SubMenu | Item Store & Enhancement & Continue & Skin Store
 						do{
 							if (gameState.getLivesRemaining() <= 0) { break; }
-                            if (BulletsRemaining <= 0) { break; }
+                            if (bulletsRemaining <= 0) { break; }
 							if (!boxOpen){
 								currentScreen = new RandomBoxScreen(gameState, width, height, FPS, enhanceManager);
 								returnCode = frame.setScreen(currentScreen);
@@ -309,7 +307,7 @@ public final class Core {
 						boxOpen = false;
 						isInitMenuScreen = true;
 					} while (gameState.getLivesRemaining() > 0
-							&& gameState.getLevel() <= NUM_LEVELS && BulletsRemaining > 0);
+							&& gameState.getLevel() <= NUM_LEVELS && bulletsRemaining > 0);
 
 
                     // Recovery | Default State & Exit
@@ -331,11 +329,11 @@ public final class Core {
                         // Checking for Recovery Feasibility and Deducting Recovery Coins.
                         if (returnCode == 51){
 
-                            int coinnum = gameState.getCoin().getCoin();
+                            int coinNum = gameState.getCoin().getCoin();
                             
-                            if (coinnum >= 30 ){
+                            if (coinNum >= 30 ){
                                 Coin recoveryCoin = new Coin(0, 0);
-                                recoveryCoin.addCoin(coinnum);
+                                recoveryCoin.addCoin(coinNum);
                                 recoveryCoin.minusCoin(30);
                                 gameState.setCoin(recoveryCoin);
                                 
@@ -395,7 +393,7 @@ public final class Core {
                                     returnCode = frame.setScreen(currentScreen);
                                     LOGGER.info("Closing game screen.");
                                     gameState = ((GameScreen) currentScreen).getGameState();
-                                    BulletsRemaining = gameState.getBulletsRemaining();
+                                    bulletsRemaining = gameState.getBulletsRemaining();
 
                                     gameState = new GameState(gameState.getLevel()+1,
                                         gameState.getScore(),
@@ -413,7 +411,7 @@ public final class Core {
                                     // SubMenu | Item Store & Enhancement & Continue & Skin Store
                                     do{
                                         if (gameState.getLivesRemaining() <= 0) { break; }
-                                        if (BulletsRemaining <= 0) {break;}
+                                        if (bulletsRemaining <= 0) {break;}
                                         if (!boxOpen){
                                             currentScreen = new RandomBoxScreen(gameState, width, height, FPS, enhanceManager);
 								            returnCode = frame.setScreen(currentScreen);
@@ -464,7 +462,7 @@ public final class Core {
                                         boxOpen = false;
                                         isInitMenuScreen = true; }
                                 } while (gameState.getLivesRemaining() > 0
-                                            && gameState.getLevel() <= NUM_LEVELS && BulletsRemaining > 0);
+                                            && gameState.getLevel() <= NUM_LEVELS && bulletsRemaining > 0);
 
                                 if (returnCode == 1) { // Quit during the game
                                     currentScreen = new TitleScreen(width, height, FPS);
@@ -569,7 +567,7 @@ public final class Core {
                     LOGGER.info("Closing Level screen.");
                     gameState_2P.setLevel(stage);
 
-                    outgame_bgm.OutGame_bgm_stop(); //게임 대기 -> 시작으로 넘어가면서 outgame bgm 종료
+                    outGame_BGM.outGameBGM_stop(); //게임 대기 -> 시작으로 넘어가면서 outgame bgm 종료
 
                     // Game & score.
                     do {
@@ -583,8 +581,8 @@ public final class Core {
                         LOGGER.info("Closing game screen.");
 
                         gameState_2P = ((GameScreen_2P) currentScreen).getGameState();
-                        BulletsRemaining_1p = gameState_2P.getBulletsRemaining_1p();
-                        BulletsRemaining_2p = gameState_2P.getBulletsRemaining_2p();
+                        bulletsRemaining_1p = gameState_2P.getBulletsRemaining_1p();
+                        bulletsRemaining_2p = gameState_2P.getBulletsRemaining_2p();
 
                         gameState_2P = new GameState_2P(gameState_2P.getLevel() + 1,
                                 gameState_2P.getScore_1P(),
@@ -601,7 +599,7 @@ public final class Core {
                         // SubMenu | Item Store & Enhancement & Continue & Skin Store
                         do{
                             if (gameState_2P.getLivesRemaining_1P() <= 0 && gameState_2P.getLivesRemaining_2P() <= 0) { break; }
-                            if (BulletsRemaining_1p <= 0 && BulletsRemaining_2p <= 0) { break; }
+                            if (bulletsRemaining_1p <= 0 && bulletsRemaining_2p <= 0) { break; }
                             if (!boxOpen){
                                 currentScreen = new RandomBoxScreen_2P(gameState_2P, width, height, FPS, enhanceManager);
                                 returnCode = frame.setScreen(currentScreen);
@@ -640,8 +638,8 @@ public final class Core {
                         boxOpen = false;
                         isInitMenuScreen = true;
                     } while (gameState_2P.getLevel() <= NUM_LEVELS
-                            && ((gameState_2P.getLivesRemaining_1P() > 0 && BulletsRemaining_1p > 0)
-                            || (gameState_2P.getLivesRemaining_2P() > 0 && BulletsRemaining_2p > 0)));
+                            && ((gameState_2P.getLivesRemaining_1P() > 0 && bulletsRemaining_1p > 0)
+                            || (gameState_2P.getLivesRemaining_2P() > 0 && bulletsRemaining_2p > 0)));
 
 
                     // Recovery | Default State & Exit
@@ -663,11 +661,11 @@ public final class Core {
                         // Checking for Recovery Feasibility and Deducting Recovery Coins.
                         if (returnCode == 51){
 
-                            int coinnum = gameState_2P.getCoin().getCoin();
+                            int coinNum = gameState_2P.getCoin().getCoin();
 
-                            if (coinnum >= 30 ){
+                            if (coinNum >= 30 ){
                                 Coin recoveryCoin = new Coin(0, 0);
-                                recoveryCoin.addCoin(coinnum);
+                                recoveryCoin.addCoin(coinNum);
                                 recoveryCoin.minusCoin(30);
                                 gameState_2P.setCoin(recoveryCoin);
 
@@ -684,8 +682,8 @@ public final class Core {
                                     LOGGER.info("Closing game screen.");
 
                                     gameState_2P = ((GameScreen_2P) currentScreen).getGameState();
-                                    BulletsRemaining_1p = gameState_2P.getBulletsRemaining_1p();
-                                    BulletsRemaining_2p = gameState_2P.getBulletsRemaining_2p();
+                                    bulletsRemaining_1p = gameState_2P.getBulletsRemaining_1p();
+                                    bulletsRemaining_2p = gameState_2P.getBulletsRemaining_2p();
 
                                     gameState_2P = new GameState_2P(gameState_2P.getLevel() + 1,
                                             gameState_2P.getScore_1P(),
@@ -702,7 +700,7 @@ public final class Core {
                                     // SubMenu | Item Store & Enhancement & Continue & Skin Store
                                     do{
                                         if (gameState_2P.getLivesRemaining_1P() <= 0 && gameState_2P.getLivesRemaining_2P() <= 0) { break; }
-                                        if (BulletsRemaining_1p <= 0 && BulletsRemaining_2p <= 0) { break; }
+                                        if (bulletsRemaining_1p <= 0 && bulletsRemaining_2p <= 0) { break; }
                                         if (!boxOpen){
                                             currentScreen = new RandomBoxScreen_2P(gameState_2P, width, height, FPS, enhanceManager);
                                             returnCode = frame.setScreen(currentScreen);
@@ -741,8 +739,8 @@ public final class Core {
                                     boxOpen = false;
                                     isInitMenuScreen = true;
                                 } while (gameState_2P.getLevel() <= NUM_LEVELS
-                                        && ((gameState_2P.getLivesRemaining_1P() > 0 && BulletsRemaining_1p > 0)
-                                        || (gameState_2P.getLivesRemaining_2P() > 0 && BulletsRemaining_2p > 0)));
+                                        && ((gameState_2P.getLivesRemaining_1P() > 0 && bulletsRemaining_1p > 0)
+                                        || (gameState_2P.getLivesRemaining_2P() > 0 && bulletsRemaining_2p > 0)));
 
                                 if (returnCode == 1) { // Quit during the game
                                     currentScreen = new TitleScreen(width, height, FPS);
