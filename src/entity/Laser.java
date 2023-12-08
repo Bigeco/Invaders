@@ -21,15 +21,15 @@ public class Laser extends Entity {
     /**
      * Constructor, establishes the bullet's properties.
      *
-     * @param PositionX
+     * @param positionX
      *            Initial position of the bullet in the X axis.
-     * @param PositionY
+     * @param positionY
      *            Initial position of the bullet in the Y axis.
      * @param act
      *            Activated Lazer
      */
-    public Laser(final int PositionX, final int PositionY, final boolean act) {
-        super(PositionX, PositionY, 1*2, 448, Color.RED);
+    public Laser(final int positionX, final int positionY, final boolean act) {
+        super(positionX, positionY, 1*2, 448, Color.RED);
         this.activated = act;
         setSprite();
     }

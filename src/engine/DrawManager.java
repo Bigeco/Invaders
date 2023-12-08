@@ -438,16 +438,16 @@ public final class DrawManager {
 	 * [Clean Code Team] This method was created by dodo_kdy.
 	 *
 	 *
-	 * @param SpriteType
+	 * @param spriteType
 	 * @param positionX
 	 * @param positionY
 	 * @param width
 	 * @param height
 	 */
-	public void drawEntity(final SpriteType SpriteType, final int positionX,
+	public void drawEntity(final SpriteType spriteType, final int positionX,
 			final int positionY, final double width, final double height,
 			final Color color) {
-		boolean[][] image = spriteMap.get(SpriteType);
+		boolean[][] image = spriteMap.get(spriteType);
 		Graphics2D g2 = (Graphics2D) backBufferGraphics;
 		g2.setColor(color);
 
