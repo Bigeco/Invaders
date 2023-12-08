@@ -116,7 +116,7 @@ public class RecoveryPaymentScreen_2P extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
 
-        drawManager.drawRecoveryConfirmPage_2P(this.gameState, this,this.returnCode);
+        drawManager.drawRecoveryConfirmPage2P(this.gameState, this,this.returnCode);
 
         drawManager.completeDrawing(this);
     }

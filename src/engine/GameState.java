@@ -30,13 +30,13 @@ public class GameState {
 	 * Lives currently remaining.
 	 */
 	private double livesRemaining;
-	private double livesRemaining_2p;
+	private double livesRemaining2p;
 	/**
 	 * Bullets shot until now.
 	 */
 	private int bulletsShot;
 
-	private int bulletsShot_2p;
+	private int bulletsShot2p;
 	/**
 	 * Ships destroyed until now.
 	 */
