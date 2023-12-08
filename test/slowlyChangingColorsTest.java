@@ -55,7 +55,7 @@ public class slowlyChangingColorsTest {
     // ---------- LIBRARY TEST ---------- //
 
     @Test
-    public void library_test() {
+    public void libraryTest() {
         assertEquals(1 + 1, 2);
     }
 
@@ -64,7 +64,7 @@ public class slowlyChangingColorsTest {
     // ------------------------- UNIT TESTING -------------------------
 
     @Test
-    public void green_color_test() {
+    public void greenColorTest() {
 		if (slowlyChangingColors("GREEN").getGreen() < 55 || 
 		slowlyChangingColors("GREEN").getGreen() == 255) {
 			assertEquals(1, 2);
@@ -75,7 +75,7 @@ public class slowlyChangingColorsTest {
 	}
 
 	@Test
-    public void gray_color_test() {
+    public void grayColorTest() {
 		if (slowlyChangingColors("GRAY").getGreen() < 55 || 
 		slowlyChangingColors("GRAY").getGreen() > 225) {
 			assertEquals(1, 2);
@@ -86,7 +86,7 @@ public class slowlyChangingColorsTest {
 	}
 
 	@Test
-	public void rainbow_color_test() {
+	public void rainbowColorTest() {
 		if (slowlyChangingColors("RAINBOW").getRed() == 255 || 
 		slowlyChangingColors("RAINBOW").getGreen() == 255) {
 			assertEquals(1, 2);

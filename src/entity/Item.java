@@ -74,12 +74,12 @@ public class Item extends Entity {
      *
      * @param width         width of GameScreen
      * @param height        height of GameScreen
-     * @param SEPERATE_LINE height of SEPERATE_LINE
+     * @param seperateLine height of seperateLine
      */
-    public final void update(final int width, final int height, final int SEPERATE_LINE) {
+    public final void update(final int width, final int height, final int seperateLine) {
         boolean isRightBorder = (this.getWidth() + this.getPositionX()) > width;
         boolean isLeftBorder = (this.getPositionX()) < 0;
-        boolean isTopBorder = (this.getPositionY()) < SEPERATE_LINE;
+        boolean isTopBorder = (this.getPositionY()) < seperateLine;
         boolean isBottomBorder = (this.getHeight() + this.getPositionY()) > height;
 
 

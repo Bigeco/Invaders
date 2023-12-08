@@ -21,38 +21,38 @@ import static java.awt.Color.BLUE;
 public class EnemyShipFormation implements Iterable<EnemyShip> {
 
 	/** Initial position in the x-axis. */
-	private static final int INIT_POS_X = 20;
+	private static final int initPosX = 20;
 	/** Initial position in the y-axis. */
-	private static final int INIT_POS_Y = 100;
+	private static final int initPosY = 100;
 	/** Distance between ships. */
-	private static final int SEPARATION_DISTANCE = 40;
+	private static final int separationDistance = 40;
 	/** Proportion of C-type ships. */
-	private static final double PROPORTION_C = 0.2;
+	private static final double proportionC = 0.2;
 	/** Proportion of B-type ships. */
-	private static final double PROPORTION_B = 0.4;
+	private static final double proportionB = 0.4;
 	/** Lateral speed of the formation. */
-	private static final int X_SPEED = 8;
+	private static final int xSpeed = 8;
 	/** Downwards speed of the formation. */
-	private static final int Y_SPEED = 4;
+	private static final int ySpeed = 4;
 	/** Speed of the bullets shot by the members. */
-	private static final int BULLET_SPEED = 4;
+	private static final int bulletSpeed = 4;
 	/** Proportion of differences between shooting times. */
-	private static final double SHOOTING_VARIANCE = .2;
+	private static final double shootingvariance = .2;
 	/** Margin on the sides of the screen. */
-	private static final int SIDE_MARGIN = 20;
+	private static final int sideMargin = 20;
 	/** Margin on the bottom of the screen. */
-	private static final int BOTTOM_MARGIN = 80;
+	private static final int bottomMargin = 80;
 	/** Distance to go down each pass. */
-	private static final int DESCENT_DISTANCE = 20;
+	private static final int descentDistance = 20;
 	/** Minimum speed allowed. */
-	private static final int MINIMUM_SPEED = 10;
+	private static final int minimumSpeed = 10;
 
 	/** Not extend enemy moving*/
-	private static final int NotExtend_location = -2;
+	private static final int notExtendLocation = -2;
 	/** extend enemy moving*/
-	private static final int IsSExtend_location = 1;
+	private static final int isExtendLocation = 1;
 	/** moving speed*/
-	private static final int Extend_x= 1;
+	private static final int extendX = 1;
 
 	/** DrawManager instance. */
 	private DrawManager drawManager;
@@ -151,12 +151,12 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.nShipsHigh = gameSettings.getFormationHeight();
 			this.shootingInterval = gameSettings.getShootingFrecuency();
 			this.shootingVariance = (int) (gameSettings.getShootingFrecuency()
-					* SHOOTING_VARIANCE);
+					* shootingvariance);
 			this.baseSpeed = gameSettings.getBaseSpeed();
 			this.baseAttackDamage = gameSettings.getBaseAttackDamage();
 			this.movementSpeed = this.baseSpeed;
-			this.positionX = INIT_POS_X;
-			this.positionY = INIT_POS_Y;
+			this.positionX = initPosX;
+			this.positionY = initPosY;
 			this.difficulty = gameSettings.getDifficulty();
 			this.level = level;
 			this.extendCheck =1;
@@ -187,7 +187,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 					Color DColor = new Color(255, 255, b);
 					switch (level) {
 						case 1: // nA, nB
-							if (i / (float) this.nShipsHigh < PROPORTION_B) {
+							if (i / (float) this.nShipsHigh < proportionB) {
 								spriteType = SpriteType.ESnA_1;
 								enemyColor = AColor;
 							}
@@ -198,11 +198,11 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 							break;
 
 						case 2: // nA, nB, nC
-							if (i / (float) this.nShipsHigh < PROPORTION_C) {
+							if (i / (float) this.nShipsHigh < proportionC) {
 								spriteType = SpriteType.ESnA_1;
 								enemyColor = AColor;
 							}
-							else if (i / (float) this.nShipsHigh < PROPORTION_B + PROPORTION_C) {
+							else if (i / (float) this.nShipsHigh < proportionB + proportionC) {
 								spriteType = SpriteType.ESnB_1;
 								enemyColor = BColor;
 							}
@@ -213,12 +213,12 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 							break;
 
 						case 3: // m1, nB, nC
-							if (i / (float) this.nShipsHigh < PROPORTION_C) {
+							if (i / (float) this.nShipsHigh < proportionC) {
 								spriteType = SpriteType.ESm1_1;
 								enemyColor = DColor;
 							}
-							else if (i / (float) this.nShipsHigh < PROPORTION_B
-									+ PROPORTION_C) {
+							else if (i / (float) this.nShipsHigh < proportionB
+									+ proportionC) {
 								spriteType = SpriteType.ESnB_1;
 								enemyColor = BColor;
 							}
@@ -228,7 +228,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 							}
 							break;
 						case 4: // m1, nB
-							if (i / (float) this.nShipsHigh < PROPORTION_C) {
+							if (i / (float) this.nShipsHigh < proportionC) {
 								spriteType = SpriteType.ESm1_1;
 								enemyColor = DColor;
 							}
@@ -238,12 +238,12 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 							}
 							break;
 						case 5: // m2A, nB, nC
-							if (i / (float) this.nShipsHigh < PROPORTION_C) {
+							if (i / (float) this.nShipsHigh < proportionC) {
 								spriteType = SpriteType.ESm2A_1;
 								enemyColor = AColor;
 							}
-							else if (i / (float) this.nShipsHigh < PROPORTION_B
-									+ PROPORTION_C) {
+							else if (i / (float) this.nShipsHigh < proportionB
+									+ proportionC) {
 								spriteType = SpriteType.ESnB_1;
 								enemyColor = BColor;
 							}
@@ -253,12 +253,12 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 							}
 							break;
 						case 6: // m2A, nB, m1
-							if (i / (float) this.nShipsHigh < PROPORTION_C) {
+							if (i / (float) this.nShipsHigh < proportionC) {
 								spriteType = SpriteType.ESm2A_1;
 								enemyColor = AColor;
 							}
-							else if (i / (float) this.nShipsHigh < PROPORTION_B
-									+ PROPORTION_C) {
+							else if (i / (float) this.nShipsHigh < proportionB
+									+ proportionC) {
 								spriteType = SpriteType.ESnB_1;
 								enemyColor = BColor;
 							}
@@ -268,16 +268,16 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 							}
 							break;
 						case 7: // m2A, m2B, nC, m1
-							if (i / (float) this.nShipsHigh < PROPORTION_C) {
+							if (i / (float) this.nShipsHigh < proportionC) {
 								spriteType = SpriteType.ESm2A_1;
 								enemyColor = AColor;
 							}
-							else if (i / (float) this.nShipsHigh < PROPORTION_B) {
+							else if (i / (float) this.nShipsHigh < proportionB) {
 								spriteType = SpriteType.ESm2B_1;
 								enemyColor = BColor;
 							}
-							else if (i / (float) this.nShipsHigh < PROPORTION_B
-									+ PROPORTION_C) {
+							else if (i / (float) this.nShipsHigh < proportionB
+									+ proportionC) {
 								spriteType = SpriteType.ESnC_1;
 								enemyColor = CColor;
 							}
@@ -292,9 +292,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 							break;
 					}
 
-					column.add(new EnemyShip((SEPARATION_DISTANCE
+					column.add(new EnemyShip((separationDistance
 							* this.enemyShips.indexOf(column))
-							+ positionX, (SEPARATION_DISTANCE * i)
+							+ positionX, (separationDistance * i)
 							+ positionY, spriteType, enemyColor));
 					this.shipCount++;
 				}
@@ -303,9 +303,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.shipWidth = this.enemyShips.get(0).get(0).getWidth();
 			this.shipHeight = this.enemyShips.get(0).get(0).getHeight();
 
-			this.width = (this.nShipsWide - 1) * SEPARATION_DISTANCE
+			this.width = (this.nShipsWide - 1) * separationDistance
 					+ this.shipWidth;
-			this.height = (this.nShipsHigh - 1) * SEPARATION_DISTANCE
+			this.height = (this.nShipsHigh - 1) * separationDistance
 					+ this.shipHeight;
 
 			for (List<EnemyShip> column : this.enemyShips)
@@ -324,11 +324,11 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.nShipsHigh = gameSettings.getFormationHeight();
 			this.shootingInterval = gameSettings.getShootingFrecuency();
 			this.shootingVariance = (int) (gameSettings.getShootingFrecuency()
-					* SHOOTING_VARIANCE);
+					* shootingvariance);
 			this.baseSpeed = gameSettings.getBaseSpeed();
 			this.movementSpeed = this.baseSpeed;
-			this.positionX = INIT_POS_X;
-			this.positionY = INIT_POS_Y + 30;
+			this.positionX = initPosX;
+			this.positionY = initPosY + 30;
 			this.difficulty = gameSettings.getDifficulty();
 			this.level = level;
 			this.shooters = new ArrayList<EnemyShip>();
@@ -341,9 +341,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			for (List<EnemyShip> column : this.enemyShips) {
 				for (int i = 0; i < this.nShipsHigh; i++) {
 
-					column.add(new EnemyShip((SEPARATION_DISTANCE
+					column.add(new EnemyShip((separationDistance
 							* this.enemyShips.indexOf(column))
-							+ positionX, (SEPARATION_DISTANCE * i)
+							+ positionX, (separationDistance * i)
 							+ positionY, 50, BLUE));
 					this.shipCount++;
 				}
@@ -351,9 +351,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 
 			this.shipWidth = this.enemyShips.get(0).get(0).getWidth();
 			this.shipHeight = this.enemyShips.get(0).get(0).getHeight();
-			this.width = (this.nShipsWide - 1) * SEPARATION_DISTANCE
+			this.width = (this.nShipsWide - 1) * separationDistance
 					+ this.shipWidth;
-			this.height = (this.nShipsHigh - 1) * SEPARATION_DISTANCE
+			this.height = (this.nShipsHigh - 1) * separationDistance
 					+ this.shipHeight;
 
 			for (List<EnemyShip> column : this.enemyShips)
@@ -401,24 +401,24 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 					/ (this.nShipsHigh * this.nShipsWide);
 			this.movementSpeed = (int) (Math.pow(remainingProportion, 2)
 					* this.baseSpeed);
-			this.movementSpeed += MINIMUM_SPEED;
+			this.movementSpeed += minimumSpeed;
 
 			movementInterval++;
 			if (movementInterval >= this.movementSpeed) {
 				movementInterval = 0;
-				if(extendCheck== NotExtend_location){
+				if(extendCheck== notExtendLocation){
 					isExtend = true;
 				}
-				if(extendCheck== IsSExtend_location){
+				if(extendCheck== isExtendLocation){
 					isExtend = false;
 				}
 
 				boolean isAtBottom = positionY
-						+ this.height > screen.getHeight() - BOTTOM_MARGIN;
+						+ this.height > screen.getHeight() - bottomMargin;
 				boolean isAtRightSide = positionX
-						+ this.width >= screen.getWidth() - SIDE_MARGIN;
-				boolean isAtLeftSide = positionX <= SIDE_MARGIN;
-				boolean isAtHorizontalAltitude = ((positionY+extendCheck-1) % DESCENT_DISTANCE ==0);
+						+ this.width >= screen.getWidth() - sideMargin;
+				boolean isAtLeftSide = positionX <= sideMargin;
+				boolean isAtHorizontalAltitude = ((positionY+extendCheck-1) % descentDistance ==0);
 
 				if (currentDirection == Direction.DOWN) {
 					if (isAtHorizontalAltitude)
@@ -452,21 +452,21 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				}
 				if (currentDirection == Direction.RIGHT) {
 					if (isExtend)
-						movementExtend = Extend_x;
+						movementExtend = extendX ;
 					else
-						movementExtend = -Extend_x;
-					movementX = X_SPEED;
+						movementExtend = -extendX ;
+					movementX = xSpeed;
 				}
 				else if (currentDirection == Direction.LEFT) {
 					if (isExtend)
-						movementExtend = Extend_x;
+						movementExtend = extendX ;
 					else
-						movementExtend = -Extend_x;
-					movementX = -X_SPEED;
+						movementExtend = -extendX ;
+					movementX = -xSpeed;
 				}
 				else {
 					movementExtend = 0;
-					movementY = Y_SPEED;
+					movementY = ySpeed;
 				}
 				positionX += movementX;
 				positionX += movementExtend;
@@ -516,11 +516,11 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				movementInterval = 0;
 
 				boolean isAtBottom = positionY
-						+ this.height > screen.getHeight() - BOTTOM_MARGIN;
+						+ this.height > screen.getHeight() - bottomMargin;
 				boolean isAtRightSide = positionX
-						+ this.width >= screen.getWidth() - SIDE_MARGIN;
-				boolean isAtLeftSide = positionX <= SIDE_MARGIN;
-				boolean isAtHorizontalAltitude = positionY % DESCENT_DISTANCE == 0;
+						+ this.width >= screen.getWidth() - sideMargin;
+				boolean isAtLeftSide = positionX <= sideMargin;
+				boolean isAtHorizontalAltitude = positionY % descentDistance == 0;
 
 				if (currentDirection == Direction.LEFT) {
 					if (isAtLeftSide){
@@ -535,9 +535,9 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				}
 
 				if (currentDirection == Direction.RIGHT)
-					movementX = X_SPEED;
+					movementX = xSpeed;
 				else
-					movementX = -X_SPEED;
+					movementX = -xSpeed;
 
 				positionX += movementX;
 
@@ -620,15 +620,15 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.shootingCooldown.reset();
 			for(EnemyShip shooter : shooters){
 				bullets.add(BulletPool.getBullet(shooter.getPositionX()
-						+ shooter.width / 2, shooter.getPositionY(), BULLET_SPEED, 
-						this.baseAttackDamage)); // (int)(Math.random() * BULLET_SPEED) + 1)
+						+ shooter.width / 2, shooter.getPositionY(), bulletSpeed, 
+						this.baseAttackDamage)); // (int)(Math.random() * bulletSpeed) + 1)
 				soundEffect.playEnemyShootingSound();
 				if(shooter.checkIsBoss()) {
 					bullets.add(BulletPool.getBullet(shooter.getPositionX()
-							+ shooter.width / 2, shooter.getPositionY(), BULLET_SPEED, 
+							+ shooter.width / 2, shooter.getPositionY(), bulletSpeed, 
 							SpriteType.EnemyBulletLeft, this.baseAttackDamage));
 					bullets.add(BulletPool.getBullet(shooter.getPositionX()
-							+ shooter.width / 2, shooter.getPositionY(), BULLET_SPEED, 
+							+ shooter.width / 2, shooter.getPositionY(), bulletSpeed, 
 							SpriteType.EnemyBulletRight, this.baseAttackDamage));
 
 				}

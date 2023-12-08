@@ -36,20 +36,20 @@ public class ShipEffect extends Effect {
      * Bullet shooting effect
      *
      * @param bullets         The factor of the ship's shoot method.
-     * @param BULLET_SPEED    the speed of a ship's bullet
-     * @param ENHANCED_DAMAGE the enhanced damage of a ship's bullet
+     * @param bulletSpeed    the speed of a ship's bullet
+     * @param enhancedDamage the enhanced damage of a ship's bullet
      */
-    public void shoot(final Set<Bullet> bullets, final int BULLET_SPEED, final int ENHANCED_DAMAGE) {
+    public void shoot(final Set<Bullet> bullets, final int bulletSpeed, final int enhancedDamage) {
         if (this.tripleShotEffectCooldown.checkFinished()) {
             bullets.add(BulletPool.getBullet(ship.getPositionX() + ship.getWidth() / 2,
-                    ship.getPositionY(), BULLET_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletSpeed, enhancedDamage));
         } else {
             bullets.add(BulletPool.getBullet(ship.getPositionX() + ship.getWidth() / 2 + 10,
-                    ship.getPositionY(), BULLET_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletSpeed, enhancedDamage));
             bullets.add(BulletPool.getBullet(ship.getPositionX() + ship.getWidth() / 2,
-                    ship.getPositionY(), BULLET_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletSpeed, enhancedDamage));
             bullets.add(BulletPool.getBullet(ship.getPositionX() + ship.getWidth() / 2 - 10,
-                    ship.getPositionY(), BULLET_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletSpeed, enhancedDamage));
         }
     }
 
@@ -57,20 +57,20 @@ public class ShipEffect extends Effect {
      * Bullet shooting effect
      *
      * @param bulletsY        The factor of the ship's shoot method.
-     * @param BULLETY_SPEED   the speed of a ship's bulletY
-     * @param ENHANCED_DAMAGE the enhanced damage of a ship's bullet
+     * @param bulletYSpeed   the speed of a ship's bulletY
+     * @param enhancedDamage the enhanced damage of a ship's bullet
      */
-    public void shootBulletY(final Set<BulletY> bulletsY, final int BULLETY_SPEED, final int ENHANCED_DAMAGE) {
+    public void shootBulletY(final Set<BulletY> bulletsY, final int bulletYSpeed, final int enhancedDamage) {
         if (this.tripleShotEffectCooldown.checkFinished()) {
             bulletsY.add(BulletPool.getBulletY(ship.getPositionX() + ship.getWidth() / 2,
-                    ship.getPositionY(), BULLETY_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletYSpeed, enhancedDamage));
         } else {
             bulletsY.add(BulletPool.getBulletY(ship.getPositionX() + ship.getWidth() / 2 + 10,
-                    ship.getPositionY(), BULLETY_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletYSpeed, enhancedDamage));
             bulletsY.add(BulletPool.getBulletY(ship.getPositionX() + ship.getWidth() / 2,
-                    ship.getPositionY(), BULLETY_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletYSpeed, enhancedDamage));
             bulletsY.add(BulletPool.getBulletY(ship.getPositionX() + ship.getWidth() / 2 - 10,
-                    ship.getPositionY(), BULLETY_SPEED, ENHANCED_DAMAGE));
+                    ship.getPositionY(), bulletYSpeed, enhancedDamage));
         }
     }
 
