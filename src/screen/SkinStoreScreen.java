@@ -13,7 +13,7 @@ import entity.Coin;
 
 public class SkinStoreScreen extends Screen {
      /** Milliseconds between changes in user selection. */
-     private static final int SELECTION_TIME = 200;
+     private static final int selectionTime = 200;
   
      /** Time between changes in user selection. */
      private Cooldown selectionCooldown;
@@ -49,7 +49,7 @@ public class SkinStoreScreen extends Screen {
  
          // Defaults to play.
          this.returnCode = 86;
-         this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+         this.selectionCooldown = Core.getCooldown(selectionTime);
          this.selectionCooldown.reset();
          this.coin = gameState.getCoin();
          this.gameState = gameState;

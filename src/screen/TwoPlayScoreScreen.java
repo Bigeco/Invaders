@@ -23,19 +23,19 @@ public class TwoPlayScoreScreen extends Screen {
     /**
      * Milliseconds between changes in user selection.
      */
-    private static final int SELECTION_TIME = 200;
+    private static final int selectionTime = 200;
     /**
      * Maximum number of high scores.
      */
-    private static final int MAX_HIGH_SCORE_NUM = 7;
+    private static final int maxHighScoreNum = 7;
     /**
      * Code of first mayus character.
      */
-    private static final int FIRST_CHAR = 65;
+    private static final int firstChar = 65;
     /**
      * Code of last mayus character.
      */
-    private static final int LAST_CHAR = 90;
+    private static final int lastChar = 90;
 
     /**
      * Current score.
@@ -99,14 +99,14 @@ public class TwoPlayScoreScreen extends Screen {
         this.isNewRecord = false;
         this.name = "AAA".toCharArray();
         this.nameCharSelected = 0;
-        this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+        this.selectionCooldown = Core.getCooldown(selectionTime);
         this.selectionCooldown.reset();
 
         soundEffect = new SoundEffect();
 
         try {
             this.highScores = Core.getFileManager().loadHighScores(this.difficulty);
-            if (highScores.size() < MAX_HIGH_SCORE_NUM
+            if (highScores.size() < maxHighScoreNum
                     || highScores.get(highScores.size() - 1).getScore()
                     < this.score)
                 this.isNewRecord = true;
@@ -169,7 +169,7 @@ public class TwoPlayScoreScreen extends Screen {
                     soundEffect.playButtonClickSound();
                     this.name[this.nameCharSelected] =
                             (char) (this.name[this.nameCharSelected]
-                                    == LAST_CHAR ? FIRST_CHAR
+                                    == lastChar ? firstChar
                                     : this.name[this.nameCharSelected] + 1);
                     this.selectionCooldown.reset();
                 }
@@ -177,7 +177,7 @@ public class TwoPlayScoreScreen extends Screen {
                     soundEffect.playButtonClickSound();
                     this.name[this.nameCharSelected] =
                             (char) (this.name[this.nameCharSelected]
-                                    == FIRST_CHAR ? LAST_CHAR
+                                    == firstChar ? lastChar
                                     : this.name[this.nameCharSelected] - 1);
                     this.selectionCooldown.reset();
                 }
@@ -192,7 +192,7 @@ public class TwoPlayScoreScreen extends Screen {
     private void saveScore() {
         highScores.add(new Score(new String(this.name), score));
         Collections.sort(highScores);
-        if (highScores.size() > MAX_HIGH_SCORE_NUM)
+        if (highScores.size() > maxHighScoreNum)
             highScores.remove(highScores.size() - 1);
 
         try {

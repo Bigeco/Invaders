@@ -12,7 +12,7 @@ import entity.Coin;
 
 public class StoreScreen_2P extends Screen {
     /** Milliseconds between changes in user selection. */
-    private static final int SELECTION_TIME = 200;
+    private static final int selectionTime = 200;
 
     /** Time between changes in user selection. */
     private Cooldown selectionCooldown;
@@ -21,9 +21,9 @@ public class StoreScreen_2P extends Screen {
 
     private Coin coin;
 
-    private int PST;
+    private int pst;
 
-    private int BST;
+    private int bst;
     private EnhanceManager enhanceManager;
     private GameState_2P gameState;
 
@@ -42,9 +42,9 @@ public class StoreScreen_2P extends Screen {
         super(width, height, fps);
         // Defaults to play.
         this.returnCode = 35;
-        this.BST = enhanceManager.getNumEnhanceStoneArea();
-        this.PST = enhanceManager.getNumEnhanceStoneAttack();
-        this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+        this.bst = enhanceManager.getNumEnhanceStoneArea();
+        this.pst = enhanceManager.getNumEnhanceStoneAttack();
+        this.selectionCooldown = Core.getCooldown(selectionTime);
         this.selectionCooldown.reset();
         this.coin = gameState.getCoin();
         this.gameState = gameState;
@@ -206,7 +206,7 @@ public class StoreScreen_2P extends Screen {
     private void draw() {
         drawManager.initDrawing(this);
         drawManager.drawCoinCount(this, this.coin, 2);
-        drawManager.drawItemStore2P(this, this.returnCode, PST, BST, this.itemManager);
+        drawManager.drawItemStore2P(this, this.returnCode, pst, bst, this.itemManager);
         drawManager.completeDrawing(this);
     }
 

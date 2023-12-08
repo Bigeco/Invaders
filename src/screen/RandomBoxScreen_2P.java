@@ -7,7 +7,7 @@ import entity.Coin;
 
 public class RandomBoxScreen_2P extends Screen {
     /** Milliseconds between changes in user selection. */
-    private static final int SELECTION_TIME = 200;
+    private static final int selectionTime = 200;
     /** Time between changes in user selection. */
     private Cooldown selectionCooldown;
     private Coin coin;
@@ -16,8 +16,8 @@ public class RandomBoxScreen_2P extends Screen {
     private int randomRes;
     private String rewardTypeString;
     private EnhanceManager enhanceManager;
-    private int BST;
-    private int PST;
+    private int bst;
+    private int pst;
 
     /**
      * Constructor, establishes the properties of the screen.
@@ -38,11 +38,11 @@ public class RandomBoxScreen_2P extends Screen {
         this.gameState = gameState;
         this.coin = gameState.getCoin();
         this.returnCode = 20;
-        this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+        this.selectionCooldown = Core.getCooldown(selectionTime);
         this.selectionCooldown.reset();
         this.randomRes = 0;
-        this.BST = enhanceManager.getNumEnhanceStoneArea();
-        this.PST = enhanceManager.getNumEnhanceStoneAttack();
+        this.bst = enhanceManager.getNumEnhanceStoneArea();
+        this.pst = enhanceManager.getNumEnhanceStoneAttack();
         this.enhanceManager = enhanceManager;
     }
 
