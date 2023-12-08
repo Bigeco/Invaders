@@ -18,7 +18,7 @@ import engine.InputManager;
 public class Screen {
 
 	/** Milliseconds until the screen accepts user input. */
-	private static final int inputdelay = 1000;
+	private static final int INPUT_DELAY = 1000;
 
 	/** Draw Manager instance. */
     public DrawManager drawManager;
@@ -61,7 +61,7 @@ public class Screen {
 		this.drawManager = Core.getDrawManager();
 		this.inputManager = Core.getInputManager();
 		this.logger = Core.getLogger();
-		this.inputDelay = Core.getCooldown(inputdelay);
+		this.inputDelay = Core.getCooldown(INPUT_DELAY);
 		this.inputDelay.reset();
 		this.returnCode = 0;
 	}

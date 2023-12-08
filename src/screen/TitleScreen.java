@@ -15,7 +15,7 @@ import engine.Core;
 public class TitleScreen extends Screen {
 
 	/** Milliseconds between changes in user selection. */
-	private static final int selectionTime = 200;
+	private static final int SELECTION_TIME = 200;
 
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
@@ -38,7 +38,7 @@ public class TitleScreen extends Screen {
 
 		// Defaults to play.
 		this.returnCode = 2;
-		this.selectionCooldown = Core.getCooldown(selectionTime);
+		this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
 		this.selectionCooldown.reset();
 
 		soundEffect = new SoundEffect();

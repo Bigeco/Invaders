@@ -17,9 +17,9 @@ import entity.Coin;
  */
 public class EnhanceScreen_2P extends Screen {
     /** Milliseconds between changes in user selection. */
-    private static final int selectionTime = 200;
+    private static final int SELECTION_TIME = 200;
     /** Height of the interface separation line. */
-    private static final int separationLineHeight = 40;
+    private static final int SEPARATION_LINE_HEIGHT = 40;
     /** Current score. */
     private int score;
     /** Current coin. */
@@ -32,13 +32,13 @@ public class EnhanceScreen_2P extends Screen {
     private int centeredCircleWidth = 170;
     private int centeredCircleHeight = 170;
     private int centeredCircleX = (this.width - 170) / 2;
-    private int centeredCircleY = separationLineHeight * 2;
+    private int centeredCircleY = SEPARATION_LINE_HEIGHT * 2;
     /** Settings of Both Side Circle Frame */
     private int sideCircleWidth = 70;
     private int sideCircleHeight = 70;
     private int leftCircleX = (this.width - 220) / 2;
     private int rightCircleX = this.width - (this.width - 220) / 2 - 70;
-    private int sideCircleY = separationLineHeight * 5;
+    private int sideCircleY = SEPARATION_LINE_HEIGHT * 5;
     /** EnhanceManager taken from the Core.java */
     private EnhanceManager enhanceManager;
     /** Game settings taken from the Core.java */
@@ -70,7 +70,7 @@ public class EnhanceScreen_2P extends Screen {
 
         // Defaults to play.
         this.returnCode = 8;
-        this.selectionCooldown = Core.getCooldown(selectionTime);
+        this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
         this.selectionCooldown.reset();
         this.score = gameState.getScore1P() + gameState.getScore2P();
         this.coin = gameState.getCoin();
@@ -201,7 +201,7 @@ public class EnhanceScreen_2P extends Screen {
         drawManager.initDrawing(this);
         drawManager.drawScore(this, this.score);
         drawManager.drawCoinCount(this, this.coin, 1);
-        drawManager.drawHorizontalLine(this, separationLineHeight - 1);
+        drawManager.drawHorizontalLine(this, SEPARATION_LINE_HEIGHT - 1);
 
         drawManager.drawCircleLine(this, centeredCircleX, centeredCircleY, centeredCircleWidth, centeredCircleHeight, 0);
         drawManager.drawCircleFill(this, leftCircleX, sideCircleY, sideCircleWidth, sideCircleHeight);
