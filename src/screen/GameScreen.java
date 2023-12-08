@@ -759,6 +759,12 @@ public class GameScreen extends Screen {
 				enemyShipSpecial.reduceEnemyLife(bullet.getDamage());
 				this.logger.info("Attack the enemy with " + bullet.getDamage()
 				+ " of damage.");
+				if (!enhanceManager.getIsEnhanced()){
+						soundEffect.playEnemyDestructionSound();
+					}
+					else {
+						soundEffect.playEnhancedSound();
+					}
 				this.combo ++;
 				this.score += combo;
 				this.Miss =1;
@@ -851,7 +857,12 @@ public class GameScreen extends Screen {
 					enemyShip.reduceEnemyLife(bulletY.getDamage()); // 수정
 					this.logger.info("Attack the enemy with " + bulletY.getDamage()
 					+ " of damage.");
-					soundEffect.playEnemyDestructionSound();
+					if (!enhanceManager.getIsEnhanced()){
+						soundEffect.playEnemyDestructionSound();
+					}
+					else {
+						soundEffect.playEnhancedSound();
+					}
 					this.combo ++;
 					this.score += combo;
 					if(enemyShip.getEnemyLife() < 1) {
@@ -868,6 +879,12 @@ public class GameScreen extends Screen {
 					enemyShipSpecial.reduceEnemyLife(bulletY.getDamage());
 					this.logger.info("Attack the enemy with " + bulletY.getDamage()
 					+ " of damage.");
+					if (!enhanceManager.getIsEnhanced()){
+						soundEffect.playEnemyDestructionSound();
+					}
+					else {
+						soundEffect.playEnhancedSound();
+					}
 					this.combo ++;
 					this.score += combo;
 					this.Miss =1;
