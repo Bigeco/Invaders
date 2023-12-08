@@ -92,9 +92,9 @@ public class TwoPlayScoreScreen extends Screen {
                        final GameState_2P gameState, final int difficulty) {
         super(width, height, fps);
         this.difficulty = difficulty;
-        this.score = gameState.getScore_1P() + gameState.getScore_2P();
-        this.livesRemaining = gameState.getLivesRemaining_1P() + gameState.getLivesRemaining_2P();
-        this.bulletsShot = gameState.getBulletsShot_1P() + gameState.getBulletsShot_2P();
+        this.score = gameState.getScore1P() + gameState.getScore2P();
+        this.livesRemaining = gameState.getLivesRemaining1P() + gameState.getLivesRemaining2P();
+        this.bulletsShot = gameState.getBulletsShot1P() + gameState.getBulletsShot2P();
         this.shipsDestroyed = gameState.getShipsDestroyed();
         this.isNewRecord = false;
         this.name = "AAA".toCharArray();

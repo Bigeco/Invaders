@@ -152,10 +152,10 @@ public class SoundEffect {
         }
     }
 
-    public void soundEffect_play(){
+    public void soundEffectPlay(){
 
     }
-    public void soundEffect_stop(){
+    public void soundEffectStop(){
 
     }
 

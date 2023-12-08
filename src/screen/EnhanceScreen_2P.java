@@ -72,9 +72,9 @@ public class EnhanceScreen_2P extends Screen {
         this.returnCode = 8;
         this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
         this.selectionCooldown.reset();
-        this.score = gameState.getScore_1P() + gameState.getScore_2P();
+        this.score = gameState.getScore1P() + gameState.getScore2P();
         this.coin = gameState.getCoin();
-        this.lives = gameState.getLivesRemaining_1P();
+        this.lives = gameState.getLivesRemaining1P();
 
         soundEffect = new SoundEffect();
     }

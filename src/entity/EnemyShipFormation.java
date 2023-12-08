@@ -114,7 +114,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	private int level;
 	/** Check if it is a boss */
 	/** checking how many formation extended */
-	private int extend_check;
+	private int extendCheck;
 	/** how many moved enemy ship */
 	private int movementExtend;
 	private boolean isExtend = true;
@@ -159,7 +159,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			this.positionY = INIT_POS_Y;
 			this.difficulty = gameSettings.getDifficulty();
 			this.level = level;
-			this.extend_check =1;
+			this.extendCheck =1;
 			this.shooters = new ArrayList<EnemyShip>();
 			
 
@@ -181,114 +181,114 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 					g = rnd.nextInt(200);
 					b = rnd.nextInt(200);
 					Color color = new Color(r, g, b);
-					Color A_color = new Color(r, 255, 255);
-					Color B_color = new Color(255, g, 255);
-					Color C_color = new Color(r2, 125, 255);
-					Color D_color = new Color(255, 255, b);
+					Color AColor = new Color(r, 255, 255);
+					Color BColor = new Color(255, g, 255);
+					Color CColor = new Color(r2, 125, 255);
+					Color DColor = new Color(255, 255, b);
 					switch (level) {
 						case 1: // nA, nB
 							if (i / (float) this.nShipsHigh < PROPORTION_B) {
 								spriteType = SpriteType.ESnA_1;
-								enemyColor = A_color;
+								enemyColor = AColor;
 							}
 							else {
 								spriteType = SpriteType.ESnB_1;
-								enemyColor = B_color;
+								enemyColor = BColor;
 							}
 							break;
 
 						case 2: // nA, nB, nC
 							if (i / (float) this.nShipsHigh < PROPORTION_C) {
 								spriteType = SpriteType.ESnA_1;
-								enemyColor = A_color;
+								enemyColor = AColor;
 							}
 							else if (i / (float) this.nShipsHigh < PROPORTION_B + PROPORTION_C) {
 								spriteType = SpriteType.ESnB_1;
-								enemyColor = B_color;
+								enemyColor = BColor;
 							}
 							else {
 								spriteType = SpriteType.ESnC_1;
-								enemyColor = C_color;
+								enemyColor = CColor;
 							}
 							break;
 
 						case 3: // m1, nB, nC
 							if (i / (float) this.nShipsHigh < PROPORTION_C) {
 								spriteType = SpriteType.ESm1_1;
-								enemyColor = D_color;
+								enemyColor = DColor;
 							}
 							else if (i / (float) this.nShipsHigh < PROPORTION_B
 									+ PROPORTION_C) {
 								spriteType = SpriteType.ESnB_1;
-								enemyColor = B_color;
+								enemyColor = BColor;
 							}
 							else {
 								spriteType = SpriteType.ESnC_1;
-								enemyColor = C_color;
+								enemyColor = CColor;
 							}
 							break;
 						case 4: // m1, nB
 							if (i / (float) this.nShipsHigh < PROPORTION_C) {
 								spriteType = SpriteType.ESm1_1;
-								enemyColor = D_color;
+								enemyColor = DColor;
 							}
 							else {
 								spriteType = SpriteType.ESnB_1;
-								enemyColor = B_color;
+								enemyColor = BColor;
 							}
 							break;
 						case 5: // m2A, nB, nC
 							if (i / (float) this.nShipsHigh < PROPORTION_C) {
 								spriteType = SpriteType.ESm2A_1;
-								enemyColor = A_color;
+								enemyColor = AColor;
 							}
 							else if (i / (float) this.nShipsHigh < PROPORTION_B
 									+ PROPORTION_C) {
 								spriteType = SpriteType.ESnB_1;
-								enemyColor = B_color;
+								enemyColor = BColor;
 							}
 							else {
 								spriteType = SpriteType.ESnC_1;
-								enemyColor = C_color;
+								enemyColor = CColor;
 							}
 							break;
 						case 6: // m2A, nB, m1
 							if (i / (float) this.nShipsHigh < PROPORTION_C) {
 								spriteType = SpriteType.ESm2A_1;
-								enemyColor = A_color;
+								enemyColor = AColor;
 							}
 							else if (i / (float) this.nShipsHigh < PROPORTION_B
 									+ PROPORTION_C) {
 								spriteType = SpriteType.ESnB_1;
-								enemyColor = B_color;
+								enemyColor = BColor;
 							}
 							else {
 								spriteType = SpriteType.ESm1_1;
-								enemyColor = D_color;
+								enemyColor = DColor;
 							}
 							break;
 						case 7: // m2A, m2B, nC, m1
 							if (i / (float) this.nShipsHigh < PROPORTION_C) {
 								spriteType = SpriteType.ESm2A_1;
-								enemyColor = A_color;
+								enemyColor = AColor;
 							}
 							else if (i / (float) this.nShipsHigh < PROPORTION_B) {
 								spriteType = SpriteType.ESm2B_1;
-								enemyColor = B_color;
+								enemyColor = BColor;
 							}
 							else if (i / (float) this.nShipsHigh < PROPORTION_B
 									+ PROPORTION_C) {
 								spriteType = SpriteType.ESnC_1;
-								enemyColor = C_color;
+								enemyColor = CColor;
 							}
 							else {
 								spriteType = SpriteType.ESm1_1;
-								enemyColor = D_color;
+								enemyColor = DColor;
 							}
 							break;
 						default:
 							spriteType = SpriteType.ESnA_1;
-							enemyColor = A_color;
+							enemyColor = AColor;
 							break;
 					}
 
@@ -406,10 +406,10 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 			movementInterval++;
 			if (movementInterval >= this.movementSpeed) {
 				movementInterval = 0;
-				if(extend_check== NotExtend_location){
+				if(extendCheck== NotExtend_location){
 					isExtend = true;
 				}
-				if(extend_check== IsSExtend_location){
+				if(extendCheck== IsSExtend_location){
 					isExtend = false;
 				}
 
@@ -418,7 +418,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				boolean isAtRightSide = positionX
 						+ this.width >= screen.getWidth() - SIDE_MARGIN;
 				boolean isAtLeftSide = positionX <= SIDE_MARGIN;
-				boolean isAtHorizontalAltitude = ((positionY+extend_check-1) % DESCENT_DISTANCE ==0);
+				boolean isAtHorizontalAltitude = ((positionY+extendCheck-1) % DESCENT_DISTANCE ==0);
 
 				if (currentDirection == Direction.DOWN) {
 					if (isAtHorizontalAltitude)
@@ -470,7 +470,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 				}
 				positionX += movementX;
 				positionX += movementExtend;
-				extend_check += movementExtend;
+				extendCheck += movementExtend;
 				positionY += movementY;
 				positionY += movementExtend;
 				// Cleans explosions.

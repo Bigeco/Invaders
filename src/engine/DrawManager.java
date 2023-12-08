@@ -67,7 +67,7 @@ public final class DrawManager {
 	private static FontMetrics fontRegularMetrics;
 	/** Big sized font. */
 	private static Font fontBig;
-	private static Font fontBig_2p;
+	private static Font fontBig2p;
 	/** Big sized font properties. */
 	private static FontMetrics fontBigMetrics;
 
@@ -84,8 +84,8 @@ public final class DrawManager {
 	private Cooldown bgTimer = new Cooldown(100);  // Draw bg interval
 	private int brightness = 0;  // Used as RGB values for changing colors
 	private int lighter = 1;  // For color to increase then decrease
-	private Cooldown bgTimer_init = new Cooldown(3000);  // For white fade in at game start
-	private Cooldown bgTimer_lines = new Cooldown(100);  // For bg line animation
+	private Cooldown bgTimerInit = new Cooldown(3000);  // For white fade in at game start
+	private Cooldown bgTimerLines = new Cooldown(100);  // For bg line animation
 	private int lineConstant = 0;  // For bg line animation
 	/** Sprite types mapped to their images. */
 	private static Map<SpriteType, boolean[][]> spriteMap;
@@ -100,7 +100,7 @@ public final class DrawManager {
 	//BufferedImage img1, img2, img3, img4;
 
 
-	public int vector_x= 200, vector_y= 200, directionX = new Random().nextBoolean() ? 1 : -1,
+	public int vectorX= 200, vectorY= 200, directionX = new Random().nextBoolean() ? 1 : -1,
 			directionY = new Random().nextBoolean() ? 1 : -1;
 	public Cooldown pump = new Cooldown(1000);
 
@@ -241,7 +241,7 @@ public final class DrawManager {
 		logger.info("Started loading resources.");
 		try {
 			Random random = new Random();
-			int trash_enemyA = random.nextInt(3);
+			int trashEnemyA = random.nextInt(3);
 			spriteMap = new LinkedHashMap<SpriteType, boolean[][]>();
 			spriteMap.put(SpriteType.ShipA, new boolean[13][8]);
 			spriteMap.put(SpriteType.ShipB, new boolean[13][8]);
@@ -262,7 +262,7 @@ public final class DrawManager {
 			spriteMap.put(SpriteType.EnemyBullet, new boolean[3][5]);
 			spriteMap.put(SpriteType.EnemyBulletLeft, new boolean[3][5]);
 			spriteMap.put(SpriteType.EnemyBulletRight, new boolean[3][5]);
-			if (trash_enemyA == 0){
+			if (trashEnemyA == 0){
 				spriteMap.put(SpriteType.ESnA_1, new boolean[12][8]);
 				spriteMap.put(SpriteType.ESnA_2, new boolean[12][8]);
 				spriteMap.put(SpriteType.Trash1, new boolean[12][8]);
@@ -270,7 +270,7 @@ public final class DrawManager {
 				spriteMap.put(SpriteType.Trash3, new boolean[12][8]);
 				spriteMap.put(SpriteType.Trash4, new boolean[12][8]);
 			}
-			else if (trash_enemyA == 1){
+			else if (trashEnemyA == 1){
 				spriteMap.put(SpriteType.Trash1, new boolean[12][8]);
 				spriteMap.put(SpriteType.Trash2, new boolean[12][8]);
 				spriteMap.put(SpriteType.ESnA_1, new boolean[12][8]);
@@ -338,7 +338,7 @@ public final class DrawManager {
 			fontSmall = fileManager.loadFont(12f);
 			fontRegular = fileManager.loadFont(14f);
 			fontBig = fileManager.loadFont(24f);
-			fontBig_2p = fileManager.loadFont(20f);
+			fontBig2p = fileManager.loadFont(20f);
 			logger.info("Finished loading the fonts.");
 
 		} catch (IOException e) {
@@ -512,7 +512,7 @@ public final class DrawManager {
 			return blinkingColor("HIGH_SCORES");
 	}
 
-	private Color scoreColor_1p(final int score) {
+	private Color scoreColor1p(final int score) {
 		if (score < 800)
 			return new Color(238, 241, 255);
 		if (score >= 800 && score < 1600)
@@ -529,7 +529,7 @@ public final class DrawManager {
 			return blinkingColor("HIGH_SCORES");
 	}
 
-	private Color scoreColor_2p(final int score) {
+	private Color scoreColor2p(final int score) {
 		if (score < 800)
 			return new Color(255, 234, 221);
 		if (score >= 800 && score < 1600)
@@ -614,7 +614,7 @@ public final class DrawManager {
 		backBufferGraphics.fillOval(375,425,55,45);
 	}
 
-	public void drawSoundButton2(GameScreen_2P gamescreen_2P){
+	public void drawSoundButton2(GameScreen_2P gamescreen2P){
 		backBufferGraphics.setColor(Color.WHITE);
 		backBufferGraphics.fillOval(375,425,55,45);
 	}
@@ -628,12 +628,12 @@ public final class DrawManager {
 		}
 	}
 
-	public void drawSoundStatus2(GameScreen_2P gamescreen_2P, boolean keyboard) {
+	public void drawSoundStatus2(GameScreen_2P gamescreen2P, boolean keyboard) {
 		String statusText = keyboard ? "ON" : "OFF";
 		if (statusText.equals("ON")) {
-			drawEntity(SpriteType.Sound, gamescreen_2P.getWidth() - 40, gamescreen_2P.getHeight() - 50, 1.5, 1.5, Color.red);
+			drawEntity(SpriteType.Sound, gamescreen2P.getWidth() - 40, gamescreen2P.getHeight() - 50, 1.5, 1.5, Color.red);
 		} else {
-			drawEntity(SpriteType.Sound, gamescreen_2P.getWidth() - 40, gamescreen_2P.getHeight() - 50, 1.5, 1.5, Color.GRAY);
+			drawEntity(SpriteType.Sound, gamescreen2P.getWidth() - 40, gamescreen2P.getHeight() - 50, 1.5, 1.5, Color.GRAY);
 		}
 	}
 
@@ -653,12 +653,12 @@ public final class DrawManager {
 		backBufferGraphics.drawString(scoreString, screen.getWidth() - 80, 28);
 	}
 
-	public void drawScore_2p(final Screen screen, final int score,final String player, final int x) {
-		backBufferGraphics.setFont(fontBig_2p);
+	public void drawScore2p(final Screen screen, final int score,final String player, final int x) {
+		backBufferGraphics.setFont(fontBig2p);
 		if (player.equals("p1")) {
-			backBufferGraphics.setColor(scoreColor_1p(score));
+			backBufferGraphics.setColor(scoreColor1p(score));
 		} else if (player.equals("p2")) {
-			backBufferGraphics.setColor(scoreColor_2p(score));
+			backBufferGraphics.setColor(scoreColor2p(score));
 		} else{
 			backBufferGraphics.setColor(scoreColor(score));
 		}
@@ -731,10 +731,10 @@ public final class DrawManager {
 		backBufferGraphics.drawString(text, screen.getWidth() - 200, 60);
 	}
 
-	public void bulletsCount2p(final Screen screen, final int bulletsCount_2p) {
+	public void bulletsCount2p(final Screen screen, final int bulletsCount2p) {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.WHITE);
-		String text = "Remaining Bullets_2p: " + String.format("%02d", bulletsCount_2p);
+		String text = "Remaining Bullets_2p: " + String.format("%02d", bulletsCount2p);
 		backBufferGraphics.drawString(text, screen.getWidth() - 200, 80);
 	}
 
@@ -835,8 +835,8 @@ public final class DrawManager {
 		g2d.drawString(Integer.toString(itemcount2), screen.getWidth() - 25, 65); 
 	}
 
-	public void drawBossLivesBar(final Screen screen, int boss_lives) {
-		double fillRatio = boss_lives / 50.0;
+	public void drawBossLivesBar(final Screen screen, int bossLives) {
+		double fillRatio = bossLives / 50.0;
 
 		int x = 15;
 		int y = 85;
@@ -1418,7 +1418,7 @@ public final class DrawManager {
 
 	}
 
-	public void drawRecoveryConfirmPage_2P(GameState_2P gameState,final Screen screen, final int option) {
+	public void drawRecoveryConfirmPage2P(GameState_2P gameState,final Screen screen, final int option) {
 		String paymentMessage = "Please pay 150 amount to recover:";
 		backBufferGraphics.setColor(Color.white);
 		drawCenteredRegularString(screen,paymentMessage, screen.getHeight() / 3 + fontRegularMetrics.getHeight() * 4);
@@ -1530,10 +1530,10 @@ public final class DrawManager {
 	 */
 	public void drawStageSelect(final Screen screen, final int option, final int stages) {
 		String selectString = "Select Level with WASD, confirm with Space,";
-		String SelectString_2 = "cancel with ESC.";
+		String SelectString2 = "cancel with ESC.";
 		backBufferGraphics.setColor(blinkingColor("GRAY"));
 		drawCenteredRegularString(screen, selectString,screen.getHeight() / 8);
-		drawCenteredRegularString(screen, SelectString_2,screen.getHeight() / 8 + screen.getHeight() / 16);
+		drawCenteredRegularString(screen, SelectString2,screen.getHeight() / 8 + screen.getHeight() / 16);
 		String[] stage = new String[stages];
 		backBufferGraphics.setFont(fontBig);
 		for (int i = 0; i < stages; i++) {
@@ -2096,7 +2096,7 @@ public final class DrawManager {
 		backBufferGraphics.drawString(buyString, screen.getWidth()*5/8 + 33, screen.getHeight() - 95);
 	}
 
-	public void drawItemStore_2P(final Screen screen, final int option, final int PST, final int BST, final ItemManager itemManager) {
+	public void drawItemStore2P(final Screen screen, final int option, final int PST, final int BST, final ItemManager itemManager) {
 		String itemStoretxt = " * I T E M S T O R E * ";
 		String continueString = " > C O N T I N U E";
 		String enhanceString = " > E N H A N C E";
@@ -2560,40 +2560,40 @@ public final class DrawManager {
 	 */
 
 	public void drawLoading(int x, int y, Screen screen) {
-		float box1_W = screen.getWidth() / 2, box1_H = box1_W / 2;
+		float box1W = screen.getWidth() / 2, box1H = box1W / 2;
 		Graphics2D g2 = (Graphics2D) backBufferGraphics;
 
 		/* Background Box */
 		g2.setColor(new Color(0, 255, 0, 230));
-		g2.fill(new Rectangle2D.Double(x, y, box1_W, box1_H));
-		drawLoadingString((int) (x + box1_W / 5), (int) (y + box1_H * 0.85), "LOADING");
+		g2.fill(new Rectangle2D.Double(x, y, box1W, box1H));
+		drawLoadingString((int) (x + box1W / 5), (int) (y + box1H * 0.85), "LOADING");
 
 		/* Loading Box */
-		float box2_x = x + box1_W + screen.getWidth() / 30, box2_W = box1_W / 5;
+		float box2x = x + box1W + screen.getWidth() / 30, box2W = box1W / 5;
 		g2.setColor(new Color(0, 255, 0, 222));
-		g2.fill(new Rectangle2D.Double(box2_x, y, box2_W, box1_H));
+		g2.fill(new Rectangle2D.Double(box2x, y, box2W, box1H));
 
-		float dx = box2_W / 7;
+		float dx = box2W / 7;
 		g2.setColor(Color.black);
-		g2.fill(new Rectangle2D.Double(box2_x + dx, y + dx, box2_W - 2 * dx, box1_H - 2 * dx));
+		g2.fill(new Rectangle2D.Double(box2x + dx, y + dx, box2W - 2 * dx, box1H - 2 * dx));
 
 		/* Loading progress bar */
-		float startX = box2_x + dx + dx/2 , startY = y + dx + dx/2,
-				endX = startX + box2_W - 3*dx, endY = startY + box1_H - 3 * dx;
+		float startX = box2x + dx + dx/2 , startY = y + dx + dx/2,
+				endX = startX + box2W - 3*dx, endY = startY + box1H - 3 * dx;
 		loadingProgress(startX, startY, endX, endY, g2);
 
 		/* Animation box*/
 		g2.setColor(Color.black);
-		g2.fill(new Rectangle2D.Double(x + box1_W * 0.075, y + box1_W * 0.075, box1_W * 0.85, box1_H * 0.45));
-		animateLoading((int) (x + (box1_W * 3) / 44), (int) (y + (box1_W * 3) / 44));
+		g2.fill(new Rectangle2D.Double(x + box1W * 0.075, y + box1W * 0.075, box1W * 0.85, box1H * 0.45));
+		animateLoading((int) (x + (box1W * 3) / 44), (int) (y + (box1W * 3) / 44));
 
 		/* Box border */
 		g2.setStroke(new BasicStroke(2));
 		g2.setColor(Color.white);
-		g2.draw(new Rectangle2D.Double(x - 1, y - 1, box1_W + 2, box1_H + 2));
+		g2.draw(new Rectangle2D.Double(x - 1, y - 1, box1W + 2, box1H + 2));
 		g2.setColor(new Color(255, 255, 255, 222));
 
-		g2.draw(new Rectangle2D.Double(box2_x - 1, y - 1, box2_W + 1, box1_H + 1));
+		g2.draw(new Rectangle2D.Double(box2x - 1, y - 1, box2W + 1, box1H + 1));
 
 		timerCount++;
 	}
@@ -2638,10 +2638,10 @@ public final class DrawManager {
 		}
 	}
 
-	public void gameOver_2p(final Screen screen, boolean levelFinished, double lives_1p, double lives_2p, int bullets_1p, int bullets_2p, CountUpTimer timer,
+	public void gameOver2p(final Screen screen, boolean levelFinished, double lives1p, double lives2p, int bullets1p, int bullets2p, CountUpTimer timer,
 							Coin coin, String clearcoin){
 		if(levelFinished){
-			if((lives_1p <= 0 && lives_2p <= 0) || (bullets_1p <= 0 && bullets_2p <= 0)){
+			if((lives1p <= 0 && lives2p <= 0) || (bullets1p <= 0 && bullets2p <= 0)){
 				backBufferGraphics.setColor(animateColor(new Color(0, 0, 0, 0), Color.black, 3000, endTimer));
 				backBufferGraphics.fillRect(0, 0, screen.getWidth(), screen.getHeight());
 
@@ -2683,8 +2683,8 @@ public final class DrawManager {
 			//backBufferGraphics.setColor(ghostColor);
 		}
 	}
-	public void changeGhostColor_2p(boolean levelFinished, double lives_1p, double lives_2p){
-		if(levelFinished && lives_1p <= 0 && lives_2p <= 0){
+	public void changeGhostColor2p(boolean levelFinished, double lives1p, double lives2p){
+		if(levelFinished && lives1p <= 0 && lives2p <= 0){
 			int ghostColorValue;
 			if (225 < (255 - ((int)(System.currentTimeMillis() - ghostTImer) / 10)))
 				ghostColorValue = 225;
@@ -2719,12 +2719,12 @@ public final class DrawManager {
 			}
 		}
 	}
-	public void drawGhost_2p(boolean levelFinished, double lives_1p, double lives_2p){
-		if(levelFinished && lives_1p <= 0 && lives_2p <=0) {
+	public void drawGhost2p(boolean levelFinished, double lives1p, double lives2p){
+		if(levelFinished && lives1p <= 0 && lives2p <=0) {
 			boolean timer = (System.currentTimeMillis() - ghostTImer) % 2 == 0;
 			System.out.println(ghostColor);
-			System.out.println(lives_1p);
-			System.out.println(lives_2p);
+			System.out.println(lives1p);
+			System.out.println(lives2p);
 			if(timer){
 				if(System.currentTimeMillis() - ghostTImer < 1000)
 					this.drawEntity(SpriteType.Ghost, ghostPostionX--, ghostPostionY--, 2, 2, Color.white);
@@ -2803,7 +2803,7 @@ public final class DrawManager {
 	public void drawBackgroundStart(final Screen screen, int separationLineHeight){
 		int height = screen.getHeight();
 		int width = screen.getWidth();
-		backBufferGraphics.setColor(animateColor(Color.white, new Color(0, 0, 0, 0), 3000, bgTimer_init));
+		backBufferGraphics.setColor(animateColor(Color.white, new Color(0, 0, 0, 0), 3000, bgTimerInit));
 		backBufferGraphics.fillRect(0, separationLineHeight, width, height);
 	}
 
@@ -2894,17 +2894,17 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(new Color(255,255,255,70));
 		for (int i = 0; i<lineCount; i++){
-			int max_opacity = 130;
-			int opacity = (i*10<=max_opacity?i*10:max_opacity);
+			int maxOpacity = 130;
+			int opacity = (i*10<=maxOpacity?i*10:maxOpacity);
 			backBufferGraphics.setColor(new Color(255,255,255,opacity));
 			backBufferGraphics.drawLine(0, separationLineHeight+lineConstant+i*30, screen.getWidth(), separationLineHeight+lineConstant+i*30);
 		}
 
 		((Graphics2D) backBufferGraphics).setStroke(defaultStroke);
 
-		if (bgTimer_lines.checkFinished()) {
+		if (bgTimerLines.checkFinished()) {
 			lineConstant++;
-			bgTimer_lines.reset();
+			bgTimerLines.reset();
 		}
 		if (lineConstant >= 30) lineConstant = 0;
 	}
@@ -2914,8 +2914,8 @@ public final class DrawManager {
 	 * [Clean Code Team] This method was created by alicek0.
 	 */
 	public void initBackgroundTimer(final Screen screen, int separationLineHeight){
-		bgTimer_init.reset();
-		bgTimer_lines.reset();
+		bgTimerInit.reset();
+		bgTimerLines.reset();
 	}
 
 	public void comboCount(final Screen screen, final int comboCount) {

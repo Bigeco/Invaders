@@ -256,7 +256,7 @@ public class GameScreen extends Screen {
 		soundEffect = new SoundEffect();
 		bgm = new BGM();
 
-//		bgm.inGameBGM_stop();GM_play();
+//		bgm.inGameBGMstop();
 		
 
 		drawManager.initBackgroundTimer(this, SEPARATION_LINE_HEIGHT); // Initializes timer for background animation.
@@ -288,7 +288,7 @@ public class GameScreen extends Screen {
 				this.returnCode = 1;
 				this.lives = 0;
 				this.isRunning = false;
-				bgm.inGameBGM_stop();
+				bgm.inGameBGMstop();
 			}
 		}
 		else {
@@ -386,7 +386,7 @@ public class GameScreen extends Screen {
 				}
 				if (this.enemyShipSpecial == null
 						&& this.enemyShipSpecialCooldown.checkFinished()) {
-					bgm.enemyShipSpecialBGM_play();
+					bgm.enemyShipSpecialBGMplay();
 					colorVariable = (int)(Math.random()*4);
 					switch (colorVariable) {
 						case 0:
@@ -409,7 +409,7 @@ public class GameScreen extends Screen {
 				}
 				if (this.enemyShipSpecial != null
 						&& this.enemyShipSpecial.getPositionX() > this.width) {
-					bgm.enemyShipSpecialBGM_stop();
+					bgm.enemyShipSpecialBGMstop();
 					this.enemyShipSpecial = null;
 					this.logger.info("The special ship has escaped");
 				}
@@ -428,16 +428,16 @@ public class GameScreen extends Screen {
 		}
 		if (this.enemyShipFormation.isEmpty() && !this.levelFinished) {
 			endStageAllEat();
-			bgm.enemyShipSpecialBGM_stop();
-			bgm.inGameBGM_stop();
+			bgm.enemyShipSpecialBGMstop();
+			bgm.inGameBGMstop();
 			this.levelFinished = true;
 			this.screenFinishedCooldown.reset();
 			timer.stop();
 		}
 		if (this.lives <= 0 && !this.levelFinished) {
-			bgm.inGameBGM_stop();
+			bgm.inGameBGMstop();
 			this.ship.update();
-			bgm.enemyShipSpecialBGM_stop();
+			bgm.enemyShipSpecialBGMstop();
 			this.levelFinished = true;
 			drawManager.ghostPostionX = this.ship.getPositionX();
 			drawManager.ghostPostionY = this.ship.getPositionY() - 25;
@@ -467,8 +467,8 @@ public class GameScreen extends Screen {
 		}
 		if ((this.bulletsCount < 0) && !this.levelFinished){
 			this.bulletsCount = 0;
-			bgm.inGameBGM_stop();update();
-			bgm.enemyShipSpecialBGM_stop();
+			bgm.inGameBGMstop();update();
+			bgm.enemyShipSpecialBGMstop();
 			this.levelFinished = true;
 			drawManager.ghostPostionX = this.ship.getPositionX();
 			drawManager.ghostPostionY = this.ship.getPositionY() - 25;
@@ -584,11 +584,11 @@ public class GameScreen extends Screen {
 		if (inputManager.isKeyDown(KeyEvent.VK_C)) {
 			isSoundOn = !isSoundOn;
 			if (isSoundOn) {
-				bgm.inGameBGM_play();
+				bgm.inGameBGMplay();
 			} else {
-				bgm.inGameBGM_stop();
-				bgm.enemyShipSpecialBGM_stop();
-				soundEffect.soundEffect_stop();
+				bgm.inGameBGMstop();
+				bgm.enemyShipSpecialBGMstop();
+				soundEffect.soundEffectStop();
 
 			}
 		}
@@ -767,7 +767,7 @@ public class GameScreen extends Screen {
 					this.shipsDestroyed++;
 					this.enemyShipSpecial.destroy(this.items);
 					soundEffect.enemyShipSpecialDestructionSound();
-					bgm.enemyShipSpecialBGM_stop();
+					bgm.enemyShipSpecialBGMstop();
 					if (this.lives < 2.9) this.lives = this.lives + 0.1;
 					this.enemyShipSpecialExplosionCooldown.reset();
 				}
@@ -876,7 +876,7 @@ public class GameScreen extends Screen {
 						this.shipsDestroyed++;
 						this.enemyShipSpecial.destroy(this.items);
 						soundEffect.enemyShipSpecialDestructionSound();
-						bgm.enemyShipSpecialBGM_stop();
+						bgm.enemyShipSpecialBGMstop();
 						if (this.lives < 2.9) this.lives = this.lives + 0.1;
 						this.enemyShipSpecialExplosionCooldown.reset();
 					}

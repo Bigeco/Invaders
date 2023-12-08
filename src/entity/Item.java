@@ -18,11 +18,11 @@ public class Item extends Entity {
     /**
      * Movement direction X of item for each unit of time.
      */
-    public int item_dx;
+    public int itemdx;
     /**
      * Movement direction Y of item for each unit of time.
      */
-    public int item_dy;
+    public int itemdy;
 
     private boolean isDetroyed;
 
@@ -36,8 +36,8 @@ public class Item extends Entity {
     public Item(final int positionX, final int positionY) {
         super(positionX, positionY, 9 * 2, 9 * 2, Color.green);
         this.livingTime.reset();
-        item_dx = Math.random() > 0.5 ? 1 : -1;
-        item_dy = Math.random() > 0.5 ? 1 : -1;
+        itemdx = Math.random() > 0.5 ? 1 : -1;
+        itemdy = Math.random() > 0.5 ? 1 : -1;
         this.setSprite();
         isDetroyed = false;
     }
@@ -85,15 +85,15 @@ public class Item extends Entity {
 
         if (isRightBorder || isLeftBorder) {
             // 왼쪽 또는 오른쪽 경계에 부딪혔을 때는 x 방향 반대로 설정
-            this.item_dx = -this.item_dx;
+            this.itemdx = -this.itemdx;
         }
 
         if (isTopBorder || isBottomBorder) {
             // 위쪽 또는 아래쪽 경계에 부딪혔을 때는 y 방향 반대로 설정
-            this.item_dy = -this.item_dy;
+            this.itemdy = -this.itemdy;
         }
-        positionX += this.speed * this.item_dx;
-        positionY += this.speed * this.item_dy;
+        positionX += this.speed * this.itemdx;
+        positionY += this.speed * this.itemdy;
     }
 
     /**
@@ -128,9 +128,9 @@ public class Item extends Entity {
 
     public final void resetItem(Ship ship) {
         this.coolReset();
-        this.item_dx = ship.getPositionX() - this.positionX > 0 ? 1 : -1;
-        this.item_dy = ship.getPositionY() - this.positionY > 0 ? 1 : -1;
-        positionX += this.item_dx * ((int) Math.sqrt(Math.abs(ship.getPositionX() - this.positionX)) + 1);
-        positionY += this.item_dy * ((int) Math.sqrt(Math.abs(ship.getPositionY() - this.positionY)) + 1);
+        this.itemdx = ship.getPositionX() - this.positionX > 0 ? 1 : -1;
+        this.itemdy = ship.getPositionY() - this.positionY > 0 ? 1 : -1;
+        positionX += this.itemdx * ((int) Math.sqrt(Math.abs(ship.getPositionX() - this.positionX)) + 1);
+        positionY += this.itemdy * ((int) Math.sqrt(Math.abs(ship.getPositionY() - this.positionY)) + 1);
     }
 }

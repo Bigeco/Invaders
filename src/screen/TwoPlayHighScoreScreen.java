@@ -17,10 +17,10 @@ import engine.Score;
 public class TwoPlayHighScoreScreen extends Screen {
 
     /** List of past high scores. */
-    private List<Score> highScores_EASY;
-    private List<Score> highScores_NORMAL;
-    private List<Score> highScores_HARD;
-    private List<Score> highScores_HARDCORE;
+    private List<Score> highScoresEASY;
+    private List<Score> highScoresNORMAL;
+    private List<Score> highScoresHARD;
+    private List<Score> highScoresHARDCORE;
     private int difficulty;
     private Cooldown selectCooldown;
     /**
@@ -40,10 +40,10 @@ public class TwoPlayHighScoreScreen extends Screen {
         this.returnCode = 1;
         this.difficulty = 0;
         try {
-            this.highScores_EASY = Core.getFileManager().load2PHighScores(0);
-            this.highScores_NORMAL = Core.getFileManager().load2PHighScores(1);
-            this.highScores_HARD = Core.getFileManager().load2PHighScores(2);
-            this.highScores_HARDCORE = Core.getFileManager().load2PHighScores(3);
+            this.highScoresEASY = Core.getFileManager().load2PHighScores(0);
+            this.highScoresNORMAL = Core.getFileManager().load2PHighScores(1);
+            this.highScoresHARD = Core.getFileManager().load2PHighScores(2);
+            this.highScoresHARDCORE = Core.getFileManager().load2PHighScores(3);
         } catch (NumberFormatException | IOException e) {
             logger.warning("Couldn't load high scores!");
         }
@@ -93,13 +93,13 @@ public class TwoPlayHighScoreScreen extends Screen {
         drawManager.drawHighScoreMenu(this);
         drawManager.drawDiffScore(this, this.difficulty);
         if (this.difficulty == 0)
-            drawManager.drawHighScores(this, this.highScores_EASY);
+            drawManager.drawHighScores(this, this.highScoresEASY);
         else if (this.difficulty == 1)
-            drawManager.drawHighScores(this, this.highScores_NORMAL);
+            drawManager.drawHighScores(this, this.highScoresNORMAL);
         else if (this.difficulty == 2)
-            drawManager.drawHighScores(this, this.highScores_HARD);
+            drawManager.drawHighScores(this, this.highScoresHARD);
         else
-            drawManager.drawHighScores(this, this.highScores_HARDCORE);
+            drawManager.drawHighScores(this, this.highScoresHARDCORE);
 
         drawManager.completeDrawing(this);
     }
