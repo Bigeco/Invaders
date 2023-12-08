@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 public final class InputManager implements KeyListener {
 
 	/** Number of recognised keys. */
-	private static final int NUM_KEYS = 256;
+	private static final int numKeys = 256;
 	/** Array with the jeys marked as pressed or not. */
 	private static boolean[] keys;
 	private static boolean[] keyPressedOnce;
@@ -21,8 +21,8 @@ public final class InputManager implements KeyListener {
 	 * Private constructor.
 	 */
 	private InputManager() {
-		keys = new boolean[NUM_KEYS];
-		keyPressedOnce = new boolean[NUM_KEYS];
+		keys = new boolean[numKeys];
+		keyPressedOnce = new boolean[numKeys];
 	}
 
 	/**
@@ -61,7 +61,7 @@ public final class InputManager implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(final KeyEvent key) {
-		if (key.getKeyCode() >= 0 && key.getKeyCode() < NUM_KEYS) {
+		if (key.getKeyCode() >= 0 && key.getKeyCode() < numKeys) {
 			keys[key.getKeyCode()] = true;
 			keyPressedOnce[key.getKeyCode()] = true;
 		}
@@ -75,7 +75,7 @@ public final class InputManager implements KeyListener {
 	 */
 	@Override
 	public void keyReleased(final KeyEvent key) {
-		if (key.getKeyCode() >= 0 && key.getKeyCode() < NUM_KEYS) {
+		if (key.getKeyCode() >= 0 && key.getKeyCode() < numKeys) {
 			keys[key.getKeyCode()] = false;
 		}
 	}

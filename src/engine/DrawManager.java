@@ -1964,9 +1964,9 @@ public final class DrawManager {
 	public void drawItemthings(final int width, final int height, final int size, final Color color, final int option, String string){
 		String shield = "S H I E L D";
 		String bomb = "B O M B";
-		String BST = "B S T O N E";
-		String PST = "P S T O N E";
-		String Life = "L I F E";
+		String bst = "B S T O N E";
+		String pst = "P S T O N E";
+		String life = "L I F E";
 		backBufferGraphics.drawRect(width, height, size, size);
 
 		if (option == 1){
@@ -1988,7 +1988,7 @@ public final class DrawManager {
 		} else if (option == 3){
 			backBufferGraphics.setColor(Color.white);
 			backBufferGraphics.setFont(fontSmall);
-			backBufferGraphics.drawString(BST, width + 18, height + size - 10);
+			backBufferGraphics.drawString(bst, width + 18, height + size - 10);
 			drawEntity(SpriteType.BlueEnhanceStone, width + 25, height + 25, size/15, size/15, color);
 			backBufferGraphics.setColor(Color.white);
 			backBufferGraphics.setColor(Color.white);
@@ -1997,7 +1997,7 @@ public final class DrawManager {
 		} else if (option == 4){
 			backBufferGraphics.setColor(Color.white);
 			backBufferGraphics.setFont(fontSmall);
-			backBufferGraphics.drawString(PST, width + 18, height + size - 10);
+			backBufferGraphics.drawString(pst, width + 18, height + size - 10);
 			drawEntity(SpriteType.PerpleEnhanceStone, width + 25, height + 25, size/15, size/15, color);
 			backBufferGraphics.setColor(Color.white);
 			backBufferGraphics.setFont(fontBig);
@@ -2005,7 +2005,7 @@ public final class DrawManager {
 		} else if (option == 5){
 			backBufferGraphics.setColor(Color.white);
 			backBufferGraphics.setFont(fontSmall);
-			backBufferGraphics.drawString(Life, width + 18, height + size - 10);
+			backBufferGraphics.drawString(life, width + 18, height + size - 10);
 			drawEntity(SpriteType.LifeItem, width + 25, height + 25, size/15, size/15, color);
 			backBufferGraphics.setColor(Color.white);
 			backBufferGraphics.setFont(fontBig);
@@ -2014,7 +2014,7 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.GREEN);
 	}
 
-	public void drawItemStore(final Screen screen, final int option, final int PST, final int BST, final ItemManager itemManager, GameState gameState) {
+	public void drawItemStore(final Screen screen, final int option, final int pst, final int bst, final ItemManager itemManager, GameState gameState) {
 		String itemStoretxt = " * I T E M S T O R E * ";
 		String continueString = " > C O N T I N U E";
 		String enhanceString = " > E N H A N C E";
@@ -2026,8 +2026,8 @@ public final class DrawManager {
 		String prizeString3 = "5 0";
 		String shieldString = "" + itemManager.getShieldCount();
 		String bombString = "" + itemManager.getBombCount();
-		String BSTString = "" + BST;
-		String PSTStiring = "" + PST;
+		String bstString = "" + bst;
+		String pstStiring = "" + pst;
 		
 		String coinMsg1 = gameState.getCoinMsg();
 
@@ -2047,8 +2047,8 @@ public final class DrawManager {
 		g2d.setFont(fontRegular);
 		drawItemthings(screen.getWidth()/7, screen.getHeight()/6, 100, Color.GRAY,1, shieldString);
 		drawItemthings(screen.getWidth() *5/8, screen.getHeight()/6, 100, Color.RED,2, bombString);
-		drawItemthings(screen.getWidth()/7, screen.getHeight()*4/7 - 30, 100,Color.BLUE,3, BSTString);
-		drawItemthings(screen.getWidth()*5/8, screen.getHeight()*4/7 - 30, 100, Color.magenta,4, PSTStiring);
+		drawItemthings(screen.getWidth()/7, screen.getHeight()*4/7 - 30, 100,Color.BLUE,3, bstString);
+		drawItemthings(screen.getWidth()*5/8, screen.getHeight()*4/7 - 30, 100, Color.magenta,4, pstStiring);
 
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.yellow);
@@ -2096,7 +2096,7 @@ public final class DrawManager {
 		backBufferGraphics.drawString(buyString, screen.getWidth()*5/8 + 33, screen.getHeight() - 95);
 	}
 
-	public void drawItemStore2P(final Screen screen, final int option, final int PST, final int BST, final ItemManager itemManager) {
+	public void drawItemStore2P(final Screen screen, final int option, final int pst, final int bst, final ItemManager itemManager) {
 		String itemStoretxt = " * I T E M S T O R E * ";
 		String continueString = " > C O N T I N U E";
 		String enhanceString = " > E N H A N C E";
@@ -2107,8 +2107,8 @@ public final class DrawManager {
 		String prizeString3 = "5 0";
 		String shieldString = "" + itemManager.getShieldCount();
 		String bombString = "" + itemManager.getBombCount();
-		String BSTString = "" + BST;
-		String PSTStiring = "" + PST;
+		String bstString = "" + bst;
+		String pstStiring = "" + pst;
 
 		int rectWidth = screen.getWidth();
 		int rectHeight = screen.getHeight() / 6;
@@ -2120,8 +2120,8 @@ public final class DrawManager {
 		drawHorizontalLine(screen, screen.getHeight()/14);
 		drawItemthings(screen.getWidth()/7, screen.getHeight()/6, 100, Color.GRAY,1, shieldString);
 		drawItemthings(screen.getWidth() *5/8, screen.getHeight()/6, 100, Color.RED,2, bombString);
-		drawItemthings(screen.getWidth()/7, screen.getHeight()*4/7 - 30, 100,Color.BLUE,3, BSTString);
-		drawItemthings(screen.getWidth()*5/8, screen.getHeight()*4/7 - 30, 100, Color.magenta,4, PSTStiring);
+		drawItemthings(screen.getWidth()/7, screen.getHeight()*4/7 - 30, 100,Color.BLUE,3, bstString);
+		drawItemthings(screen.getWidth()*5/8, screen.getHeight()*4/7 - 30, 100, Color.magenta,4, pstStiring);
 
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.yellow);
@@ -2425,18 +2425,18 @@ public final class DrawManager {
 		}
 
     	/** Height of the interface separation line. */
-    	int SEPARATION_LINE_HEIGHT = 40;
+    	int separationLineHeight = 40;
 
 		int screenWidth = screen.getWidth();
 		int centeredCircleWidth = 170;
         int centeredCircleHeight = 170;
 		int centeredCircleX = (screenWidth - 170) / 2;
-        int centeredCircleY = SEPARATION_LINE_HEIGHT * 2;
+        int centeredCircleY = separationLineHeight * 2;
         int sideCircleWidth = 70;
         int sideCircleHeight = 70;
         int leftCircleX = (screenWidth - 220) / 2;
         int rightCircleX = screenWidth - (screenWidth - 220) / 2 - 70;
-        int sideCircleY = SEPARATION_LINE_HEIGHT * 5;	
+        int sideCircleY = separationLineHeight * 5;	
 
 		backBufferGraphics.setColor(Color.GREEN);
 

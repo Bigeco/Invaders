@@ -9,7 +9,7 @@ import entity.Coin;
 
 public class RandomRewardScreen_2P extends Screen {
     /** Milliseconds between changes in user selection. */
-    private static final int SELECTION_TIME = 200;
+    private static final int selectionTime = 200;
     /** Time between changes in user selection. */
     private Cooldown selectionCooldown;
     private Coin coin;
@@ -34,7 +34,7 @@ public class RandomRewardScreen_2P extends Screen {
         // Defaults to play.
         this.coin = gameState.getCoin();
         this.returnCode = 13;
-        this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+        this.selectionCooldown = Core.getCooldown(selectionTime);
         this.selectionCooldown.reset();
         this.randomRes = randomRes;
         this.getRewardTypeString = getRewardTypeString;
