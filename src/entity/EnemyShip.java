@@ -19,18 +19,18 @@ import engine.DrawManager.SpriteType;
 public class EnemyShip extends Entity {
 	/** 적들 처치시 점수 설정 */
 	/** Point value of a type normal enemy. */
-	private static final int nTypePoints = 10;
+	private static final int N_TYPE_POINTS = 10;
 	/** Point value of a type mod1 enemy. */
-	private static final int m1TypePoints = 30;
+	private static final int M1_TYPE_POINTS = 30;
 	/** Point value of a type mod2 enemy. */
-	private static final int m2TypePoints = 50;
+	private static final int M2_TYPE_POINTS = 50;
 
 	/** Point value of a bonus enemy. */
-	private static final int bonusTypePoints = 100;
+	private static final int BONUS_TYPE_POINTS = 100;
 	/** Point value of a boss enemy. */
-	private static final int bossTypePoints = 1000;
+	private static final int BOSS_TYPE_POINTS = 1000;
 	/** Item drop percent*/
-	private final double dropItemProb = 0.05;
+	private final double DROP_ITEM_PROB = 0.05;
 
 	/** 스프라이트 변경 쿨다운. */
 	private Cooldown animationCooldown;
@@ -39,7 +39,7 @@ public class EnemyShip extends Entity {
 	/** Values of the ship, in points, when destroyed. */
 	private int pointValue;
 	/** Lives of ship, ship will be destroyed when life becomes 0. */
-	private int enemyLife;
+	private int EnemyLife;
 	/** check which special enemy to generate. */
 	private int spVariable;
 
@@ -85,8 +85,8 @@ public class EnemyShip extends Entity {
 			case ESm2A_2D2:
 			case ESm2B_1D2:
 			case ESm2B_2D2:
-				this.pointValue = nTypePoints;
-				this.enemyLife = 1;
+				this.pointValue = N_TYPE_POINTS;
+				this.EnemyLife = 1;
 				break;
 			case ESm1_1:
 			case ESm1_2:
@@ -94,15 +94,15 @@ public class EnemyShip extends Entity {
 			case ESm2A_2D1:
 			case ESm2B_1D1:
 			case ESm2B_2D1:
-				this.pointValue = m1TypePoints;
-				this.enemyLife = 2;
+				this.pointValue = M1_TYPE_POINTS;
+				this.EnemyLife = 2;
 				break;
 			case ESm2A_1:
 			case ESm2A_2:
 			case ESm2B_1:
 			case ESm2B_2:
-				this.pointValue = m2TypePoints;
-				this.enemyLife = 3;
+				this.pointValue = M2_TYPE_POINTS;
+				this.EnemyLife = 3;
 				break;
 			default:
 				this.pointValue = 0;
@@ -139,8 +139,8 @@ public class EnemyShip extends Entity {
 
 
 		this.isDestroyed = false;
-		this.pointValue = bonusTypePoints;
-		this.enemyLife = 1;
+		this.pointValue = BONUS_TYPE_POINTS;
+		this.EnemyLife = 1;
 		this.isBoss = false;
 	}
 
@@ -157,8 +157,8 @@ public class EnemyShip extends Entity {
 		this.spriteType = SpriteType.BossA1;
 		this.animationCooldown = Core.getCooldown(500);
 		this.isDestroyed = false;
-		this.pointValue = bossTypePoints;
-		this.enemyLife = enemylife;
+		this.pointValue = BOSS_TYPE_POINTS;
+		this.EnemyLife = enemylife;
 		this.isBoss = true;
 
 	}
@@ -280,7 +280,7 @@ public class EnemyShip extends Entity {
 	 * Reduces enemy's life when hit
 	 */
 	public final void reduceEnemyLife(final int attackDamage) {
-		this.enemyLife -= attackDamage;
+		this.EnemyLife -= attackDamage;
 	}
 	
 	/**
@@ -289,7 +289,7 @@ public class EnemyShip extends Entity {
 	 * @return the rest of the enemy's life.
 	 */
 	public final int getEnemyLife() {
-		return this.enemyLife;
+		return this.EnemyLife;
 	}
 
 	/**
@@ -307,10 +307,10 @@ public class EnemyShip extends Entity {
 	public final void destroy(Set<Item> items) {
 		this.isDestroyed = true;
 		this.spriteType = randomDestroy();
-		if ((Math.random() < dropItemProb + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial1 ? 1 : 0)))
-				|| (Math.random() < dropItemProb + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial2 ? 1 : 0)))
-				|| (Math.random() < dropItemProb + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial3 ? 1 : 0)))
-				|| (Math.random() < dropItemProb + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial4 ? 1 : 0))))
+		if ((Math.random() < DROP_ITEM_PROB + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial1 ? 1 : 0)))
+				|| (Math.random() < DROP_ITEM_PROB + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial2 ? 1 : 0)))
+				|| (Math.random() < DROP_ITEM_PROB + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial3 ? 1 : 0)))
+				|| (Math.random() < DROP_ITEM_PROB + (0.1 * 2 * (this.getSpriteType() == SpriteType.EnemyShipSpecial4 ? 1 : 0))))
 		{
 			items.add(ItemPool.getItem(this.positionX, this.positionY));
 		}

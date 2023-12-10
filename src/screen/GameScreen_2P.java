@@ -19,27 +19,27 @@ public class GameScreen_2P extends Screen {
     private boolean isSoundOn = true;
 
     /** Milliseconds until the screen accepts user input. */
-    private static final int inputdelay = 6000;
+    private static final int INPUT_DELAY = 6000;
     /** Bonus score for each life remaining at the end of the level. */
-    private static final int lifeScore = 100;
+    private static final int LIFE_SCORE = 100;
     /** Minimum time between bonus ship's appearances. */
-    private static final int bonusShipInterval = 20000;
+    private static final int BONUS_SHIP_INTERVAL = 20000;
     /** Maximum variance in the time between bonus ship's appearances. */
-    private static final int bonusShipVariance = 10000;
+    private static final int BONUS_SHIP_VARIANCE = 10000;
     /** Time until bonus ship explosion disappears. */
-    private static final int bonusShipExplosion = 500;
+    private static final int BONUS_SHIP_EXPLOSION = 500;
     /** Maximum variance in the time between laser's appearances. */
-    private int laserInterval = 5000;
+    private int LASER_INTERVAL = 5000;
     /** Maximum variance in the time between Laser's appearances. */
-    private int laserVariance = 1000;
+    private int LASER_VARIANCE = 1000;
     /** Maximum variance in the time between Laser's appearances. */
-    private int laserLoad = 2000;
+    private int LASER_LOAD = 2000;
     /** Time until laser disappears. */
-    private static final int laseractivate = 1000;
+    private static final int LASER_ACTIVATE = 1000;
     /** Time from finishing the level to screen change. */
-    private static final int screenChangeInterval = 3000;
+    private static final int SCREEN_CHANGE_INTERVAL = 3000;
     /** Height of the interface separation line. */
-    private static final int separationLineHeight = 40;
+    private static final int SEPARATION_LINE_HEIGHT = 40;
 
     /** Current game difficulty settings. */
     private GameSettings gameSettings;
@@ -176,9 +176,9 @@ public class GameScreen_2P extends Screen {
 
         this.laserActivate = (gameSettings.getDifficulty() == 1 && getGameState().getLevel() >= 4) || (gameSettings.getDifficulty() > 1);
         if (gameSettings.getDifficulty() > 1) {
-            laserInterval = 3000;
-            laserVariance = 500;
-            laserLoad = 1500;
+            LASER_INTERVAL = 3000;
+            LASER_VARIANCE = 500;
+            LASER_LOAD = 1500;
         }
     }
 
@@ -196,23 +196,23 @@ public class GameScreen_2P extends Screen {
         this.bulletLine2P = new BulletLine(3 * this.width / 4 , this.height + 120);
         // Appears each 10-30 seconds.
         this.enemyShipSpecialCooldown = Core.getVariableCooldown(
-                bonusShipInterval, bonusShipVariance);
+                BONUS_SHIP_INTERVAL, BONUS_SHIP_VARIANCE);
         this.enemyShipSpecialCooldown.reset();
         this.enemyShipSpecialExplosionCooldown = Core
-                .getCooldown(bonusShipExplosion);
+                .getCooldown(BONUS_SHIP_EXPLOSION);
         // Laser appears each (4~6 or 2.5~3.5) seconds, be loaded for 2 or 1.5 seconds and takes a second for launch)
         this.nextLaserX = -1;
         this.laser = null;
         this.laserCooldown = Core.getVariableCooldown(
-                laserInterval, laserVariance);
+                LASER_INTERVAL, LASER_VARIANCE);
         this.laserCooldown.reset();
         this.laserLoadCooldown = Core
-                .getCooldown(laserLoad);
+                .getCooldown(LASER_LOAD);
         this.laserLoadCooldown.reset();
         this.laserLaunchCooldown = Core
-                .getCooldown(laseractivate);
+                .getCooldown(LASER_ACTIVATE);
         this.laserLaunchCooldown.reset();
-        this.screenFinishedCooldown = Core.getCooldown(screenChangeInterval);
+        this.screenFinishedCooldown = Core.getCooldown(SCREEN_CHANGE_INTERVAL);
         this.bullets = new HashSet<Bullet>();
         this.bullets1P = new HashSet<Bullet>();
         this.bullets2P = new HashSet<Bullet>();
@@ -224,7 +224,7 @@ public class GameScreen_2P extends Screen {
 
         // Special input delay / countdown.
         this.gameStartTime = System.currentTimeMillis();
-        this.inputDelay = Core.getCooldown(inputdelay);
+        this.inputDelay = Core.getCooldown(INPUT_DELAY);
         this.inputDelay.reset();
 
         soundEffect = new SoundEffect();
@@ -232,7 +232,7 @@ public class GameScreen_2P extends Screen {
 
         bgm.inGameBGMplay();
 
-        drawManager.initBackgroundTimer(this, separationLineHeight); // Initializes timer for background animation.
+        drawManager.initBackgroundTimer(this, SEPARATION_LINE_HEIGHT); // Initializes timer for background animation.
     }
 
     /**
@@ -243,8 +243,8 @@ public class GameScreen_2P extends Screen {
     public final int run() {
         super.run();
 
-        this.score1P += lifeScore * (this.lives1p - 1);
-        this.score2P += lifeScore * (this.lives2p - 1);
+        this.score1P += LIFE_SCORE * (this.lives1p - 1);
+        this.score2P += LIFE_SCORE * (this.lives2p - 1);
         this.logger.info("Screen cleared with a score of " + this.score1P + " " + this.score2P);
 
         return this.returnCode;
@@ -383,13 +383,13 @@ public class GameScreen_2P extends Screen {
                         if (this.laserLoadCooldown.checkFinished() && this.nextLaserX != -1) {
                             this.laserLaunchCooldown.reset();
                             this.laserLine = null;
-                            this.laser = new Laser(this.nextLaserX, separationLineHeight, true);
+                            this.laser = new Laser(this.nextLaserX, SEPARATION_LINE_HEIGHT, true);
                             this.logger.info("Laser has been launched.");
                         } else {
                             if (this.nextLaserX == -1 && laserCooldown.checkFinished()) {
                                 this.logger.info("Laser will be launched.");
                                 this.nextLaserX = (int) (Math.random() * 448);
-                                this.laserLine = new LaserLine(this.nextLaserX, separationLineHeight);
+                                this.laserLine = new LaserLine(this.nextLaserX, SEPARATION_LINE_HEIGHT);
                                 this.laserLoadCooldown.reset();
                             }
                         }
@@ -545,12 +545,12 @@ public class GameScreen_2P extends Screen {
      */
     private void draw() {
         drawManager.initDrawing(this);
-        drawManager.drawBackground(this, separationLineHeight, (int)this.lives1p);
-        drawManager.drawBackground(this, separationLineHeight, (int)this.lives2p);
-        if (this.enemyShipSpecial != null) drawManager.drawBackgroundSpecialEnemy(this, separationLineHeight);
-        drawManager.drawBackgroundLines(this, separationLineHeight);
-        drawManager.drawBackgroundPlayer(this, separationLineHeight, this.ship1P.getPositionX(), this.ship1P.getPositionY(), this.ship1P.getWidth(), this.ship1P.getHeight());
-        drawManager.drawBackgroundPlayer(this, separationLineHeight, this.ship2P.getPositionX(), this.ship2P.getPositionY(), this.ship2P.getWidth(), this.ship2P.getHeight());
+        drawManager.drawBackground(this, SEPARATION_LINE_HEIGHT, (int)this.lives1p);
+        drawManager.drawBackground(this, SEPARATION_LINE_HEIGHT, (int)this.lives2p);
+        if (this.enemyShipSpecial != null) drawManager.drawBackgroundSpecialEnemy(this, SEPARATION_LINE_HEIGHT);
+        drawManager.drawBackgroundLines(this, SEPARATION_LINE_HEIGHT);
+        drawManager.drawBackgroundPlayer(this, SEPARATION_LINE_HEIGHT, this.ship1P.getPositionX(), this.ship1P.getPositionY(), this.ship1P.getWidth(), this.ship1P.getHeight());
+        drawManager.drawBackgroundPlayer(this, SEPARATION_LINE_HEIGHT, this.ship2P.getPositionX(), this.ship2P.getPositionY(), this.ship2P.getWidth(), this.ship2P.getHeight());
         drawManager.bulletsCount1p(this,this.bulletsCount1p);
         drawManager.bulletsCount2p(this, this.bulletsCount2p);
         drawManager.drawEntity(this.ship1P, this.ship1P.getPositionX(),
@@ -643,7 +643,7 @@ public class GameScreen_2P extends Screen {
             for (EnemyShip enemyShip : this.enemyShipFormation)
                 drawManager.drawBossLivesBar(this, enemyShip.getEnemyLife());
         }
-        drawManager.drawHorizontalLine(this, separationLineHeight - 1);
+        drawManager.drawHorizontalLine(this, SEPARATION_LINE_HEIGHT - 1);
         //drawManager.scoreEmoji(this, this.score1P);
         drawManager.drawSoundButton2(this);
         if (inputManager.isKeyDown(KeyEvent.VK_C)) {
@@ -671,14 +671,14 @@ public class GameScreen_2P extends Screen {
 
         // Countdown to game start.
         if (!this.inputDelay.checkFinished()) {
-            int countdown = (int) ((inputdelay
+            int countdown = (int) ((INPUT_DELAY
                     - (System.currentTimeMillis()
                     - this.gameStartTime)) / 1000);
             drawManager.drawCountDown(this, this.level, countdown,
                     this.bonusLife);
 
             // Fade from white at game start.
-            drawManager.drawBackgroundStart(this, separationLineHeight);
+            drawManager.drawBackgroundStart(this, SEPARATION_LINE_HEIGHT);
 
             /* this code is modified with Clean Code (dodo_kdy)  */
             //drawManager.drawHorizontalLine(this, this.height / 2 - this.height / 12);
@@ -703,7 +703,7 @@ public class GameScreen_2P extends Screen {
         Set<Bullet> recyclable = new HashSet<Bullet>();
         for (Bullet bullet : this.bullets) {
             bullet.update();
-            if (bullet.getPositionY() < separationLineHeight
+            if (bullet.getPositionY() < SEPARATION_LINE_HEIGHT
                     || bullet.getPositionY() > this.height)
                 recyclable.add(bullet);
         }
@@ -716,7 +716,7 @@ public class GameScreen_2P extends Screen {
         Set<Bullet> recyclable = new HashSet<Bullet>();
         for (Bullet bullet : this.bullets1P) {
             bullet.update();
-            if (bullet.getPositionY() < separationLineHeight
+            if (bullet.getPositionY() < SEPARATION_LINE_HEIGHT
                     || bullet.getPositionY() > this.height)
                 recyclable.add(bullet);
         }
@@ -729,7 +729,7 @@ public class GameScreen_2P extends Screen {
         Set<Bullet> recyclable = new HashSet<Bullet>();
         for (Bullet bullet : this.bullets2P) {
             bullet.update();
-            if (bullet.getPositionY() < separationLineHeight
+            if (bullet.getPositionY() < SEPARATION_LINE_HEIGHT
                     || bullet.getPositionY() > this.height)
                 recyclable.add(bullet);
         }
@@ -742,7 +742,7 @@ public class GameScreen_2P extends Screen {
         Set<BulletY> recyclable = new HashSet<BulletY>();
         for (BulletY bulletY : this.bulletsY) {
             bulletY.update();
-            if (bulletY.getPositionY() < separationLineHeight
+            if (bulletY.getPositionY() < SEPARATION_LINE_HEIGHT
                     || bulletY.getPositionY() > this.height)
                 recyclable.add(bulletY);
         }
@@ -754,7 +754,7 @@ public class GameScreen_2P extends Screen {
         Set<BulletY> recyclable = new HashSet<BulletY>();
         for (BulletY bulletY : this.bulletsY1P) {
             bulletY.update();
-            if (bulletY.getPositionY() < separationLineHeight
+            if (bulletY.getPositionY() < SEPARATION_LINE_HEIGHT
                     || bulletY.getPositionY() > this.height)
                 recyclable.add(bulletY);
         }
@@ -766,7 +766,7 @@ public class GameScreen_2P extends Screen {
         Set<BulletY> recyclable = new HashSet<BulletY>();
         for (BulletY bulletY : this.bulletsY2P) {
             bulletY.update();
-            if (bulletY.getPositionY() < separationLineHeight
+            if (bulletY.getPositionY() < SEPARATION_LINE_HEIGHT
                     || bulletY.getPositionY() > this.height)
                 recyclable.add(bulletY);
         }
@@ -780,7 +780,7 @@ public class GameScreen_2P extends Screen {
     private void cleanItems() {
         Set<Item> recyclable = new HashSet<Item>();
         for (Item item : this.items) {
-            item.update(this.getWidth(), this.getHeight(), separationLineHeight);
+            item.update(this.getWidth(), this.getHeight(), SEPARATION_LINE_HEIGHT);
             if (item.isLivingTimeEnd()){
                 recyclable.add(item);
             }

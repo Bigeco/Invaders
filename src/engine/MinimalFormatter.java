@@ -15,9 +15,9 @@ import java.util.logging.LogRecord;
 public class MinimalFormatter extends Formatter {
 
 	/** Format for the date. */
-	private static final DateFormat format = new SimpleDateFormat("h:mm:ss");
+	private static final DateFormat FORMAT = new SimpleDateFormat("h:mm:ss");
 	/** System line separator. */
-	private static final String lineSeparator = System
+	private static final String LINE_SEPARATOR = System
 			.getProperty("line.separator");
 
 	@Override
@@ -25,9 +25,9 @@ public class MinimalFormatter extends Formatter {
 
 		StringBuilder output = new StringBuilder().append("[")
 				.append(logRecord.getLevel()).append('|')
-				.append(format.format(new Date(logRecord.getMillis())))
+				.append(FORMAT.format(new Date(logRecord.getMillis())))
 				.append("]: ").append(logRecord.getMessage()).append(' ')
-				.append(lineSeparator);
+				.append(LINE_SEPARATOR);
 
 		return output.toString();
 	}
